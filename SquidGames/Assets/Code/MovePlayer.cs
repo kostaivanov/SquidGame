@@ -6,19 +6,44 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private Transform[] boxes;
     public float speed = 1f;
-    int currentWP = 0;
-
-    public void MovePlayerForward(int index)
+    public bool move;
+    private string _boxIndex;
+    private string _buttonColor;
+    private void Start()
     {
-        this.transform.Translate(speed * Time.deltaTime, 0, 0);
+        move = false;
+    }
+
+    private void OnEnable()
+    {
+        OnClickMove.OnClicked += MovePlayerForward;
+    }
+
+    private void OnDisable()
+    {
+        OnClickMove.OnClicked -= MovePlayerForward;
+    }
+
+    public void MovePlayerForward(string boxIndex, string buttonColor)
+    {
+        move = true;
+        this._boxIndex = boxIndex;
+        this._buttonColor = buttonColor;
+        Debug.Log(_boxIndex);
+
+        Debug.Log(_buttonColor);
+
     }
 
     private void Update()
     {
-        if (Vector3.Distance(this.transform.position, boxes[currentWP].transform.position) < 0.1)
+        if (_buttonColor != null && this.gameObject.name.StartsWith(_buttonColor))
         {
-            currentWP++;
-            MovePlayerForward(currentWP);
+            Debug.Log(boxes[int.Parse(_boxIndex)]);
+            if (move == true && Vector3.Distance(this.transform.position, boxes[int.Parse(_boxIndex)].transform.position) > 0.4)
+            {
+                this.transform.Translate(speed * Time.deltaTime, 0, 0);
+            }
         }
     }
 }
