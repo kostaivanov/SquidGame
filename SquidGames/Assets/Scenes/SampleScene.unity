@@ -538,7 +538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 295930535}
   - component: {fileID: 295930534}
-  - component: {fileID: 295930536}
   - component: {fileID: 295930537}
   - component: {fileID: 295930538}
   m_Layer: 0
@@ -613,32 +612,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &295930536
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295930533}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.004285939, y: 0.5400326}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48214194, y: 0.046191156}
-    oldSize: {x: 0.24, y: 1.19}
-    newSize: {x: 0.24, y: 1.19}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.24, y: 1.19}
-  m_EdgeRadius: 0
 --- !u!50 &295930537
 Rigidbody2D:
   serializedVersion: 4
@@ -651,7 +624,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -675,7 +648,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.02, y: 0.11}
   serializedVersion: 2
-  m_Radius: 0.22
+  m_Radius: 0.13
 --- !u!1 &304785188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1195,6 @@ GameObject:
   m_Component:
   - component: {fileID: 645504895}
   - component: {fileID: 645504894}
-  - component: {fileID: 645504896}
   - component: {fileID: 645504897}
   - component: {fileID: 645504898}
   - component: {fileID: 645504899}
@@ -1298,32 +1270,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &645504896
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645504893}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005672604, y: 0.27455425}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5090041, y: 0.06419958}
-    oldSize: {x: 0.63, y: 0.63}
-    newSize: {x: 0.63, y: 0.63}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.63, y: 0.63}
-  m_EdgeRadius: 0
 --- !u!50 &645504897
 Rigidbody2D:
   serializedVersion: 4
@@ -1336,7 +1282,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1365,10 +1311,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: 145
+    m_UpperAngle: 45
 --- !u!58 &645504899
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1382,9 +1328,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005672604, y: 0.27455425}
+  m_Offset: {x: -0.005672604, y: 0.27}
   serializedVersion: 2
-  m_Radius: 0.315
+  m_Radius: 0.13
 --- !u!1 &761651795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 761651797}
   - component: {fileID: 761651796}
-  - component: {fileID: 761651798}
   - component: {fileID: 761651799}
   - component: {fileID: 761651800}
   - component: {fileID: 761651801}
@@ -1471,32 +1416,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &761651798
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761651795}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.3327322, y: -0.7063865}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.86607, y: 0.9249955}
-    oldSize: {x: 0.61, y: 1}
-    newSize: {x: 0.61, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.39114094, y: 0.43721807}
-  m_EdgeRadius: 0
 --- !u!50 &761651799
 Rigidbody2D:
   serializedVersion: 4
@@ -1509,7 +1428,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -1541,7 +1460,7 @@ HingeJoint2D:
   m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_UpperAngle: 720
 --- !u!58 &761651801
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1557,7 +1476,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.38, y: -0.75}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.08
 --- !u!1 &776528648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,7 +1965,6 @@ GameObject:
   m_Component:
   - component: {fileID: 997005404}
   - component: {fileID: 997005403}
-  - component: {fileID: 997005405}
   - component: {fileID: 997005406}
   - component: {fileID: 997005407}
   - component: {fileID: 997005408}
@@ -2122,32 +2040,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &997005405
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997005402}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.24805236, y: -0.66615105}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.1626885, y: 0.92319465}
-    oldSize: {x: 0.55, y: 1.02}
-    newSize: {x: 0.55, y: 1.02}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.29987478, y: 0.5510149}
-  m_EdgeRadius: 0
 --- !u!50 &997005406
 Rigidbody2D:
   serializedVersion: 4
@@ -2160,7 +2052,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -2192,7 +2084,7 @@ HingeJoint2D:
   m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_UpperAngle: 720
 --- !u!58 &997005408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2208,7 +2100,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.31, y: -0.75}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.1
 --- !u!1 &1001155147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2111,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1001155149}
   - component: {fileID: 1001155148}
-  - component: {fileID: 1001155150}
   - component: {fileID: 1001155151}
   - component: {fileID: 1001155152}
   - component: {fileID: 1001155153}
@@ -2295,32 +2186,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1001155150
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001155147}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.33403355, y: -0.7364987}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.1626885, y: 0.92319465}
-    oldSize: {x: 0.55, y: 1.02}
-    newSize: {x: 0.55, y: 1.02}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25297558, y: 0.41031957}
-  m_EdgeRadius: 0
 --- !u!50 &1001155151
 Rigidbody2D:
   serializedVersion: 4
@@ -2333,7 +2198,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -2365,7 +2230,7 @@ HingeJoint2D:
   m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_UpperAngle: 720
 --- !u!58 &1001155153
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2381,7 +2246,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.31, y: -0.75}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.09
 --- !u!850595691 &1030091153
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -3089,7 +2954,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1481512101}
   - component: {fileID: 1481512100}
-  - component: {fileID: 1481512102}
   - component: {fileID: 1481512103}
   - component: {fileID: 1481512104}
   - component: {fileID: 1481512105}
@@ -3165,32 +3029,6 @@ Transform:
   m_Father: {fileID: 374058428}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1481512102
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481512099}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.37181425, y: -0.7142028}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.86607, y: 0.9249955}
-    oldSize: {x: 0.61, y: 1}
-    newSize: {x: 0.61, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31297684, y: 0.42158544}
-  m_EdgeRadius: 0
 --- !u!50 &1481512103
 Rigidbody2D:
   serializedVersion: 4
@@ -3203,7 +3041,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -3235,7 +3073,7 @@ HingeJoint2D:
   m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_UpperAngle: 720
 --- !u!58 &1481512105
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3251,7 +3089,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.38, y: -0.75}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.09
 --- !u!1 &1499505595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,7 +4112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &2138188143
 CircleCollider2D:
   m_ObjectHideFlags: 0
