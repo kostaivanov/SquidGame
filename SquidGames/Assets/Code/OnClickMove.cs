@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class OnClickMove : MonoBehaviour
+public class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void ClickAction(string nambuttonNamee, string colorButtong);
+    public static event ClickAction OnClicked;
+    private string buttonName;
+
+    private void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        
+        buttonName = this.gameObject.name;
+
+        if (OnClicked!= null)
+        {
+            string boxIndex = buttonName.Substring(buttonName.Length - 1);
+            if (buttonName.StartsWith("R"))
+            {
+                OnClicked(boxIndex, "R");
+            }
+            else
+            {
+                OnClicked(boxIndex, "B");
+            }            
+        }
     }
 }
