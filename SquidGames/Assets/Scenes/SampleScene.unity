@@ -2597,7 +2597,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.43023574, y: 0.5488272}
+  m_ConnectedAnchor: {x: -0.43023586, y: 0.5488272}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5662,7 +5662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042870730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.87, y: 2.96, z: -121.8584}
+  m_LocalPosition: {x: -6.34, y: 2.96, z: -121.8584}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 351462841}
@@ -5954,7 +5954,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 3
 --- !u!4 &2138188144
 Transform:
   m_ObjectHideFlags: 0
@@ -5963,7 +5963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138188142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.55, y: 1.1, z: -113.919586}
+  m_LocalPosition: {x: -6.38, y: 1.1, z: -113.919586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5981,7 +5981,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: 1600
+  m_ForceMagnitude: 1400
   m_ForceVariation: 750
   m_DistanceScale: 1500
   m_ForceSource: 0
