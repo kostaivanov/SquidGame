@@ -31,19 +31,22 @@ public class MovePlayer : MonoBehaviour
         this._buttonColor = buttonColor;
         Debug.Log(_boxIndex);
 
-        Debug.Log(_buttonColor);
-
+        //Debug.Log(_buttonColor);
     }
 
-    private void Update()
-    {
-        if (_buttonColor != null && this.gameObject.name.StartsWith(_buttonColor))
-        {
-            Debug.Log(boxes[int.Parse(_boxIndex)]);
-            if (move == true && Vector3.Distance(this.transform.position, boxes[int.Parse(_boxIndex)].transform.position) > 0.4)
-            {
-                this.transform.Translate(speed * Time.deltaTime, 0, 0);
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (_buttonColor != null && this.gameObject.name.StartsWith(_buttonColor))
+    //    {
+    //        //Debug.Log(boxes[int.Parse(_boxIndex)]);
+    //        if (move == true && Vector3.Distance(this.transform.position, boxes[int.Parse(_boxIndex)].transform.position) > 0.4)
+    //        {
+    //            this.transform.Translate(speed * Time.deltaTime, 0, 0);
+    //        }
+    //        else
+    //        {
+    //            move = false;
+    //        }
+    //    }
+    //}
 }

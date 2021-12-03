@@ -5,8 +5,9 @@ using UnityEngine.EventSystems;
 
 public class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void ClickAction(string nambuttonNamee, string colorButtong);
-    public static event ClickAction OnClicked;
+    public delegate void Action(string nambuttonNamee, string colorButtong);
+    public static event Action OnClicked;
+
     private string buttonName;
 
     private void Start()
@@ -20,6 +21,7 @@ public class OnClickMove : MonoBehaviour, IPointerDownHandler
         if (OnClicked!= null)
         {
             string boxIndex = buttonName.Substring(buttonName.Length - 1);
+            //Debug.Log(boxIndex);
             if (buttonName.StartsWith("R"))
             {
                 OnClicked(boxIndex, "R");
