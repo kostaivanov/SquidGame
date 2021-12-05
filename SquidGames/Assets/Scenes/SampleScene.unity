@@ -17042,7 +17042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489279982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: 2.73, z: 0}
+  m_LocalPosition: {x: -5.25, y: -1.34, z: 0}
   m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1402922494}
@@ -33971,7 +33971,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.08323574, y: 0.18982697}
+  m_ConnectedAnchor: {x: -0.08323574, y: 0.18982744}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -33988,7 +33988,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016829297}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -34179,7 +34179,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.17390537, y: 0.06982708}
+  m_ConnectedAnchor: {x: 0.17390537, y: 0.06982756}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -34196,7 +34196,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076927407}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -34682,7 +34682,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.03476429, y: 0.9048271}
+  m_ConnectedAnchor: {x: 0.03476429, y: 0.90482736}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -34699,7 +34699,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202669120}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -35023,7 +35023,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.20123577, y: 0.8718271}
+  m_ConnectedAnchor: {x: -0.20123577, y: 0.87182736}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -35040,7 +35040,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266690372}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -35706,7 +35706,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402922489}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
