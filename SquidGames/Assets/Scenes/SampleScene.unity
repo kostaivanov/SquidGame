@@ -333,7 +333,7 @@ Transform:
   - {fileID: 1165280606}
   - {fileID: 960319939}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &10069568
 BoxCollider2D:
@@ -10639,7 +10639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178136758
 GameObject:
@@ -11312,7 +11312,7 @@ RectTransform:
   - {fileID: 317232988}
   - {fileID: 1682455018}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11898,7 +11898,7 @@ Transform:
   - {fileID: 1481512101}
   - {fileID: 761651797}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &374058429
 BoxCollider2D:
@@ -17051,7 +17051,7 @@ Transform:
   - {fileID: 1016829298}
   - {fileID: 1076927408}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &489279984
 Animator:
@@ -17283,7 +17283,7 @@ GameObject:
   - component: {fileID: 593701924}
   - component: {fileID: 593701923}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: FogPartSys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17329,7 +17329,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -22073,7 +22073,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &601612896
 GameObject:
@@ -34325,7 +34325,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088986741
 GameObject:
@@ -35556,7 +35556,7 @@ Transform:
   - {fileID: 1452462801}
   - {fileID: 335492519}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1382909778
 GameObject:
@@ -35991,7 +35991,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1412188835
 CircleCollider2D:
@@ -42002,7 +42002,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
@@ -42439,7 +42439,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796275002
 GameObject:
@@ -42945,7 +42945,7 @@ Transform:
   - {fileID: 6816684}
   - {fileID: 1332848229}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2042870732
 Animator:
@@ -43517,7 +43517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!250 &2138188145
 PointEffector2D:
@@ -43643,7 +43643,7 @@ Transform:
   - {fileID: 837611247}
   - {fileID: 429502807}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3890285146901097375
 PrefabInstance:
@@ -43660,7 +43660,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
