@@ -21,7 +21,6 @@ public class OnClickMove : MonoBehaviour, IPointerDownHandler
         if (OnClicked!= null)
         {
             string boxIndex = buttonName.Substring(buttonName.Length - 1);
-            //Debug.Log(boxIndex);
             if (buttonName.StartsWith("R"))
             {
                 OnClicked(boxIndex, "R");
