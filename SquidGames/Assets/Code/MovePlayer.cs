@@ -5,9 +5,9 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private Transform[] boxes;
-    public float speed = 1f;
-    private bool moveBlue, moveRed;
-    private int currentIndex;
+    [SerializeField] private float speed = 1f;
+    internal bool moveBlue, moveRed;
+    internal int currentIndexBlue, currentIndexRed;
 
     private string _boxIndex;
     private string _buttonColor;
@@ -17,7 +17,8 @@ public class MovePlayer : MonoBehaviour
     {
         moveBlue = false;
         moveRed = false;
-        currentIndex = 0;
+        currentIndexBlue = -1;
+        currentIndexRed = -1;
     }
 
     private void OnEnable()
@@ -34,39 +35,49 @@ public class MovePlayer : MonoBehaviour
     {
         this._boxIndex = boxIndex;
         this._buttonColor = buttonColor;
-        currentIndex += int.Parse(_boxIndex);
-        if (buttonColor == "B")
+
+        if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
             moveBlue = true;
+            if (currentIndexBlue == 9)
+            {
+                currentIndexBlue += 1;
+            }
+            else
+            {
+                currentIndexBlue += int.Parse(_boxIndex);
 
+            }
         }
-        else if(buttonColor == "R")
+        else if(buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
             moveRed = true;
+            if (currentIndexRed == 9)
+            {
+                currentIndexRed += 1;
+            }
+            else
+            {
+                currentIndexRed += int.Parse(_boxIndex);
+            }
         }
 
     }
 
     private void Update()
     {
-        if (_buttonColor != null && this.gameObject.name.StartsWith(_buttonColor))
+        if (moveBlue == true && currentIndexBlue < boxes.Length &&  Vector3.Distance(this.transform.position, boxes[currentIndexBlue].transform.position) > 0.2)
         {
-            
-            if (moveBlue == true &&  Vector3.Distance(this.transform.position, boxes[currentIndex - 1].transform.position) > 0.2)
-            {
-                this.transform.Translate(speed * Time.deltaTime, 0, 0);
-                Debug.Log(_buttonColor + " - " + "moving 1");
-            }
-            else if(moveRed == true && Vector3.Distance(this.transform.position, boxes[currentIndex - 1].transform.position) > 0.2)
-            {
-                this.transform.Translate(speed * Time.deltaTime, 0, 0);
-                Debug.Log(_buttonColor + " - " + "moving 2");
-            }
-            else if(moveBlue == true || moveRed == true)
-            {
-                moveBlue = false;
-                moveRed = false;
-            }
+            this.transform.Translate(speed * Time.deltaTime, 0, 0);
+        }
+        else if(moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.2)
+        {
+            this.transform.Translate(speed * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            moveBlue = false;
+            moveRed = false;
         }
     }
 }

@@ -38,6 +38,7 @@ public class InstantiateItems : MonoBehaviour
             }
             usedIndexes.Add(index);
             GameObject obj = Instantiate(items[0], boxes[index].transform.position, boxes[index].transform.rotation);
+            obj.SetActive(false);
         }
     }
 
@@ -49,6 +50,9 @@ public class InstantiateItems : MonoBehaviour
         {
             plusesMinuses.Add(index);
             GameObject obj = Instantiate(items[Random.Range(1, 3)], boxes[index].transform.position, boxes[index].transform.rotation);
+
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

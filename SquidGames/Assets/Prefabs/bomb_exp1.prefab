@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8312165069730214345}
   - component: {fileID: 8312165069730214346}
   - component: {fileID: 4803562199814851399}
+  - component: {fileID: 6843553046395536332}
   m_Layer: 0
   m_Name: bomb_exp1
   m_TagString: Untagged
@@ -93,9 +94,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0123205185, y: 0.16015786}
   serializedVersion: 2
   m_Radius: 0.554414
+--- !u!114 &6843553046395536332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312165069730214347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf55af60b60702498add5c542ffd2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
