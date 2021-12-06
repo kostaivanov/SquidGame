@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombController : MonoBehaviour, ICollectable<GameObject>
+public class BombController : MonoBehaviour, ICollectable
 {
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            Activate(otherObject.gameObject);
+            Activate();
         }
     }
 
-    public void Activate(GameObject otherObject)
+    public void Activate()
     {
-        otherObject.SetActive(true);
+        this.gameObject.SetActive(true);
     }
 }

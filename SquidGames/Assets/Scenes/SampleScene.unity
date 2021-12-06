@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6816688}
   - component: {fileID: 6816687}
   - component: {fileID: 6816686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11031,7 +11031,7 @@ GameObject:
   - component: {fileID: 303309422}
   - component: {fileID: 303309421}
   - component: {fileID: 303309420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11539,7 +11539,7 @@ GameObject:
   - component: {fileID: 351462842}
   - component: {fileID: 351462845}
   - component: {fileID: 351462847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16811,7 +16811,8 @@ GameObject:
   - component: {fileID: 489279983}
   - component: {fileID: 489279984}
   - component: {fileID: 489279985}
-  m_Layer: 0
+  - component: {fileID: 489279986}
+  m_Layer: 6
   m_Name: Red_Lizard
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -16881,6 +16882,32 @@ MonoBehaviour:
   - {fileID: 1963016250}
   - {fileID: 242575530}
   speed: 1
+--- !u!61 &489279986
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489279982}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.13661242, y: 0.52893317}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2732248, y: 2.8004715}
+  m_EdgeRadius: 0
 --- !u!1 &514397612
 GameObject:
   m_ObjectHideFlags: 0
@@ -28314,7 +28341,7 @@ GameObject:
   - component: {fileID: 965997027}
   - component: {fileID: 965997026}
   - component: {fileID: 965997025}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33646,7 +33673,7 @@ GameObject:
   - component: {fileID: 1016829301}
   - component: {fileID: 1016829300}
   - component: {fileID: 1016829299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33854,7 +33881,7 @@ GameObject:
   - component: {fileID: 1076927411}
   - component: {fileID: 1076927410}
   - component: {fileID: 1076927409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34357,7 +34384,7 @@ GameObject:
   - component: {fileID: 1202669124}
   - component: {fileID: 1202669123}
   - component: {fileID: 1202669122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34698,7 +34725,7 @@ GameObject:
   - component: {fileID: 1266690376}
   - component: {fileID: 1266690375}
   - component: {fileID: 1266690374}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35112,7 +35139,7 @@ GameObject:
   - component: {fileID: 1332848233}
   - component: {fileID: 1332848232}
   - component: {fileID: 1332848231}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35379,7 +35406,7 @@ GameObject:
   - component: {fileID: 1402922490}
   - component: {fileID: 1402922492}
   - component: {fileID: 1402922491}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42362,7 +42389,8 @@ GameObject:
   - component: {fileID: 2042870731}
   - component: {fileID: 2042870732}
   - component: {fileID: 2042870733}
-  m_Layer: 0
+  - component: {fileID: 2042870734}
+  m_Layer: 6
   m_Name: Blue_Timy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -42377,7 +42405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042870730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.53, y: -1.55, z: 0}
+  m_LocalPosition: {x: -8.508, y: -1.55, z: 0}
   m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 351462841}
@@ -42433,6 +42461,32 @@ MonoBehaviour:
   - {fileID: 1963016250}
   - {fileID: 242575530}
   speed: 1
+--- !u!61 &2042870734
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042870730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.010508537, y: 0.31175494}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4833965, y: 2.2820487}
+  m_EdgeRadius: 0
 --- !u!1 &2076525407
 GameObject:
   m_ObjectHideFlags: 0
@@ -42477,7 +42531,7 @@ GameObject:
   - component: {fileID: 2099304082}
   - component: {fileID: 2099304085}
   - component: {fileID: 2099304084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

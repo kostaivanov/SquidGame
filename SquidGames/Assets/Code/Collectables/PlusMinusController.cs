@@ -2,34 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlusMinusController : MonoBehaviour, ICollectable<GameObject>
+public class PlusMinusController : MonoBehaviour, ICollectable
 {
     private MovePlayer player;
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         player = otherObject.GetComponent<MovePlayer>();
+        if (player != null)
+        {
+            Debug.Log(player.gameObject.name);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
+        Debug.Log(otherObject.gameObject.name);
         if (player != null && player.gameObject.tag == "Player")
         {
-            if(player.gameObject.name.StartsWith("B") && player.moveBlue == false)
+            Debug.Log(player.gameObject.name);
+
+            if (player.gameObject.name.StartsWith("B") && player.moveBlue == false)
             {
-                Activate(otherObject.gameObject);
+                Activate();
             }
             if (player.gameObject.name.StartsWith("R") && player.moveRed == false)
             {
-                Activate(otherObject.gameObject);
+                Activate();
             }
         }
     }
 
-    public void Activate(GameObject otherObject)
+    public void Activate()
     {
-        otherObject.GetComponent<SpriteRenderer>().enabled = true;
-        otherObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        this.GetComponent<SpriteRenderer>().enabled = true;
+        this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
     }
 }
