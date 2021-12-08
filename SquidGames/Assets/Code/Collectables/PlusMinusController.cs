@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class PlusMinusController : MonoBehaviour, ICollectable
 {
-    private MovePlayer player;
+    private MovePlayer movePlayer;
+
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
-        player = otherObject.GetComponent<MovePlayer>();
-        if (player != null)
+        Debug.Log("Namerihme bombaaaa11111");
+
+        if (otherObject.gameObject.tag == "Player")
         {
-            Debug.Log(player.gameObject.name);
+            movePlayer = otherObject.GetComponent<MovePlayer>();
         }
     }
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        Debug.Log(otherObject.gameObject.name);
-        if (player != null && player.gameObject.tag == "Player")
+        if (movePlayer != null && movePlayer.collectableFound == true)
         {
-            Debug.Log(player.gameObject.name);
-
-            if (player.gameObject.name.StartsWith("B") && player.moveBlue == false)
+            Debug.Log("Namerihme bombaaaa11111");
+            if (movePlayer.gameObject.name.StartsWith("B"))
             {
+                Debug.Log("Namerihme bombaaaa");
+                movePlayer.collectableFound = false;
                 Activate();
             }
-            if (player.gameObject.name.StartsWith("R") && player.moveRed == false)
+            if (movePlayer.gameObject.name.StartsWith("R"))
             {
+                movePlayer.collectableFound = false;
                 Activate();
             }
         }

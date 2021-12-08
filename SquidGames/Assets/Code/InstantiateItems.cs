@@ -38,7 +38,8 @@ public class InstantiateItems : MonoBehaviour
             }
             usedIndexes.Add(index);
             GameObject obj = Instantiate(items[0], boxes[index].transform.position, boxes[index].transform.rotation);
-            obj.SetActive(false);
+
+            obj.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

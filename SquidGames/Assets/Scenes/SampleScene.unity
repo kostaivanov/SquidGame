@@ -10477,6 +10477,9 @@ MonoBehaviour:
   - {fileID: 776528649}
   - {fileID: 1963016250}
   speed: 1
+  collectablesLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &173672866
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16882,6 +16885,9 @@ MonoBehaviour:
   - {fileID: 1963016250}
   - {fileID: 242575530}
   speed: 1
+  collectablesLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!61 &489279986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35666,6 +35672,9 @@ MonoBehaviour:
   - {fileID: 776528649}
   - {fileID: 1963016250}
   speed: 1
+  collectablesLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1414857140
 GameObject:
   m_ObjectHideFlags: 0
@@ -42390,6 +42399,7 @@ GameObject:
   - component: {fileID: 2042870732}
   - component: {fileID: 2042870733}
   - component: {fileID: 2042870734}
+  - component: {fileID: 2042870735}
   m_Layer: 6
   m_Name: Blue_Timy
   m_TagString: Player
@@ -42461,6 +42471,9 @@ MonoBehaviour:
   - {fileID: 1963016250}
   - {fileID: 242575530}
   speed: 1
+  collectablesLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!61 &2042870734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42487,6 +42500,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4833965, y: 2.2820487}
   m_EdgeRadius: 0
+--- !u!50 &2042870735
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042870730}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2076525407
 GameObject:
   m_ObjectHideFlags: 0
