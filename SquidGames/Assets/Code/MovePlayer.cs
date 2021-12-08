@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlayer : MonoBehaviour
+internal class MovePlayer : MonoBehaviour
 {
     [SerializeField] private Transform[] boxes;
     [SerializeField] private float speed = 1f;
@@ -13,6 +13,7 @@ public class MovePlayer : MonoBehaviour
     internal bool collectableFound;
     private string _buttonColor;
 
+    internal Vector3 startPosition;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class MovePlayer : MonoBehaviour
         currentIndexBlue = -1;
         currentIndexRed = -1;
         collectableFound = false;
+        startPosition = this.transform.position;
     }
 
     private void OnEnable()
@@ -54,6 +56,7 @@ public class MovePlayer : MonoBehaviour
         else if(buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
             moveRed = true;
+
             if (currentIndexRed == 9)
             {
                 currentIndexRed += 1;
@@ -61,6 +64,7 @@ public class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexRed += int.Parse(_boxIndex);
+                Debug.Log("Blue Timy клетка номер = " + currentIndexRed);
             }
         }
 
@@ -78,8 +82,6 @@ public class MovePlayer : MonoBehaviour
             
             if (CheckIfIsGrounded() == true)
             {
-                Debug.Log("Namerihme blue kurrr");
-
                 collectableFound = true;
             }
         }
@@ -93,19 +95,17 @@ public class MovePlayer : MonoBehaviour
 
             if (CheckIfIsGrounded() == true)
             {
-                Debug.Log("Namerihme kurrr");
                 collectableFound = true;
             }
         }
-
-
     }
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.5f);
-    }
+
+    //void OnDrawGizmosSelected()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(transform.position, 0.5f);
+    //}
 
     internal bool CheckIfIsGrounded()
     {

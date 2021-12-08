@@ -5345,7 +5345,7 @@ GameObject:
   - component: {fileID: 86914988}
   m_Layer: 0
   m_Name: 6
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10384,7 +10384,7 @@ GameObject:
   - component: {fileID: 108055883}
   m_Layer: 0
   m_Name: 7
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10737,7 +10737,7 @@ GameObject:
   - component: {fileID: 221469208}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10767,7 +10767,7 @@ GameObject:
   - component: {fileID: 242575530}
   m_Layer: 0
   m_Name: 11
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11280,7 +11280,7 @@ GameObject:
   - component: {fileID: 307479375}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11854,7 +11854,7 @@ GameObject:
   - component: {fileID: 407954226}
   m_Layer: 0
   m_Name: 8
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16884,7 +16884,7 @@ MonoBehaviour:
   - {fileID: 776528649}
   - {fileID: 1963016250}
   - {fileID: 242575530}
-  speed: 1
+  speed: 2
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -16955,7 +16955,7 @@ GameObject:
   - component: {fileID: 546087418}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17094,7 +17094,7 @@ GameObject:
   - component: {fileID: 591599322}
   m_Layer: 0
   m_Name: 5
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22435,7 +22435,7 @@ GameObject:
   - component: {fileID: 776528649}
   m_Layer: 0
   m_Name: 9
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40875,7 +40875,7 @@ GameObject:
   - component: {fileID: 1499505596}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42368,7 +42368,7 @@ GameObject:
   - component: {fileID: 1963016250}
   m_Layer: 0
   m_Name: 10
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42470,7 +42470,7 @@ MonoBehaviour:
   - {fileID: 776528649}
   - {fileID: 1963016250}
   - {fileID: 242575530}
-  speed: 1
+  speed: 2
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256

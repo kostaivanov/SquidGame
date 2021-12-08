@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class InstantiateItems : MonoBehaviour
+internal class InstantiateItems : MonoBehaviour
 {
     [SerializeField] private GameObject[] boxes;
     [SerializeField] private GameObject[] items;
@@ -37,7 +37,7 @@ public class InstantiateItems : MonoBehaviour
                 return;
             }
             usedIndexes.Add(index);
-            GameObject obj = Instantiate(items[0], boxes[index].transform.position, boxes[index].transform.rotation);
+            GameObject obj = Instantiate(items[0], boxes[index].transform.position, boxes[index].transform.rotation, boxes[index].transform);
 
             obj.GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -50,7 +50,7 @@ public class InstantiateItems : MonoBehaviour
         if (!usedIndexes.Contains(index) && !plusesMinuses.Contains(index))
         {
             plusesMinuses.Add(index);
-            GameObject obj = Instantiate(items[Random.Range(1, 3)], boxes[index].transform.position, boxes[index].transform.rotation);
+            GameObject obj = Instantiate(items[Random.Range(1, 3)], boxes[index].transform.position, boxes[index].transform.rotation, boxes[index].transform);
 
             obj.GetComponent<SpriteRenderer>().enabled = false;
             obj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
@@ -71,6 +71,28 @@ public class InstantiateItems : MonoBehaviour
                 SpawnPlusAndMinus();
             }
             spawned = true;
+        }
+    }
+
+    internal static void Shuffle(GameObject[] gameObjects, GameObject[] collectables)
+    {
+        for (int i = 0; i < collectables.Length; i++)
+        {
+            // Find a random index
+            int destIndex = Random.Range(0, gameObjects.Length);
+            GameObject source = gameObjects[i];
+            GameObject dest = gameObjects[destIndex];
+
+            // If is not identical
+            if (source != dest)
+            {
+
+                // Swap the position
+                collectables[i].transform.position = dest.transform.position;
+
+                // Swap the array item
+                gameObjects[i] = gameObjects[destIndex];
+            }
         }
     }
 }

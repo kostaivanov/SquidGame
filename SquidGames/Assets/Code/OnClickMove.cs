@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OnClickMove : MonoBehaviour, IPointerDownHandler
+internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
     public delegate void Action(string nambuttonNamee, string colorButtong);
     public static event Action OnClicked;

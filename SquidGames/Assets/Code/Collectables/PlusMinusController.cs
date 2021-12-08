@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlusMinusController : MonoBehaviour, ICollectable
+internal class PlusMinusController : MonoBehaviour, ICollectable
 {
     private MovePlayer movePlayer;
 
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
-        Debug.Log("Namerihme bombaaaa11111");
-
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
@@ -21,10 +19,8 @@ public class PlusMinusController : MonoBehaviour, ICollectable
     {
         if (movePlayer != null && movePlayer.collectableFound == true)
         {
-            Debug.Log("Namerihme bombaaaa11111");
             if (movePlayer.gameObject.name.StartsWith("B"))
             {
-                Debug.Log("Namerihme bombaaaa");
                 movePlayer.collectableFound = false;
                 Activate();
             }
