@@ -62,7 +62,7 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
         GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
         GameObject[] _bombs = GameObject.FindGameObjectsWithTag("Bomb");
 
-        InstantiateItems.Shuffle(_boxes, _bombs);
+        //InstantiateItems.Shuffle(_boxes, _bombs);
 
         foreach (Transform bodyPart in obj.transform)
         {

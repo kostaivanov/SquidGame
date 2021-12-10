@@ -74,25 +74,28 @@ internal class InstantiateItems : MonoBehaviour
         }
     }
 
-    internal static void Shuffle(GameObject[] gameObjects, GameObject[] collectables)
+    internal static void Shuffle(GameObject[] platforms, GameObject collectable)
     {
-        for (int i = 0; i < collectables.Length; i++)
+        bool indexFound = false;
+        do
         {
             // Find a random index
-            int destIndex = Random.Range(0, gameObjects.Length);
-            GameObject source = gameObjects[i];
-            GameObject dest = gameObjects[destIndex];
+            int destIndex = Random.Range(0, platforms.Length);
+            GameObject source = collectable.transform.parent.gameObject;
+            GameObject destination = platforms[destIndex];
 
             // If is not identical
-            if (source != dest)
+            if (source != destination && destination.transform.childCount == 0)
             {
 
                 // Swap the position
-                collectables[i].transform.position = dest.transform.position;
+                collectable.transform.position = destination.transform.position;
 
+                collectable.transform.parent = platforms[destIndex].transform;
+                indexFound = true;
                 // Swap the array item
-                gameObjects[i] = gameObjects[destIndex];
             }
-        }
+        } 
+        while (indexFound == false);       
     }
 }

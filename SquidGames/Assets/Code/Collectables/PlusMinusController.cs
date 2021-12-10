@@ -23,6 +23,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             {
                 movePlayer.collectableFound = false;
                 Activate();
+                StartCoroutine(Deactivate());
             }
             if (movePlayer.gameObject.name.StartsWith("R"))
             {
@@ -31,6 +32,19 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             }
         }
     }
+
+    public IEnumerator Deactivate()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+
+        GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
+
+        InstantiateItems.Shuffle(_boxes, this.gameObject);
+    }
+
 
     public void Activate()
     {
