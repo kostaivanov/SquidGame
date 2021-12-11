@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 internal class MovePlayer : MonoBehaviour
 {
@@ -14,6 +15,7 @@ internal class MovePlayer : MonoBehaviour
     private string _buttonColor;
 
     internal Vector3 startPosition;
+    internal bool plusOn, minusOn;
 
     private void Start()
     {
@@ -35,46 +37,70 @@ internal class MovePlayer : MonoBehaviour
         OnClickMove.OnClicked -= MovePlayerForward;
     }
 
-    public void MovePlayerForward(string boxIndex, string buttonColor)
+    public void MovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
     {
-        this._boxIndex = boxIndex;
-        this._buttonColor = buttonColor;
-
-        if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+        if (this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
-            moveBlue = true;
-            if (currentIndexBlue == 9)
-            {
-                currentIndexBlue += 1;
-            }
-            else
-            {
-                currentIndexBlue += int.Parse(_boxIndex);
+            Debug.Log("1");
+            obj.GetComponent<Button>().interactable = true;
+            this.plusOn = false;
 
+        }
+        else if (this.minusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+        {
+            Debug.Log("2");
+            obj.GetComponent<Button>().interactable = false;
+            this.minusOn = false;
+        }
+        if (this.plusOn == true &&buttonColor == "R" && this.gameObject.name.StartsWith("R"))
+        {
+            Debug.Log("3");
+            obj.GetComponent<Button>().interactable = true;
+        }
+        else if (buttonColor == "R" && this.gameObject.name.StartsWith("R") && this.minusOn == true)
+        {
+            Debug.Log("4");
+
+            obj.GetComponent<Button>().interactable = false;
+        }
+        else if(this.minusOn == false && this.plusOn == false)
+        {
+            this._boxIndex = boxIndex;
+            this._buttonColor = buttonColor;
+            Debug.Log("5");
+
+            if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+            {
+                moveBlue = true;
+                if (currentIndexBlue == 9)
+                {
+                    currentIndexBlue += 1;
+                }
+                else
+                {
+                    currentIndexBlue += int.Parse(_boxIndex);
+                }
+            }
+            else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
+            {
+                moveRed = true;
+
+                if (currentIndexRed == 9)
+                {
+                    currentIndexRed += 1;
+                }
+                else
+                {
+                    currentIndexRed += int.Parse(_boxIndex);
+                }
             }
         }
-        else if(buttonColor == "R" && this.gameObject.name.StartsWith("R"))
-        {
-            moveRed = true;
-
-            if (currentIndexRed == 9)
-            {
-                currentIndexRed += 1;
-            }
-            else
-            {
-                currentIndexRed += int.Parse(_boxIndex);
-                Debug.Log("Blue Timy клетка номер = " + currentIndexRed);
-            }
-        }
-
     }
 
     private void Update()
     {
-        Debug.Log(currentIndexRed);
-
-        Debug.Log(currentIndexBlue);
+        //Debug.Log(this.gameObject.name + " = " + this.plusOn);
+        Debug.Log(this.gameObject.name + " = " + this.minusOn);
 
         if (moveBlue == true && currentIndexBlue < boxes.Length &&  Vector3.Distance(this.transform.position, boxes[currentIndexBlue].transform.position) > 0.2)
         {

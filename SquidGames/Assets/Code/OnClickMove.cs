@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void Action(string nambuttonNamee, string colorButtong);
+    public delegate void Action(string nambuttonNamee, string colorButtong, GameObject obj);
     public static event Action OnClicked;
 
     private string buttonName;
@@ -23,11 +23,11 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             string boxIndex = buttonName.Substring(buttonName.Length - 1);
             if (buttonName.StartsWith("R"))
             {
-                OnClicked(boxIndex, "R");
+                OnClicked(boxIndex, "R", this.gameObject);
             }
             else
             {
-                OnClicked(boxIndex, "B");
+                OnClicked(boxIndex, "B", this.gameObject);
             }            
         }
     }

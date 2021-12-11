@@ -22,14 +22,30 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             if (movePlayer.gameObject.name.StartsWith("B"))
             {
                 movePlayer.collectableFound = false;
+                DetectIfPlusOrMinues(this.gameObject);
                 Activate();
                 StartCoroutine(Deactivate());
             }
             if (movePlayer.gameObject.name.StartsWith("R"))
             {
                 movePlayer.collectableFound = false;
+                DetectIfPlusOrMinues(this.gameObject);
                 Activate();
             }
+        }
+    }
+
+    private void DetectIfPlusOrMinues(GameObject obj)
+    {
+        string firstLetter = obj.name.Substring(0, 1);
+        Debug.Log(firstLetter);
+        if (firstLetter == "+")
+        {
+            movePlayer.plusOn = true;
+        }
+        else if (firstLetter == "-")
+        {
+            movePlayer.minusOn = true;
         }
     }
 
