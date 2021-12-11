@@ -72,6 +72,10 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentIndexRed);
+
+        Debug.Log(currentIndexBlue);
+
         if (moveBlue == true && currentIndexBlue < boxes.Length &&  Vector3.Distance(this.transform.position, boxes[currentIndexBlue].transform.position) > 0.2)
         {
             this.transform.Translate(speed * Time.deltaTime, 0, 0);

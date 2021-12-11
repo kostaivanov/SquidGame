@@ -72,7 +72,7 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
         {
             obj.GetComponent<MovePlayer>().currentIndexBlue = -1;
         }
-        else if(obj.name.StartsWith("B"))
+        else if(obj.name.StartsWith("R"))
         {
             obj.GetComponent<MovePlayer>().currentIndexRed = -1;
 
