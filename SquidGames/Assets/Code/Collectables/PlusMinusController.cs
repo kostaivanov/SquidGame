@@ -32,6 +32,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                 movePlayer.collectableFound = false;
                 DetectIfPlusOrMinues(this.gameObject);
                 Activate();
+                StartCoroutine(Deactivate());
             }
         }
     }

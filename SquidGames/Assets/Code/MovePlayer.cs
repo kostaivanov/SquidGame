@@ -57,12 +57,13 @@ internal class MovePlayer : MonoBehaviour
         {
             Debug.Log("3");
             button.interactable = true;
+            this.plusOn = false;
         }
-        else if (buttonColor == "R" && this.gameObject.name.StartsWith("R") && this.minusOn == true)
+        else if (this.minusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
             Debug.Log("4");
-
             button.interactable = false;
+            this.minusOn = false;
         }
         else if(this.minusOn == false && button.interactable == true)
         {
