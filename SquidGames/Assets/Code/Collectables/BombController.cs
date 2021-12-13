@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 internal class BombController : MonoBehaviour, ICollectable, IDestroyable
 {
@@ -59,15 +60,21 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
     {
         obj.transform.position = position;
 
-        GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
-        GameObject[] _bombs = GameObject.FindGameObjectsWithTag("Bomb");
-
+        //GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
+        //GameObject[] _bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        GameObject[] _moveButtons = GameObject.FindGameObjectsWithTag("MoveButton");
         //InstantiateItems.Shuffle(_boxes, _bombs);
 
         foreach (Transform bodyPart in obj.transform)
         {
             bodyPart.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
+
+        foreach (GameObject button in _moveButtons)
+        {
+            button.GetComponent<Button>().interactable = true;
+        }
+
         if (obj.name.StartsWith("B"))
         {
             obj.GetComponent<MovePlayer>().currentIndexBlue = -1;

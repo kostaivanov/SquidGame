@@ -4,6 +4,7 @@ using UnityEngine;
 
 internal class PlusMinusController : MonoBehaviour, ICollectable
 {
+    [SerializeField] private GameObject[] collectables;
     private MovePlayer movePlayer;
 
 
@@ -53,12 +54,13 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        this.GetComponent<SpriteRenderer>().enabled = false;
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        //this.GetComponent<SpriteRenderer>().enabled = false;
+        //this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        //GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
 
-        GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
-
-        InstantiateItems.Shuffle(_boxes, this.gameObject);
+        //InstantiateItems.Shuffle(_boxes, this.gameObject);
+        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        Destroy(this.gameObject);
     }
 
 

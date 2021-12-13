@@ -39,34 +39,36 @@ internal class MovePlayer : MonoBehaviour
 
     public void MovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
     {
-        if (this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+        Button button = obj.GetComponent<Button>();
+        if (button.interactable == false && this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
             Debug.Log("1");
-            obj.GetComponent<Button>().interactable = true;
+            button.interactable = true;
             this.plusOn = false;
 
         }
         else if (this.minusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
             Debug.Log("2");
-            obj.GetComponent<Button>().interactable = false;
+            button.interactable = false;
             this.minusOn = false;
         }
-        if (this.plusOn == true &&buttonColor == "R" && this.gameObject.name.StartsWith("R"))
+        else if (button.interactable == false && this.plusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
             Debug.Log("3");
-            obj.GetComponent<Button>().interactable = true;
+            button.interactable = true;
         }
         else if (buttonColor == "R" && this.gameObject.name.StartsWith("R") && this.minusOn == true)
         {
             Debug.Log("4");
 
-            obj.GetComponent<Button>().interactable = false;
+            button.interactable = false;
         }
-        else if(this.minusOn == false && this.plusOn == false)
+        else if(this.minusOn == false && button.interactable == true)
         {
             this._boxIndex = boxIndex;
             this._buttonColor = buttonColor;
+            this.plusOn = false;
             Debug.Log("5");
 
             if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))

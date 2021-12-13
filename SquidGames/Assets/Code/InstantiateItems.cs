@@ -20,7 +20,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnRandomBombs()
     {
-        int index = Random.Range(0, boxes.Length - 1);
+        int index = Random.Range(0, boxes.Length);
 
         if (!usedIndexes.Contains(index))
         {
@@ -45,7 +45,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnPlusAndMinus()
     {
-        int index = Random.Range(0, boxes.Length - 1);
+        int index = Random.Range(0, boxes.Length);
 
         if (!usedIndexes.Contains(index) && !plusesMinuses.Contains(index))
         {
@@ -97,5 +97,13 @@ internal class InstantiateItems : MonoBehaviour
             }
         } 
         while (indexFound == false);       
+    }
+
+    internal static void SpawnRandomObject(GameObject[] collectable, GameObject currentCollectable)
+    {
+
+        GameObject spawnObj = Instantiate(collectable[Random.Range(0, collectable.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
+        spawnObj.GetComponent<SpriteRenderer>().enabled = false;
+        spawnObj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 }
