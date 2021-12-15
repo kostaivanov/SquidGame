@@ -16,7 +16,7 @@ internal class MovePlayer : MonoBehaviour
 
     internal Vector3 startPosition;
     internal bool plusOn, minusOn;
-
+    private bool rotationChanged;
     private void Start()
     {
         moveBlue = false;
@@ -29,6 +29,7 @@ internal class MovePlayer : MonoBehaviour
 
         collectableFound = false;
         startPosition = this.transform.position;
+        rotationChanged = false;
     }
 
     private void OnEnable()
@@ -46,26 +47,22 @@ internal class MovePlayer : MonoBehaviour
         Button button = obj.GetComponent<Button>();
         if (button.interactable == false && this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
-            Debug.Log("1");
             button.interactable = true;
             this.plusOn = false;
 
         }
         else if (this.minusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
         {
-            Debug.Log("2");
             button.interactable = false;
             this.minusOn = false;
         }
         else if (button.interactable == false && this.plusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
-            Debug.Log("3");
             button.interactable = true;
             this.plusOn = false;
         }
         else if (this.minusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
         {
-            Debug.Log("4");
             button.interactable = false;
             this.minusOn = false;
         }
@@ -87,7 +84,6 @@ internal class MovePlayer : MonoBehaviour
                     currentIndexBlue += int.Parse(_boxIndex);
                     //currentIndexBlue += 1;
                 }
-                Debug.Log("5");
 
             }
             else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
@@ -108,10 +104,9 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(this.gameObject.name + " = " + this.plusOn);
-        Debug.Log(this.gameObject.name + " = " + this.minusOn);
+        Debug.Log(currentIndexBlue);
 
-        if (moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.3 && initialBlueIndex < currentIndexBlue)
+        if (moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.15 && initialBlueIndex < currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
 
@@ -119,10 +114,14 @@ internal class MovePlayer : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.3)
+            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.15)
             {
                 initialBlueIndex++;
-
+                if (currentIndexBlue == 10 && rotationChanged == false)
+                {
+                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    rotationChanged = true;
+                }
             }
         }
         else if (moveBlue == true)
@@ -147,6 +146,8 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
+
+        
     }
 
     //void OnDrawGizmosSelected()
