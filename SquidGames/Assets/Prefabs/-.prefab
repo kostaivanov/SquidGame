@@ -147,6 +147,7 @@ MonoBehaviour:
   collectables:
   - {fileID: 9174904982993454605, guid: 11ab3dd7eb0a1e042a87e516e10e6646, type: 3}
   - {fileID: 3565941060029256510}
+  - {fileID: 7618306318483945689, guid: 6642f4ad14d52884ba619b5c962bc1e1, type: 3}
 --- !u!50 &6107105216050944763
 Rigidbody2D:
   serializedVersion: 4

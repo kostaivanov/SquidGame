@@ -103,7 +103,12 @@ internal class InstantiateItems : MonoBehaviour
     {
 
         GameObject spawnObj = Instantiate(collectable[Random.Range(0, collectable.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
-        spawnObj.GetComponent<SpriteRenderer>().enabled = false;
-        spawnObj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        SpriteRenderer sprite = spawnObj.GetComponent<SpriteRenderer>();
+        if (sprite != null)
+        {
+            sprite.enabled = false;
+            spawnObj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        }
+
     }
 }

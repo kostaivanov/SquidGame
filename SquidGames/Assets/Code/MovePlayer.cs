@@ -8,7 +8,7 @@ internal class MovePlayer : MonoBehaviour
     [SerializeField] private Transform[] boxes;
     [SerializeField] private float speed = 1f;
     internal bool moveBlue, moveRed;
-    internal int currentIndexBlue, currentIndexRed;
+    internal int currentIndexBlue, currentIndexRed, initialBlueIndex;
     [SerializeField] private LayerMask collectablesLayer;
     private string _boxIndex;
     internal bool collectableFound;
@@ -23,6 +23,10 @@ internal class MovePlayer : MonoBehaviour
         moveRed = false;
         currentIndexBlue = -1;
         currentIndexRed = -1;
+
+        initialBlueIndex = currentIndexBlue;
+
+
         collectableFound = false;
         startPosition = this.transform.position;
     }
@@ -70,25 +74,27 @@ internal class MovePlayer : MonoBehaviour
             this._boxIndex = boxIndex;
             this._buttonColor = buttonColor;
             this.plusOn = false;
-            Debug.Log("5");
 
             if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
             {
                 moveBlue = true;
-                if (currentIndexBlue == 9)
+                if (currentIndexBlue == 19)
                 {
                     currentIndexBlue += 1;
                 }
                 else
                 {
                     currentIndexBlue += int.Parse(_boxIndex);
+                    //currentIndexBlue += 1;
                 }
+                Debug.Log("5");
+
             }
             else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
             {
                 moveRed = true;
 
-                if (currentIndexRed == 9)
+                if (currentIndexRed == 19)
                 {
                     currentIndexRed += 1;
                 }
@@ -105,9 +111,19 @@ internal class MovePlayer : MonoBehaviour
         //Debug.Log(this.gameObject.name + " = " + this.plusOn);
         Debug.Log(this.gameObject.name + " = " + this.minusOn);
 
-        if (moveBlue == true && currentIndexBlue < boxes.Length &&  Vector3.Distance(this.transform.position, boxes[currentIndexBlue].transform.position) > 0.2)
+        if (moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.3 && initialBlueIndex < currentIndexBlue)
         {
+            Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
+
+            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
+            Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
+            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.3)
+            {
+                initialBlueIndex++;
+
+            }
         }
         else if (moveBlue == true)
         {
@@ -118,7 +134,7 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.2)
+        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.3)
         {
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
         }
