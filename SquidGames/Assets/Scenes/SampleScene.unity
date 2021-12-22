@@ -10695,6 +10695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
 --- !u!1 &221446158
 GameObject:
   m_ObjectHideFlags: 0
@@ -16924,7 +16925,7 @@ MonoBehaviour:
   - {fileID: 1552867575}
   - {fileID: 676086421}
   - {fileID: 711544139}
-  speed: 2
+  speed: 1
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -27916,7 +27917,7 @@ GameObject:
   - component: {fileID: 896725966}
   m_Layer: 5
   m_Name: RedButton_1
-  m_TagString: MoveButton
+  m_TagString: RedMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28035,6 +28036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 896725963}
+  - {fileID: 1880149209}
+  - {fileID: 1570817282}
 --- !u!1 &924463671
 GameObject:
   m_ObjectHideFlags: 0
@@ -28169,6 +28174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
 --- !u!1 &934554206
 GameObject:
   m_ObjectHideFlags: 0
@@ -34729,7 +34735,7 @@ GameObject:
   - component: {fileID: 1207977466}
   m_Layer: 5
   m_Name: BlueButton_1
-  m_TagString: MoveButton
+  m_TagString: BlueMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34848,6 +34854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 1207977463}
+  - {fileID: 1542170212}
+  - {fileID: 1293981822}
 --- !u!1 &1236316264
 GameObject:
   m_ObjectHideFlags: 0
@@ -35142,7 +35152,7 @@ GameObject:
   - component: {fileID: 1293981825}
   m_Layer: 5
   m_Name: BlueButton_3
-  m_TagString: MoveButton
+  m_TagString: BlueMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35261,6 +35271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 1207977463}
+  - {fileID: 1542170212}
+  - {fileID: 1293981822}
 --- !u!1 &1308137697
 GameObject:
   m_ObjectHideFlags: 0
@@ -41226,7 +41240,7 @@ GameObject:
   - component: {fileID: 1542170215}
   m_Layer: 5
   m_Name: BlueButton_2
-  m_TagString: MoveButton
+  m_TagString: BlueMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41345,6 +41359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 1207977463}
+  - {fileID: 1542170212}
+  - {fileID: 1293981822}
 --- !u!1 &1544396341
 GameObject:
   m_ObjectHideFlags: 0
@@ -41451,7 +41469,7 @@ GameObject:
   - component: {fileID: 1570817285}
   m_Layer: 5
   m_Name: RedButton_3
-  m_TagString: MoveButton
+  m_TagString: RedMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41570,6 +41588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 896725963}
+  - {fileID: 1880149209}
+  - {fileID: 1570817282}
 --- !u!1001 &1593698694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42377,7 +42399,7 @@ GameObject:
   - component: {fileID: 1880149212}
   m_Layer: 5
   m_Name: RedButton_2
-  m_TagString: MoveButton
+  m_TagString: RedMoveButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42496,6 +42518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 896725963}
+  - {fileID: 1880149209}
+  - {fileID: 1570817282}
 --- !u!1 &1948631854
 GameObject:
   m_ObjectHideFlags: 0

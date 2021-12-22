@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ internal class MovePlayer : MonoBehaviour
     [SerializeField] private Transform[] boxes;
     [SerializeField] private float speed = 1f;
     internal bool moveBlue, moveRed;
-    internal int currentIndexBlue, currentIndexRed, initialBlueIndex;
+    internal int currentIndexBlue, currentIndexRed, initialBlueIndex, initialRedIndex;
     [SerializeField] private LayerMask collectablesLayer;
     private string _boxIndex;
     internal bool collectableFound;
@@ -25,7 +26,7 @@ internal class MovePlayer : MonoBehaviour
         currentIndexRed = -1;
 
         initialBlueIndex = currentIndexBlue;
-
+        initialRedIndex = currentIndexRed;
 
         collectableFound = false;
         startPosition = this.transform.position;
@@ -34,15 +35,15 @@ internal class MovePlayer : MonoBehaviour
 
     private void OnEnable()
     {
-        OnClickMove.OnClicked += MovePlayerForward;
+        OnClickMove.OnClicked += CLickMovePlayerForward;
     }
 
     private void OnDisable()
     {
-        OnClickMove.OnClicked -= MovePlayerForward;
+        OnClickMove.OnClicked -= CLickMovePlayerForward;
     }
 
-    public void MovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
+    public void CLickMovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
     {
         Button button = obj.GetComponent<Button>();
         if (button.interactable == false && this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
@@ -72,6 +73,7 @@ internal class MovePlayer : MonoBehaviour
             this._buttonColor = buttonColor;
             this.plusOn = false;
 
+
             if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
             {
                 moveBlue = true;
@@ -84,7 +86,7 @@ internal class MovePlayer : MonoBehaviour
                     currentIndexBlue += int.Parse(_boxIndex);
                     //currentIndexBlue += 1;
                 }
-
+                button.interactable = false;
             }
             else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
             {
@@ -98,31 +100,20 @@ internal class MovePlayer : MonoBehaviour
                 {
                     currentIndexRed += int.Parse(_boxIndex);
                 }
+                button.interactable = false;
             }
+
         }
     }
 
     private void Update()
     {
-        Debug.Log(currentIndexBlue);
+        Debug.Log("minus = " + minusOn);
+        Debug.Log("plus = " + plusOn);
 
         if (moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.15 && initialBlueIndex < currentIndexBlue)
         {
-            Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
-
-            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
-            Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
-            this.transform.Translate(speed * Time.deltaTime, 0, 0);
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.15)
-            {
-                initialBlueIndex++;
-                if (currentIndexBlue == 10 && rotationChanged == false)
-                {
-                    this.transform.localScale = new Vector2(0.5f, 0.5f);
-                    rotationChanged = true;
-                }
-            }
+            MovePlayerFunction(initialBlueIndex, currentIndexBlue);
         }
         else if (moveBlue == true)
         {
@@ -133,9 +124,10 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.3)
+        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.2)
         {
-            this.transform.Translate(speed * Time.deltaTime, 0, 0);
+            MovePlayerFunction(initialRedIndex, currentIndexRed);
+
         }
         else if (moveRed == true)
         {
@@ -148,6 +140,25 @@ internal class MovePlayer : MonoBehaviour
         }
 
         
+    }
+
+    private void MovePlayerFunction(int initialIndexPerPlayer, int currentIndexPerPlayer)
+    {
+        Vector3 direction = (boxes[initialIndexPerPlayer + 1].transform.position - this.transform.position);
+
+        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
+        this.transform.Translate(speed * Time.deltaTime, 0, 0);
+        if (Vector3.Distance(this.transform.position, boxes[initialIndexPerPlayer + 1].transform.position) < 0.2)
+        {
+            initialBlueIndex++;
+            if (currentIndexPerPlayer == 10 && rotationChanged == false)
+            {
+                this.transform.localScale = new Vector2(0.5f, 0.5f);
+                rotationChanged = true;
+            }
+        }
     }
 
     //void OnDrawGizmosSelected()

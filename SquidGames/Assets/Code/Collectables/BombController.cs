@@ -62,8 +62,9 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
 
         //GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
         //GameObject[] _bombs = GameObject.FindGameObjectsWithTag("Bomb");
-        GameObject[] _moveButtons = GameObject.FindGameObjectsWithTag("MoveButton");
+       
         //InstantiateItems.Shuffle(_boxes, _bombs);
+        GameObject[] _moveButtons = FindButtonMembers(obj);
 
         foreach (Transform bodyPart in obj.transform)
         {
@@ -79,10 +80,24 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
         {
             obj.GetComponent<MovePlayer>().currentIndexBlue = -1;
         }
-        else if(obj.name.StartsWith("R"))
+        else if (obj.name.StartsWith("R"))
         {
             obj.GetComponent<MovePlayer>().currentIndexRed = -1;
 
         }
+    }
+
+    private GameObject[] FindButtonMembers(GameObject obj)
+    {
+        GameObject[] _moveButtons = new GameObject[3];
+        if (obj.name.StartsWith("R"))
+        {
+            _moveButtons = GameObject.FindGameObjectsWithTag("RedMoveButton");
+        }
+        else if(obj.name.StartsWith("B"))
+        {
+            _moveButtons = GameObject.FindGameObjectsWithTag("BlueMoveButton");
+        }
+        return _moveButtons;
     }
 }

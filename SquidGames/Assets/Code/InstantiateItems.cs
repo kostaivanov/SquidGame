@@ -20,7 +20,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnRandomBombs()
     {
-        int index = Random.Range(0, boxes.Length);
+        int index = Random.Range(0, boxes.Length -1);
 
         if (!usedIndexes.Contains(index))
         {
@@ -45,7 +45,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnPlusAndMinus()
     {
-        int index = Random.Range(0, boxes.Length);
+        int index = Random.Range(0, boxes.Length - 1);
 
         if (!usedIndexes.Contains(index) && !plusesMinuses.Contains(index))
         {
