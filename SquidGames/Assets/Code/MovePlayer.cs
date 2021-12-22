@@ -124,7 +124,7 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.2)
+        if (moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed + 1].transform.position) > 0.45 && initialRedIndex < currentIndexRed)
         {
             MovePlayerFunction(initialRedIndex, currentIndexRed);
 
@@ -150,14 +150,14 @@ internal class MovePlayer : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
         this.transform.Translate(speed * Time.deltaTime, 0, 0);
-        if (Vector3.Distance(this.transform.position, boxes[initialIndexPerPlayer + 1].transform.position) < 0.2)
+        if (Vector3.Distance(this.transform.position, boxes[initialIndexPerPlayer + 1].transform.position) < 0.45)
         {
             initialBlueIndex++;
-            if (currentIndexPerPlayer == 10 && rotationChanged == false)
-            {
-                this.transform.localScale = new Vector2(0.5f, 0.5f);
-                rotationChanged = true;
-            }
+            //if (currentIndexPerPlayer == 10 && rotationChanged == false)
+            //{
+            //    this.transform.localScale = new Vector2(0.5f, 0.5f);
+            //    rotationChanged = true;
+            //}
         }
     }
 
