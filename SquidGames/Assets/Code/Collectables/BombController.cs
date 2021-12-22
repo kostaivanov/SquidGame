@@ -78,12 +78,15 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
 
         if (obj.name.StartsWith("B"))
         {
-            obj.GetComponent<MovePlayer>().currentIndexBlue = -1;
+            MovePlayer _movePlayer = obj.GetComponent<MovePlayer>();
+            _movePlayer.currentIndexBlue = -1;
+            _movePlayer.initialBlueIndex = _movePlayer.currentIndexBlue;
         }
         else if (obj.name.StartsWith("R"))
         {
-            obj.GetComponent<MovePlayer>().currentIndexRed = -1;
-
+            MovePlayer _movePlayer = obj.GetComponent<MovePlayer>();
+            _movePlayer.currentIndexRed = -1;
+            _movePlayer.initialRedIndex = _movePlayer.currentIndexRed;
         }
     }
 
