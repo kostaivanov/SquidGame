@@ -107,7 +107,7 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
-        if (currentIndexRed < 20 && moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.15 && initialBlueIndex < currentIndexBlue)
+        if (currentIndexRed <= 20 && initialBlueIndex < 20 && moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.15 && initialBlueIndex < currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
 
@@ -135,7 +135,7 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (currentIndexRed <= 20 && moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.15)
+        if (currentIndexRed <= 20 && initialRedIndex < 20 && moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.15)
         {
             Vector3 direction = (boxes[initialRedIndex + 1].transform.position - this.transform.position);
 
