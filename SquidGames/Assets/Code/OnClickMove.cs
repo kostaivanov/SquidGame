@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
 
 internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
@@ -13,10 +14,13 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 
     private Button button;
     private string buttonName;
+    private Text moveNumber;
 
     private void Start()
     {
         button = GetComponent<Button>();
+        moveNumber = GetComponentInChildren<Text>();
+        moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -25,10 +29,11 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 
         if (OnClicked!= null)
         {
-            string boxIndex = buttonName.Substring(buttonName.Length - 1);
+            //string _moveNumber = buttonName.Substring(buttonName.Length - 1);
+            string _moveNumber = moveNumber.text;
             if (buttonName.StartsWith("R"))
             {
-                OnClicked(boxIndex, "R", this.gameObject);
+                OnClicked(_moveNumber, "R", this.gameObject);
                 if (TurnButtonsInteractable() == true)
                 {
                     foreach (Button _button in moveButtons)
@@ -39,7 +44,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                OnClicked(boxIndex, "B", this.gameObject);
+                OnClicked(_moveNumber, "B", this.gameObject);
                 if (TurnButtonsInteractable() == true)
                 {
                     foreach (Button _button in moveButtons)

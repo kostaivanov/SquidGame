@@ -66,7 +66,7 @@ internal class InstantiateItems : MonoBehaviour
             {
                 SpawnRandomBombs();
             }
-            while (plusesMinuses.Count < 4)
+            while (plusesMinuses.Count < 8)
             {
                 SpawnPlusAndMinus();
             }

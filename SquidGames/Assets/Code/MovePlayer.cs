@@ -107,7 +107,7 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
-        if (currentIndexRed <= 20 && initialBlueIndex < 20 && moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.15 && initialBlueIndex < currentIndexBlue)
+        if (currentIndexRed <= 20 && initialBlueIndex < 20 && moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.25 && initialBlueIndex < currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
 
@@ -116,7 +116,7 @@ internal class MovePlayer : MonoBehaviour
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
 
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.15)
+            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.25)
             {
                 initialBlueIndex++;
                 if (currentIndexBlue == 10 && rotationChanged == false)
@@ -135,7 +135,7 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (currentIndexRed <= 20 && initialRedIndex < 20 && moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.15)
+        if (currentIndexRed <= 20 && initialRedIndex < 20 && moveRed == true && currentIndexRed < boxes.Length && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.25)
         {
             Vector3 direction = (boxes[initialRedIndex + 1].transform.position - this.transform.position);
 
@@ -143,7 +143,7 @@ internal class MovePlayer : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
-            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex + 1].transform.position) < 0.15)
+            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex + 1].transform.position) < 0.25)
             {
                 initialRedIndex++;
                 if (currentIndexRed == 10 && rotationChanged == false)
