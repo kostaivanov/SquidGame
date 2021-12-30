@@ -333,7 +333,7 @@ Transform:
   - {fileID: 1165280606}
   - {fileID: 960319939}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &10069568
 BoxCollider2D:
@@ -11104,6 +11104,7 @@ GameObject:
   - component: {fileID: 304785191}
   - component: {fileID: 304785190}
   - component: {fileID: 304785189}
+  - component: {fileID: 304785193}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -11193,6 +11194,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &304785193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304785188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edbdc3598a9ee3c4db532d7551dcf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redButtons:
+  - {fileID: 364216227}
+  - {fileID: 829377108}
+  - {fileID: 311670497}
+  - {fileID: 383767549}
+  blueButtons:
+  - {fileID: 1207977466}
+  - {fileID: 1542170215}
+  - {fileID: 1293981825}
+  - {fileID: 178136763}
 --- !u!1 &307479374
 GameObject:
   m_ObjectHideFlags: 0
@@ -11223,6 +11246,18 @@ Transform:
   m_Father: {fileID: 1382909780}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311670497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087689084196028132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317232987
 GameObject:
   m_ObjectHideFlags: 0
@@ -11632,6 +11667,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.040000007, y: 0.1947974}
   m_Size: {x: 0.33, y: 0.50806403}
   m_Direction: 0
+--- !u!114 &364216227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2005752570580859481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &374058426
 GameObject:
   m_ObjectHideFlags: 0
@@ -11767,6 +11814,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &383767549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
+    type: 3}
+  m_PrefabInstance: {fileID: 9019513671530214326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &399218361
 GameObject:
   m_ObjectHideFlags: 0
@@ -16769,6 +16828,7 @@ GameObject:
   - component: {fileID: 489279984}
   - component: {fileID: 489279985}
   - component: {fileID: 489279986}
+  - component: {fileID: 489279987}
   m_Layer: 6
   m_Name: Red_Lizard
   m_TagString: Player
@@ -16793,7 +16853,7 @@ Transform:
   - {fileID: 1016829298}
   - {fileID: 1076927408}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &489279984
 Animator:
@@ -16878,6 +16938,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.585495, y: 1.9279792}
   m_EdgeRadius: 0
+--- !u!114 &489279987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489279982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99fa10525962e4ea625a77df636866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514397612
 GameObject:
   m_ObjectHideFlags: 0
@@ -22730,6 +22802,18 @@ CircleCollider2D:
   m_Offset: {x: 0.41, y: 0.23}
   serializedVersion: 2
   m_Radius: 0.13
+--- !u!114 &829377108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5513149675477026041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090f4dddabecd04b9cd40314c432499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836208653
 GameObject:
   m_ObjectHideFlags: 0
@@ -41496,7 +41580,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
@@ -42198,6 +42282,7 @@ GameObject:
   - component: {fileID: 2042870733}
   - component: {fileID: 2042870734}
   - component: {fileID: 2042870735}
+  - component: {fileID: 2042870736}
   m_Layer: 6
   m_Name: Blue_Timy
   m_TagString: Player
@@ -42329,6 +42414,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2042870736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042870730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99fa10525962e4ea625a77df636866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2076525407
 GameObject:
   m_ObjectHideFlags: 0
@@ -43001,7 +43098,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}

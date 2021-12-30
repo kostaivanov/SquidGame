@@ -12,16 +12,22 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     public static event Action OnClicked;
     [SerializeField] private Button[] moveButtons;
 
+
     private Button button;
     private string buttonName;
-    private Text moveNumber;
+    internal Text moveNumber;
+
 
     private void Start()
     {
+
         button = GetComponent<Button>();
         moveNumber = GetComponentInChildren<Text>();
         moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
+
     }
+
+
 
     public void OnPointerDown(PointerEventData eventData)
     {

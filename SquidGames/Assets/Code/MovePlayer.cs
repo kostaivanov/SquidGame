@@ -106,7 +106,7 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
+        //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
         if (currentIndexRed <= 20 && initialBlueIndex < 20 && moveBlue == true && currentIndexBlue < boxes.Length && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.25 && initialBlueIndex < currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);

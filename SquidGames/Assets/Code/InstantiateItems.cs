@@ -111,4 +111,9 @@ internal class InstantiateItems : MonoBehaviour
         }
 
     }
+
+    internal static void ShuffleButtons()
+    {
+
+    }
 }

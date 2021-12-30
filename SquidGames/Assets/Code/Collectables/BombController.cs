@@ -6,12 +6,14 @@ using UnityEngine.UI;
 internal class BombController : MonoBehaviour, ICollectable, IDestroyable
 {
     private MovePlayer movePlayer;
+    private PlayerHealth playerHealth;
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
+            playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
     }
 
@@ -88,6 +90,14 @@ internal class BombController : MonoBehaviour, ICollectable, IDestroyable
             _movePlayer.currentIndexRed = -1;
             _movePlayer.initialRedIndex = _movePlayer.currentIndexRed;
         }
+        if (playerHealth != null)
+        {
+            playerHealth.dead = false;
+            playerHealth.numbersChanged = false;
+            //Debug.Log("restart");
+        }
+        playerHealth.dead = true;
+
     }
 
     private GameObject[] FindButtonMembers(GameObject obj)
