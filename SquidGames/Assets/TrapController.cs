@@ -17,8 +17,6 @@ public class TrapController : MonoBehaviour
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
-            Debug.Log("fire");
-
         }
     }
 
@@ -34,14 +32,23 @@ public class TrapController : MonoBehaviour
 
                 if (this.gameObject.tag == "GoForward")
                 {
-                    Activate();
+                    if (movePlayer.moveRed == false)
+                    {
+                        Activate();
+                    }
                     //movePlayer.MovePlayerOnPuroposeForward(_moveNumber, this.gameObject);
                     StartCoroutine(GoForward(movePlayer, _moveNumber));
                 }
                 else if (this.gameObject.tag == "GoBackward")
                 {
-                    Activate();
-                    StartCoroutine(GoBack(movePlayer, _moveNumber));                }
+                    if (movePlayer.moveRed == false)
+                    {
+                        Activate();
+                    }
+
+                    StartCoroutine(GoBack(movePlayer, _moveNumber));
+
+                }
             }
             if(otherObject.gameObject.name.StartsWith("B"))
             {
@@ -52,8 +59,6 @@ public class TrapController : MonoBehaviour
                     if (movePlayer.moveBlue == false)
                     {
                         Activate();
-                        Debug.Log("fire1");
-
                     }
                     //movePlayer.MovePlayerOnPuroposeForward(_moveNumber, this.gameObject);
                     StartCoroutine(GoForward(movePlayer, _moveNumber));
@@ -63,8 +68,6 @@ public class TrapController : MonoBehaviour
                     if (movePlayer.moveBlue == false)
                     {
                         Activate();
-                        Debug.Log("fire2");
-
                     }
 
                     StartCoroutine(GoBack(movePlayer, _moveNumber));
@@ -80,6 +83,7 @@ public class TrapController : MonoBehaviour
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
         _movePlayer.MovePlayerOnPuroposeBackward(moveNumber, this.gameObject);
+
         Destroy(this.gameObject);
     }
 

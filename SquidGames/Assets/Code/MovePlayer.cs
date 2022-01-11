@@ -17,7 +17,9 @@ internal class MovePlayer : MonoBehaviour
     internal Vector3 startPosition;
     internal bool plusOn, minusOn;
     private bool rotationChanged;
-    private bool goingBackwards;
+    private bool goingBackwardsBlue;
+    private bool goingBackwardsRed;
+
     private void Start()
     {
         moveBlue = false;
@@ -33,7 +35,8 @@ internal class MovePlayer : MonoBehaviour
         startPosition = this.transform.position;
         rotationChanged = false;
 
-        goingBackwards = false;
+        goingBackwardsBlue = false;
+        goingBackwardsRed = false;
     }
 
     private void OnEnable()
@@ -48,7 +51,7 @@ internal class MovePlayer : MonoBehaviour
 
     public void MovePlayerOnPuroposeForward(string boxIndex, GameObject obj)
     {
-        if (this.gameObject.name.StartsWith("B"))
+        if (obj.gameObject.name.StartsWith("B"))
         {
             moveBlue = true;
             if (currentIndexBlue == 19)
@@ -60,6 +63,18 @@ internal class MovePlayer : MonoBehaviour
                 currentIndexBlue += int.Parse(boxIndex);
             }
         }
+        if (obj.gameObject.name.StartsWith("R"))
+        {
+            moveRed = true;
+            if (currentIndexRed == 19)
+            {
+                currentIndexRed += 1;
+            }
+            else
+            {
+                currentIndexRed += int.Parse(boxIndex);
+            }
+        }
     }
 
     public void MovePlayerOnPuroposeBackward(string boxIndex, GameObject obj)
@@ -67,7 +82,7 @@ internal class MovePlayer : MonoBehaviour
         if (this.gameObject.name.StartsWith("B"))
         {
             moveBlue = true;
-            goingBackwards = true;
+            goingBackwardsBlue = true;
             if (currentIndexBlue == 19)
             {
                 currentIndexBlue += 1;
@@ -75,6 +90,22 @@ internal class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexBlue -= int.Parse(boxIndex);
+                this.transform.localScale = new Vector2(0.5f, 0.5f);
+            }
+        }
+        if (this.gameObject.name.StartsWith("R"))
+        {
+            moveRed = true;
+            goingBackwardsRed = true;
+
+            if (currentIndexRed == 19)
+            {
+                currentIndexRed += 1;
+            }
+            else
+            {
+                currentIndexRed -= int.Parse(boxIndex);
+                Debug.Log("kurec");
                 this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
@@ -145,6 +176,8 @@ internal class MovePlayer : MonoBehaviour
     {
         //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
         //Debug.Log("goingBackwards = " + goingBackwards + " - move blue = " + moveBlue);
+        //Debug.Log("current index = " + currentIndexRed + " - and  initial = " + initialRedIndex);
+        Debug.Log(goingBackwardsRed);
 
         if (currentIndexBlue < boxes.Length && initialBlueIndex < 20 && moveBlue == true  && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.25 && initialBlueIndex < currentIndexBlue)
         {
@@ -160,7 +193,7 @@ internal class MovePlayer : MonoBehaviour
                 }
             }
         }
-        else if (goingBackwards == false && moveBlue == true)
+        else if (goingBackwardsBlue == false && moveBlue == true)
         {
             moveBlue = false;
 
@@ -195,7 +228,7 @@ internal class MovePlayer : MonoBehaviour
             }
         }
 
-        if (goingBackwards == true && currentIndexBlue >= 0 && initialBlueIndex >= 0 && moveBlue == true && Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) > 0.25 && initialBlueIndex > currentIndexBlue)
+        if (goingBackwardsBlue == true && currentIndexBlue >= 0 && initialBlueIndex > 0 && moveBlue == true && Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) > 0.25 && initialBlueIndex > currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
             //Debug.Log("directions = " + direction);
@@ -211,10 +244,35 @@ internal class MovePlayer : MonoBehaviour
                 }
             }
         }
-        else if (goingBackwards == true && moveBlue == true)
+        else if (goingBackwardsBlue == true && moveBlue == true)
         {
             moveBlue = false;
-            goingBackwards = false;
+            goingBackwardsBlue = false;
+            if (CheckIfIsGrounded() == true)
+            {
+                collectableFound = true;
+            }
+        }
+        if (goingBackwardsRed == true && currentIndexRed >= 0 && initialRedIndex >= 0 && moveRed == true && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.25 && initialRedIndex > currentIndexRed)
+        {
+            Vector3 direction = (boxes[initialRedIndex - 1].transform.position - this.transform.position);
+            Debug.Log("directions = " + direction);
+
+            Move(direction, 90, "flip");
+            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) < 0.25)
+            {
+                initialRedIndex--;
+                if (currentIndexRed == 10 && rotationChanged == false)
+                {
+                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    rotationChanged = true;
+                }
+            }
+        }
+        else if (goingBackwardsRed == true && moveRed == true)
+        {
+            moveRed = false;
+            goingBackwardsRed = false;
             if (CheckIfIsGrounded() == true)
             {
                 collectableFound = true;
@@ -226,7 +284,7 @@ internal class MovePlayer : MonoBehaviour
     {
         if (rotation == "flip")
         {
-            this.transform.Translate(speed * direction.x * Time.deltaTime, 0, 0);
+            this.transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
         else
         {
