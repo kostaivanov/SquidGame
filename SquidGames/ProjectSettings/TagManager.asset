@@ -9,6 +9,8 @@ TagManager:
   - PlusOrMinus
   - RedMoveButton
   - BlueMoveButton
+  - GoForward
+  - GoBackward
   layers:
   - Default
   - TransparentFX

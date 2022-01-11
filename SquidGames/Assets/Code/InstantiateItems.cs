@@ -8,6 +8,9 @@ internal class InstantiateItems : MonoBehaviour
     [SerializeField] private GameObject[] items;
     private List<int> usedIndexes;
     private List<int> plusesMinuses;
+    private List<int> pushForward;
+    private List<int> pushBack;
+
     private bool spawned;
 
     // Start is called before the first frame update
@@ -15,6 +18,8 @@ internal class InstantiateItems : MonoBehaviour
     {
         usedIndexes = new List<int>();
         plusesMinuses = new List<int>();
+        pushForward = new List<int>();
+        pushBack = new List<int>();
         spawned = false;
     }
 
@@ -50,6 +55,7 @@ internal class InstantiateItems : MonoBehaviour
         if (!usedIndexes.Contains(index) && !plusesMinuses.Contains(index))
         {
             plusesMinuses.Add(index);
+            usedIndexes.Add(index);
             GameObject obj = Instantiate(items[Random.Range(1, 3)], boxes[index].transform.position, boxes[index].transform.rotation, boxes[index].transform);
 
             obj.GetComponent<SpriteRenderer>().enabled = false;
@@ -69,6 +75,14 @@ internal class InstantiateItems : MonoBehaviour
             while (plusesMinuses.Count < 8)
             {
                 SpawnPlusAndMinus();
+            }
+            while (pushForward.Count < 2)
+            {
+                SpawnPushForwardObject();
+            }
+            while (pushBack.Count < 2)
+            {
+                SpawnPushBackObject();
             }
             spawned = true;
         }
@@ -112,8 +126,39 @@ internal class InstantiateItems : MonoBehaviour
 
     }
 
-    internal static void ShuffleButtons()
+    private void SpawnPushForwardObject()
     {
+        int index = Random.Range(0, boxes.Length - 3);
 
+        if (!usedIndexes.Contains(index) && !pushForward.Contains(index))
+        {
+            pushForward.Add(index);
+            usedIndexes.Add(index);
+            GameObject obj = Instantiate(items[3], boxes[index].transform.position, items[3].transform.rotation, boxes[index].transform);
+            if (index > 9)
+            {
+                obj.transform.localScale = new Vector2(-1, 1);
+            }
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        }      
+    }
+
+    private void SpawnPushBackObject()
+    {
+        int index = Random.Range(2, boxes.Length - 1);
+
+        if (!usedIndexes.Contains(index) && !pushBack.Contains(index))
+        {
+            pushBack.Add(index);
+            usedIndexes.Add(index);
+            GameObject obj = Instantiate(items[4], boxes[index].transform.position, items[4].transform.rotation, boxes[index].transform);
+            if (index > 9)
+            {
+                obj.transform.localScale = new Vector2(-1, 1);
+            }
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }

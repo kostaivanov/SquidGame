@@ -94,11 +94,11 @@ GameObject:
   - component: {fileID: 4338715809349833126}
   - component: {fileID: 3843448479986710524}
   - component: {fileID: 3214610954579375152}
-  - component: {fileID: 8731465597335731631}
   - component: {fileID: 7418329960582277798}
+  - component: {fileID: 1000668454}
   m_Layer: 8
   m_Name: PushBack
-  m_TagString: Untagged
+  m_TagString: GoBackward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,22 +214,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8731465597335731631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4338715809349833129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93866d947148244a87118e362462804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectables:
-  - {fileID: 4338715809349833129}
-  - {fileID: 3565941060029256510, guid: 35331f418260fb5428b3a98458dac0e0, type: 3}
-  - {fileID: 7618306318483945689, guid: 6642f4ad14d52884ba619b5c962bc1e1, type: 3}
 --- !u!50 &7418329960582277798
 Rigidbody2D:
   serializedVersion: 4
@@ -251,3 +235,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1000668454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338715809349833129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5800e8b856983f489c9f29136367eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectables:
+  - {fileID: 9174904982993454605, guid: 11ab3dd7eb0a1e042a87e516e10e6646, type: 3}
+  - {fileID: 3565941060029256510, guid: 35331f418260fb5428b3a98458dac0e0, type: 3}
+  - {fileID: 7618306318483945689, guid: 6642f4ad14d52884ba619b5c962bc1e1, type: 3}
+  - {fileID: 8482716235005606363, guid: 836a61b16d3665e43b12f0b3da537fc6, type: 3}
+  - {fileID: 4338715809349833129}

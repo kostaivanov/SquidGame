@@ -35,7 +35,7 @@ public class ButtonsController : MonoBehaviour
 
                 playerHealthBlue.numbersChanged = true;
 
-                Debug.Log("asdadadasdas");
+                //Debug.Log("asdadadasdas");
             }
         }
         if (PlayerHealthRed != null && PlayerHealthRed.dead == true && PlayerHealthRed.numbersChanged == false)
@@ -46,7 +46,7 @@ public class ButtonsController : MonoBehaviour
 
                 PlayerHealthRed.numbersChanged = true;
 
-                Debug.Log("asdadadasdas");
+                //Debug.Log("asdadadasdas");
             }
         }
     }
