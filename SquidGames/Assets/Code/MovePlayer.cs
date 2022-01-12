@@ -20,6 +20,8 @@ internal class MovePlayer : MonoBehaviour
     private bool goingBackwardsBlue;
     private bool goingBackwardsRed;
 
+    private bool flipped;
+
     private void Start()
     {
         moveBlue = false;
@@ -37,6 +39,8 @@ internal class MovePlayer : MonoBehaviour
 
         goingBackwardsBlue = false;
         goingBackwardsRed = false;
+
+        flipped = false;
     }
 
     private void OnEnable()
@@ -90,7 +94,7 @@ internal class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexBlue -= int.Parse(boxIndex);
-                this.transform.localScale = new Vector2(0.5f, 0.5f);
+                //this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
         if (this.gameObject.name.StartsWith("R"))
@@ -106,7 +110,7 @@ internal class MovePlayer : MonoBehaviour
             {
                 currentIndexRed -= int.Parse(boxIndex);
 
-                this.transform.localScale = new Vector2(0.5f, 0.5f);
+                //this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
     }
@@ -186,9 +190,9 @@ internal class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.25)
             {
                 initialBlueIndex++;
-                if (currentIndexBlue == 10 && rotationChanged == false)
+                if (initialBlueIndex == 10 && rotationChanged == false)
                 {
-                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.y + 180, 0);
                     rotationChanged = true;
                 }
             }
@@ -253,7 +257,7 @@ internal class MovePlayer : MonoBehaviour
                 collectableFound = true;
             }
         }
-        if (goingBackwardsRed == true && currentIndexRed >= 0 && initialRedIndex >= 0 && moveRed == true && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.25 && initialRedIndex > currentIndexRed)
+        if (goingBackwardsRed == true && currentIndexRed >= 0 && initialRedIndex > 0 && moveRed == true && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.25 && initialRedIndex > currentIndexRed)
         {
             Vector3 direction = (boxes[initialRedIndex - 1].transform.position - this.transform.position);
             Debug.Log("directions = " + direction);
@@ -264,7 +268,7 @@ internal class MovePlayer : MonoBehaviour
                 initialRedIndex--;
                 if (currentIndexRed == 10 && rotationChanged == false)
                 {
-                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    //this.transform.localScale = new Vector2(0.5f, 0.5f);
                     rotationChanged = true;
                 }
             }
@@ -273,6 +277,7 @@ internal class MovePlayer : MonoBehaviour
         {
             moveRed = false;
             goingBackwardsRed = false;
+            flipped = false;
             if (CheckIfIsGrounded() == true)
             {
                 collectableFound = true;
@@ -282,19 +287,34 @@ internal class MovePlayer : MonoBehaviour
 
     private void Move(Vector3 direction, float degree, string rotation)
     {
-        if (rotation == "flip")
+        //if (rotation == "flip")
+        //{
+        //    this.transform.Translate(-speed * Time.deltaTime, 0, 0);
+        //    //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, boxes[currentIndexBlue].transform.rotation, 2f * Time.deltaTime);
+        //}
+        //else
+        //{
+        Vector3 rotatedVectorToTarget = Vector3.zero;
+        if (flipped == false && rotation == "flip")
         {
-            this.transform.Translate(-speed * Time.deltaTime, 0, 0);
-        }
-        else
-        {
-            Debug.Log("forwarddd");
+            if (this.transform.rotation.y > 0f)
+            {
+                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                rotatedVectorToTarget = Quaternion.Euler(0, 0, 0) * direction;
+            }
+            else if(this.transform.rotation.y < 180f)
+            {
+                this.transform.rotation = Quaternion.Euler(0, 180, 0);
+                rotatedVectorToTarget = Quaternion.Euler(0, 180, 0) * direction;
 
-            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, degree) * direction;
+            }
+            flipped = true;
+        }
+            //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, degree) * direction;
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);
             this.transform.Translate(speed * Time.deltaTime, 0, 0);
-        }
+        //}
         
     }
 
