@@ -51,7 +51,7 @@ internal class MovePlayer : MonoBehaviour
 
     public void MovePlayerOnPuroposeForward(string boxIndex, GameObject obj)
     {
-        if (obj.gameObject.name.StartsWith("B"))
+        if (this.gameObject.name.StartsWith("B"))
         {
             moveBlue = true;
             if (currentIndexBlue == 19)
@@ -63,7 +63,7 @@ internal class MovePlayer : MonoBehaviour
                 currentIndexBlue += int.Parse(boxIndex);
             }
         }
-        if (obj.gameObject.name.StartsWith("R"))
+        if (this.gameObject.name.StartsWith("R"))
         {
             moveRed = true;
             if (currentIndexRed == 19)
@@ -105,7 +105,7 @@ internal class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexRed -= int.Parse(boxIndex);
-                Debug.Log("kurec");
+
                 this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
@@ -177,7 +177,7 @@ internal class MovePlayer : MonoBehaviour
         //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
         //Debug.Log("goingBackwards = " + goingBackwards + " - move blue = " + moveBlue);
         //Debug.Log("current index = " + currentIndexRed + " - and  initial = " + initialRedIndex);
-        Debug.Log(goingBackwardsRed);
+        //Debug.Log(goingBackwardsRed);
 
         if (currentIndexBlue < boxes.Length && initialBlueIndex < 20 && moveBlue == true  && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.25 && initialBlueIndex < currentIndexBlue)
         {
@@ -288,6 +288,8 @@ internal class MovePlayer : MonoBehaviour
         }
         else
         {
+            Debug.Log("forwarddd");
+
             Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, degree) * direction;
             Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, 2f * Time.deltaTime);

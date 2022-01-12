@@ -90,6 +90,7 @@ public class TrapController : MonoBehaviour
     private IEnumerator GoForward(MovePlayer _movePlayer, string moveNumber)
     {
         yield return new WaitForSecondsRealtime(1f);
+        Debug.Log("kurec");
 
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
