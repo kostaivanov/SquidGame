@@ -113,10 +113,10 @@ internal class InstantiateItems : MonoBehaviour
         while (indexFound == false);       
     }
 
-    internal static void SpawnRandomObject(GameObject[] collectable, GameObject currentCollectable)
+    internal static void SpawnRandomObject(GameObject[] collectables, GameObject currentCollectable)
     {
 
-        GameObject spawnObj = Instantiate(collectable[Random.Range(0, collectable.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
+        GameObject spawnObj = Instantiate(collectables[Random.Range(0, collectables.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
         SpriteRenderer sprite = spawnObj.GetComponent<SpriteRenderer>();
         if (sprite != null)
         {

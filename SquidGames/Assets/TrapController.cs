@@ -25,54 +25,60 @@ public class TrapController : MonoBehaviour
         if (movePlayer != null && movePlayer.collectableFound == true)
         {
             string _moveNumber = "2";
-
+            movePlayer.collectableFound = false;
             if (otherObject.gameObject.name.StartsWith("R"))
             {
-                movePlayer.collectableFound = false;
-
                 if (this.gameObject.tag == "GoForward")
                 {
                     if (movePlayer.moveRed == false)
                     {
-                        Activate();
+                        EnableCollectable();
                     }
-                    //movePlayer.MovePlayerOnPuroposeForward(_moveNumber, this.gameObject);
+
                     StartCoroutine(GoForward(movePlayer, _moveNumber));
                 }
                 else if (this.gameObject.tag == "GoBackward")
                 {
                     if (movePlayer.moveRed == false)
                     {
-                        Activate();
+                        EnableCollectable();
                     }
 
                     StartCoroutine(GoBack(movePlayer, _moveNumber));
 
                 }
             }
-            if(otherObject.gameObject.name.StartsWith("B"))
+            else if(otherObject.gameObject.name.StartsWith("B"))
             {
-                movePlayer.collectableFound = false;
+                //movePlayer.collectableFound = false;
 
                 if (this.gameObject.tag == "GoForward")
                 {
                     if (movePlayer.moveBlue == false)
                     {
-                        Activate();
+                        EnableCollectable();
                     }
-                    //movePlayer.MovePlayerOnPuroposeForward(_moveNumber, this.gameObject);
+
                     StartCoroutine(GoForward(movePlayer, _moveNumber));
                 }
                 else if (this.gameObject.tag == "GoBackward")
                 {
                     if (movePlayer.moveBlue == false)
                     {
-                        Activate();
+                        EnableCollectable();
                     }
 
                     StartCoroutine(GoBack(movePlayer, _moveNumber));
                 }
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (movePlayer != null)
+        {
+            movePlayer = null;
         }
     }
 
@@ -98,7 +104,7 @@ public class TrapController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void Activate()
+    public void EnableCollectable()
     {
         this.GetComponent<SpriteRenderer>().enabled = true;
         this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;

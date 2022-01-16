@@ -193,44 +193,13 @@ internal class MovePlayer : MonoBehaviour
         if (initialBlueIndex > 0)
         {
             Vector3 direction1 = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
-            Debug.Log(direction1);
         }
-
-        if (currentIndexBlue < boxes.Length && initialBlueIndex < 20 && moveBlue == true  && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
-        {
-            Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
-            Move(direction, 90, "forward", boxes[initialBlueIndex + 1]);
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.1)
-            {
-                initialBlueIndex++;
-                if (initialBlueIndex == 10 && rotationChanged == false)
-                {
-                    if (this.transform.rotation.y != 0f)
-                    {
-                    }
-                    else if(this.transform.rotation.y == 0f)
-                    {
-                        this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.y - 180, 0);
-
-                    }
-                    rotationChanged = true;
-                }
-            }
-        }
-        else if (goingBackwardsBlue == false && moveBlue == true)
-        {
-            moveBlue = false;
-
-            if (CheckIfIsGrounded() == true)
-            {
-                collectableFound = true;
-            }
-        }
+       
         if (currentIndexRed < boxes.Length && initialRedIndex < 20 && moveRed == true && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.25 && initialRedIndex < currentIndexRed)
         {
             Vector3 direction = (boxes[initialRedIndex + 1].transform.position - this.transform.position);
 
-            Move(direction, 90, "forward", boxes[initialRedIndex + 1]);
+            Move(direction, boxes[initialRedIndex + 1]);
 
             if (Vector3.Distance(this.transform.position, boxes[initialRedIndex + 1].transform.position) < 0.25)
             {
@@ -246,7 +215,7 @@ internal class MovePlayer : MonoBehaviour
         {
             moveRed = false;
 
-            if (CheckIfIsGrounded() == true)
+            if (StayOnTopOfCollectable() == true)
             {
                 collectableFound = true;
             }
@@ -257,7 +226,7 @@ internal class MovePlayer : MonoBehaviour
             Vector3 direction = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
             //Debug.Log("directions = " + direction);
 
-            Move(direction, 90, "flip", boxes[initialBlueIndex - 1]);
+            Move(direction, boxes[initialBlueIndex - 1]);
             if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) < 0.1)
             {
                 initialBlueIndex--;
@@ -274,7 +243,7 @@ internal class MovePlayer : MonoBehaviour
             goingBackwardsBlue = false;
             this.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-            if (CheckIfIsGrounded() == true)
+            if (StayOnTopOfCollectable() == true)
             {
                 collectableFound = true;
             }
@@ -307,34 +276,54 @@ internal class MovePlayer : MonoBehaviour
         //}
     }
 
-    private void Move(Vector3 direction, float degree, string rotation, Transform target)
+    private void MoveByColorObject(string color)
     {
-        //Vector3 rotatedVectorToTarget = Vector3.zero;
-        //if (flipped == false && rotation == "flip")
-        //{
-        //    if (this.transform.rotation.y > 0f)
-        //    {
-        //        this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //        Debug.Log("Play1");
+        switch (color)
+        {
+            case "R":
+                if (moveBlue == true && currentIndexBlue < boxes.Length && initialBlueIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
+                {
+                    Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
 
-        //        //rotatedVectorToTarget = Quaternion.Euler(0, 0, 0) * direction;
-        //    }
-        //    else if(this.transform.rotation.y < 180f)
-        //    {
-        //        this.transform.rotation = Quaternion.Euler(0, 180, 0);
-        //        Debug.Log("Play2");
-        //        //rotatedVectorToTarget = Quaternion.Euler(0, 180, 0) * direction;
+                    Move(direction, boxes[initialBlueIndex + 1]);
 
-        //    }
-        //    flipped = true;
-        //}
+                    if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.1)
+                    {
+                        initialBlueIndex++;
 
-        //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, degree) * direction;
-        ////Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 2f * Time.deltaTime);
-        //this.transform.Translate(speed * Time.deltaTime, 0, 0);
+                        if (initialBlueIndex == 10 && rotationChanged == false)
+                        {
+                            if (this.transform.rotation.y != 0f)
+                            {
+                                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                            }
+                            else if (this.transform.rotation.y == 0f)
+                            {
+                                this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.y - 180, 0);
+                            }
+                            rotationChanged = true;
+                        }
+                    }
+                }
+                else if (goingBackwardsBlue == false && moveBlue == true)
+                {
+                    moveBlue = false;
+
+                    if (StayOnTopOfCollectable() == true && collectableFound == false)
+                    {
+                        collectableFound = true;
+                        Debug.Log("collectable found");
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+   private void Move(Vector3 direction, Transform target)
+    {
         this.transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        //this.transform.up = target.position - this.transform.position;
     }
 
     void OnDrawGizmosSelected()
@@ -346,7 +335,7 @@ internal class MovePlayer : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }
 
-    internal bool CheckIfIsGrounded()
+    internal bool StayOnTopOfCollectable()
     {
         Collider2D rayCastHit = Physics2D.OverlapCircle(this.transform.position, 0.5f, collectablesLayer);
 
