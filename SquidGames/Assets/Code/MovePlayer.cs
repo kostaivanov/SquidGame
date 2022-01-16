@@ -20,8 +20,6 @@ internal class MovePlayer : MonoBehaviour
     private bool goingBackwardsBlue;
     private bool goingBackwardsRed;
 
-    private bool flipped;
-
     private void Start()
     {
         moveBlue = false;
@@ -39,8 +37,6 @@ internal class MovePlayer : MonoBehaviour
 
         goingBackwardsBlue = false;
         goingBackwardsRed = false;
-
-        flipped = false;
     }
 
     private void OnEnable()
@@ -87,15 +83,7 @@ internal class MovePlayer : MonoBehaviour
         {
             moveBlue = true;
             goingBackwardsBlue = true;
-            if (this.transform.rotation.y != 0f)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if(this.transform.rotation.y == 0f)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-
+            RotatePlayer();
             if (currentIndexBlue == 19)
             {
                 currentIndexBlue += 1;
@@ -103,7 +91,6 @@ internal class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexBlue -= int.Parse(boxIndex);
-                //this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
         if (this.gameObject.name.StartsWith("R"))
@@ -111,6 +98,7 @@ internal class MovePlayer : MonoBehaviour
             moveRed = true;
             goingBackwardsRed = true;
 
+            RotatePlayer();
             if (currentIndexRed == 19)
             {
                 currentIndexRed += 1;
@@ -118,8 +106,6 @@ internal class MovePlayer : MonoBehaviour
             else
             {
                 currentIndexRed -= int.Parse(boxIndex);
-
-                //this.transform.localScale = new Vector2(0.5f, 0.5f);
             }
         }
     }
@@ -164,7 +150,6 @@ internal class MovePlayer : MonoBehaviour
                 else
                 {
                     currentIndexBlue += int.Parse(_boxIndex);
-                    //currentIndexBlue += 1;
                 }
                 button.interactable = false;
             }
@@ -188,13 +173,32 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
-        //Debug.Log("goingBackwards = " + goingBackwards + " - move blue = " + moveBlue);
-        //Debug.Log("current index = " + currentIndexRed + " - and  initial = " + initialRedIndex);
-        if (initialBlueIndex > 0)
+
+        if (moveBlue == true && currentIndexBlue < boxes.Length && initialBlueIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
         {
-            Vector3 direction1 = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
+            Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
+
+            Move(direction, boxes[initialBlueIndex + 1]);
+
+            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.1)
+            {
+                initialBlueIndex++;
+                if (initialBlueIndex == 10 && rotationChanged == false)
+                {
+                    RotatePlayer();
+                    rotationChanged = true;
+                }
+            }
         }
-       
+        else if (goingBackwardsBlue == false && moveBlue == true)
+        {
+            moveBlue = false;
+
+            if (StayOnTopOfCollectable() == true && collectableFound == false)
+            {
+                collectableFound = true;
+            }
+        }
         if (currentIndexRed < boxes.Length && initialRedIndex < 20 && moveRed == true && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.25 && initialRedIndex < currentIndexRed)
         {
             Vector3 direction = (boxes[initialRedIndex + 1].transform.position - this.transform.position);
@@ -204,14 +208,14 @@ internal class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialRedIndex + 1].transform.position) < 0.25)
             {
                 initialRedIndex++;
-                if (currentIndexRed == 10 && rotationChanged == false)
+                if (initialRedIndex == 10 && rotationChanged == false)
                 {
-                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    RotatePlayer();
                     rotationChanged = true;
                 }
             }
         }
-        else if (moveRed == true)
+        else if (goingBackwardsRed == false && moveRed == true)
         {
             moveRed = false;
 
@@ -221,18 +225,17 @@ internal class MovePlayer : MonoBehaviour
             }
         }
 
-        if (goingBackwardsBlue == true && currentIndexBlue >= 0 && initialBlueIndex > 0 && moveBlue == true && Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) > 0.1 && initialBlueIndex > currentIndexBlue)
+        if (goingBackwardsBlue == true && moveBlue == true && currentIndexBlue >= 0 && initialBlueIndex > 0  && Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) > 0.1 && initialBlueIndex > currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
-            //Debug.Log("directions = " + direction);
 
             Move(direction, boxes[initialBlueIndex - 1]);
             if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) < 0.1)
             {
                 initialBlueIndex--;
-                if (currentIndexBlue == 10 && rotationChanged == false)
+                if (initialBlueIndex == 10 && rotationChanged == false)
                 {
-                    this.transform.localScale = new Vector2(0.5f, 0.5f);
+                    RotatePlayer();
                     rotationChanged = true;
                 }
             }
@@ -241,99 +244,73 @@ internal class MovePlayer : MonoBehaviour
         {
             moveBlue = false;
             goingBackwardsBlue = false;
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-
+            //this.transform.rotation = Quaternion.Euler(0, 0, 0);
+            RotatePlayer();
             if (StayOnTopOfCollectable() == true)
             {
                 collectableFound = true;
             }
         }
-        //if (goingBackwardsRed == true && currentIndexRed >= 0 && initialRedIndex > 0 && moveRed == true && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.25 && initialRedIndex > currentIndexRed)
-        //{
-        //    Vector3 direction = (boxes[initialRedIndex - 1].transform.position - this.transform.position);
-        //    Debug.Log("directions = " + direction);
-
-        //    Move(direction, 90, "flip");
-        //    if (Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) < 0.25)
-        //    {
-        //        initialRedIndex--;
-        //        if (currentIndexRed == 10 && rotationChanged == false)
-        //        {
-        //            //this.transform.localScale = new Vector2(0.5f, 0.5f);
-        //            rotationChanged = true;
-        //        }
-        //    }
-        //}
-        //else if (goingBackwardsRed == true && moveRed == true)
-        //{
-        //    moveRed = false;
-        //    goingBackwardsRed = false;
-        //    flipped = false;
-        //    if (CheckIfIsGrounded() == true)
-        //    {
-        //        collectableFound = true;
-        //    }
-        //}
-    }
-
-    private void MoveByColorObject(string color)
-    {
-        switch (color)
+        if (goingBackwardsRed == true && moveRed == true && currentIndexRed >= 0 && initialRedIndex > 0 && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.1 && initialRedIndex > currentIndexRed)
         {
-            case "R":
-                if (moveBlue == true && currentIndexBlue < boxes.Length && initialBlueIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
+            Vector3 direction = (boxes[initialRedIndex - 1].transform.position - this.transform.position);
+
+            Move(direction, boxes[initialRedIndex - 1]);
+            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) < 0.1)
+            {
+                initialRedIndex--;
+                if (currentIndexRed == 10 && rotationChanged == false)
                 {
-                    Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
-
-                    Move(direction, boxes[initialBlueIndex + 1]);
-
-                    if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.1)
-                    {
-                        initialBlueIndex++;
-
-                        if (initialBlueIndex == 10 && rotationChanged == false)
-                        {
-                            if (this.transform.rotation.y != 0f)
-                            {
-                                this.transform.rotation = Quaternion.Euler(0, 0, 0);
-                            }
-                            else if (this.transform.rotation.y == 0f)
-                            {
-                                this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.y - 180, 0);
-                            }
-                            rotationChanged = true;
-                        }
-                    }
+                    RotatePlayer();
+                    rotationChanged = true;
                 }
-                else if (goingBackwardsBlue == false && moveBlue == true)
-                {
-                    moveBlue = false;
-
-                    if (StayOnTopOfCollectable() == true && collectableFound == false)
-                    {
-                        collectableFound = true;
-                        Debug.Log("collectable found");
-                    }
-                }
-                break;
-            default:
-                break;
+            }
+        }
+        else if (goingBackwardsRed == true && moveRed == true)
+        {
+            moveRed = false;
+            goingBackwardsRed = false;
+            RotatePlayer();
+            if (StayOnTopOfCollectable() == true)
+            {
+                collectableFound = true;
+            }
         }
     }
 
-   private void Move(Vector3 direction, Transform target)
+    private void RotatePlayer()
+    {
+        if (this.transform.localScale.x < 0)
+        {
+            this.transform.localScale = new Vector2(0.5f, 0.5f);
+        }
+        else
+        {
+            this.transform.localScale = new Vector2(-0.5f, 0.5f);
+        }
+        //if (this.transform.rotation.y != 0f)
+        //{
+        //    this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //}
+        //else if (this.transform.rotation.y == 0f)
+        //{
+        //    this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.y - 180, 0);
+        //}
+    }
+
+    private void Move(Vector3 direction, Transform target)
     {
         this.transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        //Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
-        Gizmos.color = Color.red;
-        //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
-        Debug.DrawRay(transform.position, Vector3.forward, Color.red);
-    }
+    //void OnDrawGizmosSelected()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    //Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
+    //    Gizmos.color = Color.red;
+    //    //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
+    //    Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+    //}
 
     internal bool StayOnTopOfCollectable()
     {

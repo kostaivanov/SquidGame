@@ -16952,6 +16952,7 @@ GameObject:
   - component: {fileID: 489279985}
   - component: {fileID: 489279986}
   - component: {fileID: 489279987}
+  - component: {fileID: 489279988}
   m_Layer: 6
   m_Name: Red_Lizard
   m_TagString: Player
@@ -17073,6 +17074,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa99fa10525962e4ea625a77df636866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &489279988
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489279982}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &514397612
 GameObject:
   m_ObjectHideFlags: 0
@@ -42310,12 +42332,12 @@ PrefabInstance:
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.531
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.847
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
@@ -42365,7 +42387,7 @@ PrefabInstance:
     - target: {fileID: 4338715809349833129, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6451ee03b9343948bf3dfe497f59cd9, type: 3}
@@ -42518,7 +42540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2042870731
 Transform:
   m_ObjectHideFlags: 0
