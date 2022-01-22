@@ -173,7 +173,13 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
+        if (moveBlue == true || moveRed == true)
+        {
+            Physics2D.IgnoreLayerCollision(6, 8);
+            Physics2D.IgnoreLayerCollision(7, 8);
+            Debug.Log("ignoring collision");
 
+        }
         if (moveBlue == true && currentIndexBlue < boxes.Length && initialBlueIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
         {
             Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);

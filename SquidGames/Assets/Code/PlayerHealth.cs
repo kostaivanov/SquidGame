@@ -12,8 +12,11 @@ internal class PlayerHealth : MonoBehaviour
         dead = false;
         numbersChanged = false;
     }
-    private void Update()
-    {
-       // Debug.Log("dead = " + dead);
-    }
+    //private void Update()
+    //{
+    //    if (dead == true)
+    //    {
+
+    //    }
+    //}
 }

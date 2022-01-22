@@ -23,6 +23,31 @@ internal class InstantiateItems : MonoBehaviour
         spawned = false;
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (spawned == false)
+        {
+            while (usedIndexes.Count < 4)
+            {
+                SpawnRandomBombs();
+            }
+            while (plusesMinuses.Count < 8)
+            {
+                SpawnPlusAndMinus();
+            }
+            while (pushForward.Count < 2)
+            {
+                SpawnPushForwardObject();
+            }
+            while (pushBack.Count < 2)
+            {
+                SpawnPushBackObject();
+            }
+            spawned = true;
+        }
+    }
+
     private void SpawnRandomBombs()
     {
         int index = Random.Range(0, boxes.Length -1);
@@ -60,31 +85,6 @@ internal class InstantiateItems : MonoBehaviour
 
             obj.GetComponent<SpriteRenderer>().enabled = false;
             obj.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (spawned == false)
-        {
-            while (usedIndexes.Count < 4)
-            {
-                SpawnRandomBombs();
-            }
-            while (plusesMinuses.Count < 8)
-            {
-                SpawnPlusAndMinus();
-            }
-            while (pushForward.Count < 2)
-            {
-                SpawnPushForwardObject();
-            }
-            while (pushBack.Count < 2)
-            {
-                SpawnPushBackObject();
-            }
-            spawned = true;
         }
     }
 
