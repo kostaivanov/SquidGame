@@ -24,6 +24,7 @@ internal class BombController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
+        Debug.Log("staying");
         if (movePlayer != null && movePlayer.collectableFound == true)
         {
             if (movePlayer.gameObject.name.StartsWith("B") )
