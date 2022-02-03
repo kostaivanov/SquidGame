@@ -5,4 +5,5 @@ using UnityEngine;
 internal interface ICollectable
 {
     void Activate();
+    IEnumerator Deactivate();
 }

@@ -7,8 +7,8 @@ internal class MovePlayer : MonoBehaviour
 {
     [SerializeField] private Transform[] boxes;
     [SerializeField] private float speed = 1f;
-    internal bool moveBlue, moveRed;
-    internal int currentIndexBlue, currentIndexRed, initialBlueIndex, initialRedIndex;
+    internal bool move;
+    internal int currentIndex, initialIndex;
     [SerializeField] private LayerMask collectablesLayer;
     private string _boxIndex;
     internal bool collectableFound;
@@ -17,26 +17,22 @@ internal class MovePlayer : MonoBehaviour
     internal Vector3 startPosition;
     internal bool plusOn, minusOn;
     private bool rotationChanged;
-    private bool goingBackwardsBlue;
-    private bool goingBackwardsRed;
+
+    private bool goingBackwards;
+
 
     private void Start()
     {
-        moveBlue = false;
-        moveRed = false;
-        currentIndexBlue = -1;
-        currentIndexRed = -1;
+        move = false;
 
-        initialBlueIndex = currentIndexBlue;
-        initialRedIndex = currentIndexRed;
+        currentIndex = -1;
+        initialIndex = -1;
 
+        initialIndex = currentIndex;
 
         collectableFound = false;
         startPosition = this.transform.position;
         rotationChanged = false;
-
-        goingBackwardsBlue = false;
-        goingBackwardsRed = false;
     }
 
     private void OnEnable()
@@ -49,63 +45,36 @@ internal class MovePlayer : MonoBehaviour
         OnClickMove.OnClicked -= MovePlayerForward;
     }
 
-    public void MovePlayerOnPuroposeForward(string boxIndex, GameObject obj)
+    public void MovePlayerOnPuroposeForward(int numberOfMoves, GameObject obj)
     {
-        if (this.gameObject.name.StartsWith("B"))
+        if (this.gameObject.name == obj.name)
         {
-            moveBlue = true;
-            if (currentIndexBlue == 19)
+            move = true;
+            if (currentIndex == 19)
             {
-                currentIndexBlue += 1;
+                currentIndex += 1;
             }
             else
             {
-                currentIndexBlue += int.Parse(boxIndex);
-            }
-        }
-        if (this.gameObject.name.StartsWith("R"))
-        {
-            moveRed = true;
-            if (currentIndexRed == 19)
-            {
-                currentIndexRed += 1;
-            }
-            else
-            {
-                currentIndexRed += int.Parse(boxIndex);
+                currentIndex += numberOfMoves;
             }
         }
     }
 
-    public void MovePlayerOnPuroposeBackward(string boxIndex, GameObject obj)
+    public void MovePlayerOnPuroposeBackward(int numberOfMoves, GameObject obj)
     {
-        if (this.gameObject.name.StartsWith("B"))
+        if (this.gameObject.name == obj.name)
         {
-            moveBlue = true;
-            goingBackwardsBlue = true;
+            move = true;
+            goingBackwards = true;
             RotatePlayer();
-            if (currentIndexBlue == 19)
+            if (currentIndex == 19)
             {
-                currentIndexBlue += 1;
+                currentIndex += 1;
             }
             else
             {
-                currentIndexBlue -= int.Parse(boxIndex);
-            }
-        }
-        if (this.gameObject.name.StartsWith("R"))
-        {
-            moveRed = true;
-            goingBackwardsRed = true;
-
-            RotatePlayer();
-            if (currentIndexRed == 19)
-            {
-                currentIndexRed += 1;
-            }
-            else
-            {
-                currentIndexRed -= int.Parse(boxIndex);
+                currentIndex -= numberOfMoves;
             }
         }
     }
@@ -142,28 +111,28 @@ internal class MovePlayer : MonoBehaviour
 
             if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
             {
-                moveBlue = true;
-                if (currentIndexBlue == 19)
+                move = true;
+                if (currentIndex == 19)
                 {
-                    currentIndexBlue += 1;
+                    currentIndex += 1;
                 }
                 else
                 {
-                    currentIndexBlue += int.Parse(_boxIndex);
+                    currentIndex += int.Parse(_boxIndex);
                 }
                 button.interactable = false;
             }
             else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
             {
-                moveRed = true;
+                move = true;
 
-                if (currentIndexRed == 19)
+                if (currentIndex == 19)
                 {
-                    currentIndexRed += 1;
+                    currentIndex += 1;
                 }
                 else
                 {
-                    currentIndexRed += int.Parse(_boxIndex);
+                    currentIndex += int.Parse(_boxIndex);
                 }
                 button.interactable = false;
             }
@@ -173,109 +142,58 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
-        if (moveBlue == true || moveRed == true)
+        //if (moveBlue == true || moveRed == true || move == true)
+        //{
+        //    Physics2D.IgnoreLayerCollision(6, 8);
+        //    Physics2D.IgnoreLayerCollision(7, 8);
+        //    Debug.Log("ignoring collision");
+        //}
+        if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
-            Physics2D.IgnoreLayerCollision(6, 8);
-            Physics2D.IgnoreLayerCollision(7, 8);
-            Debug.Log("ignoring collision");
+            Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
-        }
-        if (moveBlue == true && currentIndexBlue < boxes.Length && initialBlueIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) > 0.1 && initialBlueIndex < currentIndexBlue)
-        {
-            Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
+            Move(direction, boxes[initialIndex + 1]);
 
-            Move(direction, boxes[initialBlueIndex + 1]);
-
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex + 1].transform.position) < 0.1)
+            if (Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) < 0.1)
             {
-                initialBlueIndex++;
-                if (initialBlueIndex == 10 && rotationChanged == false)
+                initialIndex++;
+                if (initialIndex == 10 && rotationChanged == false)
                 {
                     RotatePlayer();
                     rotationChanged = true;
                 }
             }
         }
-        else if (goingBackwardsBlue == false && moveBlue == true)
+        else if (goingBackwards == false && move == true)
         {
-            moveBlue = false;
+            move = false;
 
             if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
                 collectableFound = true;
             }
         }
-        if (currentIndexRed < boxes.Length && initialRedIndex < 20 && moveRed == true && Vector3.Distance(this.transform.position, boxes[currentIndexRed].transform.position) > 0.25 && initialRedIndex < currentIndexRed)
+
+        if (goingBackwards == true && move == true && currentIndex >= 0 && initialIndex > 0 && Vector3.Distance(this.transform.position, boxes[initialIndex - 1].transform.position) > 0.1 && initialIndex > currentIndex)
         {
-            Vector3 direction = (boxes[initialRedIndex + 1].transform.position - this.transform.position);
+            Vector3 direction = (boxes[initialIndex - 1].transform.position - this.transform.position);
 
-            Move(direction, boxes[initialRedIndex + 1]);
-
-            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex + 1].transform.position) < 0.25)
+            Move(direction, boxes[initialIndex - 1]);
+            if (Vector3.Distance(this.transform.position, boxes[initialIndex - 1].transform.position) < 0.1)
             {
-                initialRedIndex++;
-                if (initialRedIndex == 10 && rotationChanged == false)
+                initialIndex--;
+                if (initialIndex == 10 && rotationChanged == false)
                 {
                     RotatePlayer();
                     rotationChanged = true;
                 }
             }
         }
-        else if (goingBackwardsRed == false && moveRed == true)
+        else if (goingBackwards == true && move == true)
         {
-            moveRed = false;
-
-            if (StayOnTopOfCollectable() == true)
-            {
-                collectableFound = true;
-            }
-        }
-
-        if (goingBackwardsBlue == true && moveBlue == true && currentIndexBlue >= 0 && initialBlueIndex > 0  && Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) > 0.1 && initialBlueIndex > currentIndexBlue)
-        {
-            Vector3 direction = (boxes[initialBlueIndex - 1].transform.position - this.transform.position);
-
-            Move(direction, boxes[initialBlueIndex - 1]);
-            if (Vector3.Distance(this.transform.position, boxes[initialBlueIndex - 1].transform.position) < 0.1)
-            {
-                initialBlueIndex--;
-                if (initialBlueIndex == 10 && rotationChanged == false)
-                {
-                    RotatePlayer();
-                    rotationChanged = true;
-                }
-            }
-        }
-        else if (goingBackwardsBlue == true && moveBlue == true)
-        {
-            moveBlue = false;
-            goingBackwardsBlue = false;
+            move = false;
+            goingBackwards = false;
             //this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            RotatePlayer();
-            if (StayOnTopOfCollectable() == true)
-            {
-                collectableFound = true;
-            }
-        }
-        if (goingBackwardsRed == true && moveRed == true && currentIndexRed >= 0 && initialRedIndex > 0 && Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) > 0.1 && initialRedIndex > currentIndexRed)
-        {
-            Vector3 direction = (boxes[initialRedIndex - 1].transform.position - this.transform.position);
-
-            Move(direction, boxes[initialRedIndex - 1]);
-            if (Vector3.Distance(this.transform.position, boxes[initialRedIndex - 1].transform.position) < 0.1)
-            {
-                initialRedIndex--;
-                if (currentIndexRed == 10 && rotationChanged == false)
-                {
-                    RotatePlayer();
-                    rotationChanged = true;
-                }
-            }
-        }
-        else if (goingBackwardsRed == true && moveRed == true)
-        {
-            moveRed = false;
-            goingBackwardsRed = false;
             RotatePlayer();
             if (StayOnTopOfCollectable() == true)
             {

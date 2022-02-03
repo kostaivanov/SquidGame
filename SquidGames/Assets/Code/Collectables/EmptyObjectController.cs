@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyObjectController : MonoBehaviour
+public class EmptyObjectController : MonoBehaviour, ICollectable
 {
     [SerializeField] private GameObject[] collectables;
 
@@ -41,5 +41,10 @@ public class EmptyObjectController : MonoBehaviour
 
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
         Destroy(this.gameObject);
+    }
+
+    public void Activate()
+    {
+        throw new System.NotImplementedException();
     }
 }

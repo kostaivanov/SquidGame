@@ -56,6 +56,11 @@ internal class BombController : MonoBehaviour, ICollectable
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
+    public IEnumerator Deactivate()
+    {
+        throw new NotImplementedException();
+    }
+
     //protected virtual void OnBombExploded()
     //{
     //    if (OnBombExplodeHandler != null)

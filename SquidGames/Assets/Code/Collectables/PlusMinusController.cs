@@ -14,7 +14,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
         }
-        Debug.Log("opaa");
+        //Debug.Log("opaa");
     }
 
     private void OnTriggerStay2D(Collider2D otherObject)

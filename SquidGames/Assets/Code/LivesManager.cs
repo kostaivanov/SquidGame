@@ -64,14 +64,14 @@ public class LivesManager : MonoBehaviour, IDestroyable
         if (player.name.StartsWith("B"))
         {
             MovePlayer _movePlayer = player.GetComponent<MovePlayer>();
-            _movePlayer.currentIndexBlue = -1;
-            _movePlayer.initialBlueIndex = _movePlayer.currentIndexBlue;
+            _movePlayer.currentIndex = -1;
+            _movePlayer.initialIndex = _movePlayer.currentIndex;
         }
         else if (player.name.StartsWith("R"))
         {
             MovePlayer _movePlayer = player.GetComponent<MovePlayer>();
-            _movePlayer.currentIndexRed = -1;
-            _movePlayer.initialRedIndex = _movePlayer.currentIndexRed;
+            _movePlayer.currentIndex = -1;
+            _movePlayer.initialIndex = _movePlayer.currentIndex;
         }
         if (playerHealth != null)
         {
