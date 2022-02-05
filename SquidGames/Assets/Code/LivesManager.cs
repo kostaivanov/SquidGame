@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class LivesManager : MonoBehaviour, IDestroyable
 {
     private GameObject[] players;
+    [SerializeField] private List<Button> moveButtons;
 
     // Start is called before the first frame update
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        //BombController bomb = new BombController();
-
     }
+
     private void OnEnable()
     {
         BombController.OnBombExplodeHandler += Deactivate;
@@ -26,74 +26,44 @@ public class LivesManager : MonoBehaviour, IDestroyable
         BombController.OnBombExplodeHandler -= Restart;
  
     }
-    // Update is called once per frame
-    void Update()
+
+    public void Deactivate(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
-        
-    }
-    public void Deactivate(GameObject bomb, GameObject player, Vector3 position)
-    {
-        bomb.GetComponent<SpriteRenderer>().enabled = false;
-        foreach (Transform bodyPart in player.transform)
+        bombObject.GetComponent<SpriteRenderer>().enabled = false;
+        foreach (Transform bodyPart in playerObject.transform)
         {
             bodyPart.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
-    public void Restart(GameObject bomb, GameObject player, Vector3 position)
+    public void Restart(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
-        player.transform.position = position;
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        //GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
-        //GameObject[] _bombs = GameObject.FindGameObjectsWithTag("Bomb");
-       
-        //InstantiateItems.Shuffle(_boxes, _bombs);
-        GameObject[] _moveButtons = FindButtonMembers(player);
+        playerObject.transform.position = playerStartPosition;
+        PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
+        MovePlayer movePlayer = playerObject.GetComponent<MovePlayer>();
 
-        foreach (Transform bodyPart in player.transform)
+        foreach (Transform bodyPart in playerObject.transform)
         {
             bodyPart.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            Debug.Log(bodyPart.gameObject.name);
         }
 
-        foreach (GameObject button in _moveButtons)
+        foreach (Button button in moveButtons)
         {
-            button.GetComponent<Button>().interactable = true;
+            button.interactable = true;
         }
 
-        if (player.name.StartsWith("B"))
+        if (movePlayer != null)
         {
-            MovePlayer _movePlayer = player.GetComponent<MovePlayer>();
-            _movePlayer.currentIndex = -1;
-            _movePlayer.initialIndex = _movePlayer.currentIndex;
+            movePlayer.currentIndex = -1;
+            movePlayer.initialIndex = movePlayer.currentIndex;
         }
-        else if (player.name.StartsWith("R"))
-        {
-            MovePlayer _movePlayer = player.GetComponent<MovePlayer>();
-            _movePlayer.currentIndex = -1;
-            _movePlayer.initialIndex = _movePlayer.currentIndex;
-        }
+        
         if (playerHealth != null)
         {
             playerHealth.dead = false;
             playerHealth.numbersChanged = false;
-            //Debug.Log("restart");
         }
+
         playerHealth.dead = true;
-
-    }
-
-    private GameObject[] FindButtonMembers(GameObject obj)
-    {
-        GameObject[] _moveButtons = new GameObject[3];
-        if (obj.name.StartsWith("R"))
-        {
-            _moveButtons = GameObject.FindGameObjectsWithTag("RedMoveButton");
-        }
-        else if (obj.name.StartsWith("B"))
-        {
-            _moveButtons = GameObject.FindGameObjectsWithTag("BlueMoveButton");
-        }
-        return _moveButtons;
     }
 }

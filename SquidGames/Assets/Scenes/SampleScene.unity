@@ -33715,6 +33715,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b9d316e7da5af4888c61b91013d01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons:
+  - {fileID: 896725963}
+  - {fileID: 1880149209}
+  - {fileID: 1570817282}
+  - {fileID: 924463673}
+  - {fileID: 1207977463}
+  - {fileID: 1542170212}
+  - {fileID: 1293981822}
+  - {fileID: 178136760}
 --- !u!1 &1016829297
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,31 +24,31 @@ internal class BombController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        Debug.Log("staying");
-        if (movePlayer != null && movePlayer.collectableFound == true)
+        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
-            if (movePlayer.gameObject.name.StartsWith("B") )
-            {
-                movePlayer.collectableFound = false;
-                Activate();
-                StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
-            }
-            if (movePlayer.gameObject.name.StartsWith("R") )
-            {
-                movePlayer.collectableFound = false;
-                Activate();
-                StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
+            movePlayer.collectableFound = false;
+            Activate();
+            StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D otherObject)
+    {
+        if (otherObject.gameObject.tag == "Player")
+        {
+            if (movePlayer != null)
+            {
+                movePlayer = null;
             }
         }
     }
 
-    private IEnumerator Explode(GameObject bomb, GameObject objPlayer, Vector3 position)
+    private IEnumerator Explode(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
         yield return new WaitForSecondsRealtime(0.5f);
         //Deactivate(obj);
         //Restart(obj, position);
-        OnBombExplodeHandler(bomb, objPlayer, position);
+        OnBombExplodeHandler(bombObject, playerObject, playerStartPosition);
     }
 
     public void Activate()
