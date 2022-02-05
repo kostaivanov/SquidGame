@@ -24,7 +24,7 @@ public class TrapController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true)
+        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
             movePlayer.collectableFound = false;
             if (this.gameObject.tag == "GoForward")
@@ -48,52 +48,6 @@ public class TrapController : MonoBehaviour, ICollectable
                 StartCoroutine(GoBack(movePlayer, numberOfMoves));
 
             }
-
-            //if (otherObject.gameObject.name.StartsWith("R"))
-            //{
-            //    if (this.gameObject.tag == "GoForward")
-            //    {
-            //        if (movePlayer.moveRed == false)
-            //        {
-            //            Activate();
-            //        }
-
-            //        StartCoroutine(GoForward(movePlayer, numberOfMoves));
-            //    }
-            //    else if (this.gameObject.tag == "GoBackward")
-            //    {
-            //        if (movePlayer.moveRed == false)
-            //        {
-            //            Activate();
-            //        }
-
-            //        StartCoroutine(GoBack(movePlayer, numberOfMoves));
-
-            //    }
-            //}
-            //else if(otherObject.gameObject.name.StartsWith("B"))
-            //{
-            //    //movePlayer.collectableFound = false;
-
-            //    if (this.gameObject.tag == "GoForward")
-            //    {
-            //        if (movePlayer.moveBlue == false)
-            //        {
-            //            Activate();
-            //        }
-
-            //        StartCoroutine(GoForward(movePlayer, numberOfMoves));
-            //    }
-            //    else if (this.gameObject.tag == "GoBackward")
-            //    {
-            //        if (movePlayer.moveBlue == false)
-            //        {
-            //            Activate();
-            //        }
-
-            //        StartCoroutine(GoBack(movePlayer, numberOfMoves));
-            //    }
-            //}
         }
     }
 

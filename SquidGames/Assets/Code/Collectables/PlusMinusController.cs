@@ -19,28 +19,43 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true)
+        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
-            if (movePlayer.gameObject.name.StartsWith("B"))
+            movePlayer.collectableFound = false;
+            DetectIfPlusOrMinus();
+            Activate();
+            StartCoroutine(Deactivate());
+
+            //if (movePlayer.gameObject.name.StartsWith("B"))
+            //{
+            //    movePlayer.collectableFound = false;
+            //    DetectIfPlusOrMinus();
+            //    Activate();
+            //    StartCoroutine(Deactivate());
+            //}
+            //if (movePlayer.gameObject.name.StartsWith("R"))
+            //{
+            //    movePlayer.collectableFound = false;
+            //    DetectIfPlusOrMinus();
+            //    Activate();
+            //    StartCoroutine(Deactivate());
+            //}
+        }
+    }
+    private void OnTriggerExit2D(Collider2D otherObject)
+    {
+        if (otherObject.gameObject.tag == "Player")
+        {
+            if (movePlayer != null)
             {
-                movePlayer.collectableFound = false;
-                DetectIfPlusOrMinus(this.gameObject);
-                Activate();
-                StartCoroutine(Deactivate());
-            }
-            if (movePlayer.gameObject.name.StartsWith("R"))
-            {
-                movePlayer.collectableFound = false;
-                DetectIfPlusOrMinus(this.gameObject);
-                Activate();
-                StartCoroutine(Deactivate());
+                movePlayer = null;
             }
         }
     }
 
-    private void DetectIfPlusOrMinus(GameObject obj)
+    private void DetectIfPlusOrMinus()
     {
-        string firstLetter = obj.name.Substring(0, 1);
+        string firstLetter = this.gameObject.name.Substring(0, 1);
         Debug.Log(firstLetter);
         movePlayer.plusOn = false;
         movePlayer.minusOn = false;
