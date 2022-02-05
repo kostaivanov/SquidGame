@@ -81,49 +81,25 @@ internal class MovePlayer : MonoBehaviour
 
     public void MovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
     {
-        Button button = obj.GetComponent<Button>();
-        if (button.interactable == false && this.plusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+        if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
-            button.interactable = true;
-            this.plusOn = false;
-
-        }
-        else if (this.minusOn == true && buttonColor == "B" && this.gameObject.name.StartsWith("B"))
-        {
-            button.interactable = false;
-            this.minusOn = false;
-        }
-        else if (button.interactable == false && this.plusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
-        {
-            button.interactable = true;
-            this.plusOn = false;
-        }
-        else if (this.minusOn == true && buttonColor == "R" && this.gameObject.name.StartsWith("R"))
-        {
-            button.interactable = false;
-            this.minusOn = false;
-        }
-        else if (this.minusOn == false && button.interactable == true)
-        {
-            this._boxIndex = boxIndex;
-            this._buttonColor = buttonColor;
-            this.plusOn = false;
-
-            if (buttonColor == "B" && this.gameObject.name.StartsWith("B"))
+            Button button = obj.GetComponent<Button>();
+            if (button.interactable == false && this.plusOn == true)
             {
-                move = true;
-                if (currentIndex == 19)
-                {
-                    currentIndex += 1;
-                }
-                else
-                {
-                    currentIndex += int.Parse(_boxIndex);
-                }
-                button.interactable = false;
+                button.interactable = true;
+                this.plusOn = false;
+
             }
-            else if (buttonColor == "R" && this.gameObject.name.StartsWith("R"))
+            else if (button.interactable == true && this.minusOn == true)
             {
+                button.interactable = false;
+                this.minusOn = false;
+            }
+            else if (button.interactable == true)
+            {
+                this._boxIndex = boxIndex;
+                this.plusOn = false;
+                this.minusOn = false;
                 move = true;
 
                 if (currentIndex == 19)
@@ -164,17 +140,7 @@ internal class MovePlayer : MonoBehaviour
                 }
             }
         }
-        else if (goingBackwards == false && move == true)
-        {
-            move = false;
-
-            if (StayOnTopOfCollectable() == true && collectableFound == false)
-            {
-                collectableFound = true;
-            }
-        }
-
-        if (goingBackwards == true && move == true && currentIndex >= 0 && initialIndex > 0 && Vector3.Distance(this.transform.position, boxes[initialIndex - 1].transform.position) > 0.1 && initialIndex > currentIndex)
+        else if (goingBackwards == true && move == true && currentIndex >= 0 && initialIndex > 0 && Vector3.Distance(this.transform.position, boxes[initialIndex - 1].transform.position) > 0.1 && initialIndex > currentIndex)
         {
             Vector3 direction = (boxes[initialIndex - 1].transform.position - this.transform.position);
 
@@ -189,13 +155,16 @@ internal class MovePlayer : MonoBehaviour
                 }
             }
         }
-        else if (goingBackwards == true && move == true)
+        else if (move == true)
         {
+            if (goingBackwards == true)
+            {
+                goingBackwards = false;
+                RotatePlayer();
+            }
             move = false;
-            goingBackwards = false;
-            //this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            RotatePlayer();
-            if (StayOnTopOfCollectable() == true)
+           
+            if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
                 collectableFound = true;
             }
