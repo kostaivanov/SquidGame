@@ -12,11 +12,10 @@ internal class MovePlayer : MonoBehaviour
     [SerializeField] private LayerMask collectablesLayer;
     private string _boxIndex;
     internal bool collectableFound;
-    private string _buttonColor;
 
     internal Vector3 startPosition;
     internal bool plusOn, minusOn;
-    private bool rotationChanged;
+    internal bool rotationChanged;
 
     private bool goingBackwards;
 
@@ -45,37 +44,35 @@ internal class MovePlayer : MonoBehaviour
         OnClickMove.OnClicked -= MovePlayerForward;
     }
 
-    public void MovePlayerOnPuroposeForward(int numberOfMoves, GameObject obj)
+    public void MoveByTrapDirection(string direction, int numberOfMoves, GameObject obj)
     {
         if (this.gameObject.name == obj.name)
         {
             move = true;
-            if (currentIndex == 19)
+            if (direction == "GoForward")
             {
-                currentIndex += 1;
+                if (currentIndex == 19)
+                {
+                    currentIndex += 1;
+                }
+                else
+                {
+                    currentIndex += numberOfMoves;
+                }
             }
-            else
+            else if(direction == "GoBackward")
             {
-                currentIndex += numberOfMoves;
-            }
-        }
-    }
-
-    public void MovePlayerOnPuroposeBackward(int numberOfMoves, GameObject obj)
-    {
-        if (this.gameObject.name == obj.name)
-        {
-            move = true;
-            goingBackwards = true;
-            RotatePlayer();
-            if (currentIndex == 19)
-            {
-                currentIndex += 1;
-            }
-            else
-            {
-                currentIndex -= numberOfMoves;
-            }
+                if (currentIndex == 1 || currentIndex == 0)
+                {
+                    currentIndex -= 1;
+                }
+                else
+                {
+                    currentIndex -= numberOfMoves;
+                }
+                goingBackwards = true;
+                RotatePlayer();
+            }         
         }
     }
 
@@ -117,13 +114,14 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("current index = " + currentIndexBlue + " - and  initial = " + initialBlueIndex);
+        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //if (moveBlue == true || moveRed == true || move == true)
         //{
         //    Physics2D.IgnoreLayerCollision(6, 8);
         //    Physics2D.IgnoreLayerCollision(7, 8);
         //    Debug.Log("ignoring collision");
         //}
+
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);

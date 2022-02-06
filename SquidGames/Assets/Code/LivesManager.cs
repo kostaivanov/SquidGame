@@ -13,7 +13,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
     {
         players = GameObject.FindGameObjectsWithTag("Player");
     }
-
+ 
     private void OnEnable()
     {
         BombController.OnBombExplodeHandler += Deactivate;
@@ -64,6 +64,8 @@ public class LivesManager : MonoBehaviour, IDestroyable
             playerHealth.numbersChanged = false;
         }
 
+        playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
+        movePlayer.rotationChanged = false;
         playerHealth.dead = true;
     }
 }

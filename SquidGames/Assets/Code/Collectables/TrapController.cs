@@ -27,27 +27,13 @@ public class TrapController : MonoBehaviour, ICollectable
         if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
             movePlayer.collectableFound = false;
-            if (this.gameObject.tag == "GoForward")
+
+            if (movePlayer.move == false)
             {
-                if (movePlayer.move == false)
-                {
-                    Activate();
-                }
-
-                StartCoroutine(GoForward(movePlayer, numberOfMoves));
+                Activate();
             }
-            else if (this.gameObject.tag == "GoBackward")
-            {
-                if (movePlayer.move == false)
-                {
-                    Activate();
-                    Debug.Log("playing ?????");
 
-                }
-
-                StartCoroutine(GoBack(movePlayer, numberOfMoves));
-
-            }
+            StartCoroutine(CallMovementFunciton(this.gameObject.tag, movePlayer, numberOfMoves));
         }
     }
 
@@ -59,24 +45,15 @@ public class TrapController : MonoBehaviour, ICollectable
         }
     }
 
-    private IEnumerator GoBack(MovePlayer _movePlayer, int moveNumber)
+    private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
     {
         yield return new WaitForSecondsRealtime(1f);
 
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
-        _movePlayer.MovePlayerOnPuroposeBackward(moveNumber, _movePlayer.gameObject);
 
-        Destroy(this.gameObject);
-    }
+        _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
 
-    private IEnumerator GoForward(MovePlayer _movePlayer, int moveNumber)
-    {
-        yield return new WaitForSecondsRealtime(1f);
-
-        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
-
-        _movePlayer.MovePlayerOnPuroposeForward(moveNumber, _movePlayer.gameObject);
         Destroy(this.gameObject);
     }
 

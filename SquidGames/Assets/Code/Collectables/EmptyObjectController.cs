@@ -18,20 +18,19 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
     }
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true)
+        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
-            if (movePlayer.gameObject.name.StartsWith("B"))
-            {
-                movePlayer.collectableFound = false;
+            movePlayer.collectableFound = false;
 
-                StartCoroutine(Deactivate());
-            }
-            if (movePlayer.gameObject.name.StartsWith("R"))
-            {
-                movePlayer.collectableFound = false;
+            StartCoroutine(Deactivate());
+        }
+    }
 
-                StartCoroutine(Deactivate());
-            }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (movePlayer != null)
+        {
+            movePlayer = null;
         }
     }
 
