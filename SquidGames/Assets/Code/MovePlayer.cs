@@ -62,6 +62,11 @@ internal class MovePlayer : MonoBehaviour
             }
             else if(direction == "GoBackward")
             {
+                if (currentIndex != 10)
+                {
+                    RotatePlayer();
+                    Debug.Log("zavyrtq");
+                }
                 if (currentIndex == 1 || currentIndex == 0)
                 {
                     currentIndex -= 1;
@@ -71,7 +76,7 @@ internal class MovePlayer : MonoBehaviour
                     currentIndex -= numberOfMoves;
                 }
                 goingBackwards = true;
-                RotatePlayer();
+              
             }         
         }
     }
@@ -114,7 +119,7 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //if (moveBlue == true || moveRed == true || move == true)
         //{
         //    Physics2D.IgnoreLayerCollision(6, 8);
