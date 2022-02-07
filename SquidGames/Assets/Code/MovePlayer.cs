@@ -65,7 +65,6 @@ internal class MovePlayer : MonoBehaviour
                 if (currentIndex != 10)
                 {
                     RotatePlayer();
-                    Debug.Log("zavyrtq");
                 }
                 if (currentIndex == 1 || currentIndex == 0)
                 {
