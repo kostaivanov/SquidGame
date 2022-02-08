@@ -7,6 +7,7 @@ using System.Linq;
 
 public class OnClickPush : MonoBehaviour, IPointerDownHandler
 {
+    [SerializeField] private GameObject Panel;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,16 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        OpenPanel();
+    }
+
+    internal void OpenPanel()
+    {
+        if (Panel != null)
+        {
+            bool isActive = Panel.activeSelf;
+            Panel.SetActive(!isActive);
+        }
     }
 
 }
