@@ -10,7 +10,7 @@ internal class MovePlayer : MonoBehaviour
     internal bool move;
     internal int currentIndex, initialIndex;
     [SerializeField] private LayerMask collectablesLayer;
-    private string _boxIndex;
+    private int boxIndex;
     internal bool collectableFound;
 
     internal Vector3 startPosition;
@@ -37,11 +37,13 @@ internal class MovePlayer : MonoBehaviour
     private void OnEnable()
     {
         OnClickMove.OnClicked += MovePlayerForward;
+        OnClickPush.OnClicked += MovePlayerForward;
     }
 
     private void OnDisable()
     {
         OnClickMove.OnClicked -= MovePlayerForward;
+        OnClickPush.OnClicked -= MovePlayerForward;
     }
 
     public void MoveByTrapDirection(string direction, int numberOfMoves, GameObject obj)
@@ -80,7 +82,7 @@ internal class MovePlayer : MonoBehaviour
         }
     }
 
-    public void MovePlayerForward(string boxIndex, string buttonColor, GameObject obj)
+    public void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
@@ -98,7 +100,7 @@ internal class MovePlayer : MonoBehaviour
             }
             else if (button.interactable == true)
             {
-                this._boxIndex = boxIndex;
+                this.boxIndex = boxIndex;
                 this.plusOn = false;
                 this.minusOn = false;
                 move = true;
@@ -109,7 +111,7 @@ internal class MovePlayer : MonoBehaviour
                 }
                 else
                 {
-                    currentIndex += int.Parse(_boxIndex);
+                    currentIndex += this.boxIndex;
                 }
                 button.interactable = false;
             }

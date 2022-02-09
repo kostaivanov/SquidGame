@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LivesManager : MonoBehaviour, IDestroyable
 {
     private GameObject[] players;
-    [SerializeField] private List<Button> moveButtons;
+    [SerializeField] private List<Button> moveButtons, pushButtons;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +49,27 @@ public class LivesManager : MonoBehaviour, IDestroyable
 
         foreach (Button button in moveButtons)
         {
-            button.interactable = true;
-        }
+            if (playerObject.name.StartsWith("B") && button.gameObject.name.StartsWith("B"))
+            {
+                button.interactable = true;
+            }
+            else if(playerObject.name.StartsWith("R") && button.gameObject.name.StartsWith("R"))
+            {
+                button.interactable = true;
+            }
 
+        }
+        foreach (Button button in pushButtons)
+        {
+            if (playerObject.name.StartsWith("B") && button.gameObject.name.StartsWith("R"))
+            {
+                button.interactable = true;
+            }
+            else if (playerObject.name.StartsWith("R") && button.gameObject.name.StartsWith("B"))
+            {
+                button.interactable = true;
+            }
+        }
         if (movePlayer != null)
         {
             movePlayer.currentIndex = -1;

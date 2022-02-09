@@ -5,33 +5,33 @@ using UnityEngine.EventSystems;
 
 public class OnClickPush : MonoBehaviour, IPointerDownHandler
 {
+    private const int movesNumber = 1;
+
+    public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj);
+    public static event Action OnClicked;
+
     private GameObject[] players;
-    private MovePlayer movePlayer1, movePlayer2;
+    private string buttonName;
 
 
     // Start is called before the first frame update
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        if (this.gameObject.name.StartsWith("R"))
-        {
-            movePlayer1 = players[0].GetComponent<MovePlayer>();
-        }
-        else
-        {
-            movePlayer2 = players[1].GetComponent<MovePlayer>();
-        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (movePlayer1 != null && movePlayer2 != null)
+        buttonName = this.gameObject.name;
+        if (buttonName.StartsWith("R"))
         {
-            if (true)
-            {
-
-            }
-            movePlayer1.currentIndex++;
+            OnClicked(movesNumber, "R", this.gameObject);
+          
+        }
+        else
+        {
+            OnClicked(movesNumber, "B", this.gameObject);
+          
         }
     }
 }

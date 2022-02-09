@@ -8,7 +8,7 @@ using System.Linq;
 
 internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void Action(string nambuttonNamee, string colorButtong, GameObject obj);
+    public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj);
     public static event Action OnClicked;
     [SerializeField] private Button[] moveButtons;
 
@@ -36,7 +36,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
         if (OnClicked!= null)
         {
             //string _moveNumber = buttonName.Substring(buttonName.Length - 1);
-            string _moveNumber = moveNumber.text;
+            int _moveNumber = int.Parse(moveNumber.text);
             if (buttonName.StartsWith("R"))
             {
                 OnClicked(_moveNumber, "R", this.gameObject);
