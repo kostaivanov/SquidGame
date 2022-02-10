@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using System.Linq;
 public class OnClickPush : MonoBehaviour, IPointerDownHandler
 {
     private const int movesNumber = 1;
@@ -23,6 +23,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         buttonName = this.gameObject.name;
+        //bool anyCloseEnemies = players.ToList().ForEach(p => p.GetComponent<MovePlayer>().currentIndex)
         if (buttonName.StartsWith("R"))
         {
             OnClicked(movesNumber, "R", this.gameObject);
