@@ -57,6 +57,7 @@ internal class MovePlayer : MonoBehaviour
                 {
                     currentIndex += 1;
                 }
+               
                 else
                 {
                     currentIndex += numberOfMoves;
@@ -108,6 +109,14 @@ internal class MovePlayer : MonoBehaviour
                 if (currentIndex == 19)
                 {
                     currentIndex += 1;
+                }
+                else if (currentIndex == 18 && this.boxIndex > 2)
+                {
+                    currentIndex += 2;
+                }
+                else if (currentIndex == 18 && this.boxIndex > 3)
+                {
+                    currentIndex += 3;
                 }
                 else
                 {
@@ -219,4 +228,5 @@ internal class MovePlayer : MonoBehaviour
         }
         return false;
     }
+   
 }
