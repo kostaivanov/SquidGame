@@ -129,7 +129,7 @@ internal class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //if (moveBlue == true || moveRed == true || move == true)
         //{
         //    Physics2D.IgnoreLayerCollision(6, 8);
@@ -228,5 +228,4 @@ internal class MovePlayer : MonoBehaviour
         }
         return false;
     }
-   
 }
