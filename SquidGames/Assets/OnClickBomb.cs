@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
 
-public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
+public class OnClickBomb : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void Action(string buttonName, GameObject[] array);
+    public delegate void Action(string buttonName, GameObject[] array, LivesManager livesManager);
     public static event Action OnClicked;
     private string buttonName;
     private GameObject[] players;
+    [SerializeField] private LivesManager livesManager;
 
     private void Start()
     {
@@ -21,12 +22,12 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
-            OnClicked("R", players);
+            OnClicked("R", players, livesManager);
 
         }
         else
         {
-            OnClicked("B", players);
+            OnClicked("B", players, livesManager);
         }
     }
 }

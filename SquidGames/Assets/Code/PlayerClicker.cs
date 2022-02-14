@@ -31,11 +31,13 @@ public class PlayerClicker : MonoBehaviour
     private void OnEnable()
     {
         OnClickSwitch.OnClicked += SwapPlayer;
+        OnClickBomb.OnClicked += BombPlayer;
     }
 
     private void OnDisable()
     {
         OnClickSwitch.OnClicked -= SwapPlayer;
+        OnClickBomb.OnClicked -= BombPlayer;
     }
 
     private void SwapPlayer(string buttonName, GameObject[] players)
@@ -54,6 +56,16 @@ public class PlayerClicker : MonoBehaviour
 
             SwapMovementtValues(this.movePlayer, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>());
         }   
+    }
+
+    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesmMnager)
+    {
+        if (this.gameObject.name.Substring(0, 1) == buttonName)
+        {
+            PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
+            chosenClickedPlayer.playerWasChosen = false;
+        }
     }
 
     private PlayerClicker GetMovePlayerVariable(GameObject[] players)
