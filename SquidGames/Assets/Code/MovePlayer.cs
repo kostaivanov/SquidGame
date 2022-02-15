@@ -19,9 +19,9 @@ internal class MovePlayer : MonoBehaviour
 
     private bool goingBackwards;
 
-
     private void Start()
     {
+
         move = false;
 
         currentIndex = -1;

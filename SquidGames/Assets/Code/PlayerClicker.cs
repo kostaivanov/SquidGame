@@ -6,11 +6,19 @@ public class PlayerClicker : MonoBehaviour
 {
     private bool playerWasChosen;
     private MovePlayer movePlayer;
+    internal LayerMask playerLayer;
+
     // Start is called before the first frame update
     void Start()
     {
         playerWasChosen = false;
         movePlayer = GetComponent<MovePlayer>();
+        playerLayer = LayerMask.GetMask("GroundLayer");
+    }
+
+    private void Update()
+    {
+        Debug.Log(this.gameObject.name + " = " + playerWasChosen);
     }
 
     // Update is called once per frame
@@ -19,11 +27,16 @@ public class PlayerClicker : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
             if (hit.collider != null)
             {
+                if (this.gameObject.name == hit.collider.gameObject.name)
+                {
+                    playerWasChosen = true;
+                }
                 Debug.Log("Target Position: " + hit.collider.gameObject.name);
-                playerWasChosen = true;
             }
         }
     }
@@ -63,9 +76,12 @@ public class PlayerClicker : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            Debug.Log(chosenClickedPlayer.gameObject.name);
-            livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
-            chosenClickedPlayer.playerWasChosen = false;
+            if (chosenClickedPlayer != null)
+            {
+                Debug.Log(chosenClickedPlayer.gameObject.name);
+                livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
+                chosenClickedPlayer.playerWasChosen = false;
+            }
         }
     }
 
