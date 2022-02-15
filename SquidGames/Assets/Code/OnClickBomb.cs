@@ -22,12 +22,12 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
-            OnClicked("R", players, livesManager);
+            OnClicked("B", players, livesManager);
 
         }
         else
         {
-            OnClicked("B", players, livesManager);
+            OnClicked("R", players, livesManager);
         }
     }
 }

@@ -63,6 +63,7 @@ public class PlayerClicker : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            Debug.Log(chosenClickedPlayer.gameObject.name);
             livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
             chosenClickedPlayer.playerWasChosen = false;
         }
