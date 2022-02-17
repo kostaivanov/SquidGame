@@ -6,7 +6,7 @@ using System.Linq;
 
 public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void Action(string buttonName, GameObject[] array);
+    public delegate void Action(string buttonName, GameObject[] array, GameObject buttonObject);
     public static event Action OnClicked;
     private string buttonName;
     private GameObject[] players;
@@ -21,12 +21,12 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
-            OnClicked("R", players);
+            OnClicked("R", players, this.gameObject);
 
         }
         else
         {
-            OnClicked("B", players);
+            OnClicked("B", players, this.gameObject);
         }
     }
 }

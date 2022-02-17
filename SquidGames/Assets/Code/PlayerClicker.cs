@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerClicker : MonoBehaviour
 {
@@ -53,25 +54,29 @@ public class PlayerClicker : MonoBehaviour
         OnClickBomb.OnClicked -= BombPlayer;
     }
 
-    private void SwapPlayer(string buttonName, GameObject[] players)
+    private void SwapPlayer(string buttonName, GameObject[] players, GameObject buttonObject)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            if (chosenClickedPlayer != null)
+            {
+                Vector3 lastPosition = this.gameObject.transform.position;
+                Vector3 lastEulerAngle = this.gameObject.transform.eulerAngles;
+                this.gameObject.transform.position = chosenClickedPlayer.gameObject.transform.position;
+                this.gameObject.transform.eulerAngles = chosenClickedPlayer.gameObject.transform.eulerAngles;
+                chosenClickedPlayer.gameObject.transform.position = lastPosition;
+                chosenClickedPlayer.gameObject.transform.eulerAngles = lastEulerAngle;
+                chosenClickedPlayer.playerWasChosen = false;
+                //Button button = buttonObject.GetComponent<Button>();
+                //button.interactable = false;
 
-            Vector3 lastPosition = this.movePlayer.gameObject.transform.position;
-            Vector3 lastEulerAngle = this.movePlayer.gameObject.transform.eulerAngles;
-            this.gameObject.transform.position = chosenClickedPlayer.gameObject.transform.position;
-            this.gameObject.transform.eulerAngles = chosenClickedPlayer.gameObject.transform.eulerAngles;
-            chosenClickedPlayer.gameObject.transform.position = lastPosition;
-            chosenClickedPlayer.gameObject.transform.eulerAngles = lastEulerAngle;
-            chosenClickedPlayer.playerWasChosen = false;
-
-            SwapMovementtValues(this.movePlayer, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>());
+                SwapMovementtValues(this.movePlayer, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>());
+            }
         }   
     }
 
-    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesmMnager)
+    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesmMnager, GameObject buttonObject)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
@@ -81,6 +86,8 @@ public class PlayerClicker : MonoBehaviour
                 Debug.Log(chosenClickedPlayer.gameObject.name);
                 livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
                 chosenClickedPlayer.playerWasChosen = false;
+                //Button button = buttonObject.GetComponent<Button>();
+               // button.interactable = false;
             }
         }
     }

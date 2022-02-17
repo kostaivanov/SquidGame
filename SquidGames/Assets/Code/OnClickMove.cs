@@ -48,7 +48,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
                     }
                 }
             }
-            else
+            else if(buttonName.StartsWith("B"))
             {
                 OnClicked(_moveNumber, "B", this.gameObject);
                 if (TurnButtonsInteractable() == true)
@@ -59,8 +59,29 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
                     }
                 }
             }
+            else if (buttonName.StartsWith("G"))
+            {
+                OnClicked(_moveNumber, "G", this.gameObject);
+                if (TurnButtonsInteractable() == true)
+                {
+                    foreach (Button _button in moveButtons)
+                    {
+                        _button.interactable = true;
+                    }
+                }
+            }
+            else if (buttonName.StartsWith("W"))
+            {
+                OnClicked(_moveNumber, "W", this.gameObject);
+                if (TurnButtonsInteractable() == true)
+                {
+                    foreach (Button _button in moveButtons)
+                    {
+                        _button.interactable = true;
+                    }
+                }
+            }
 
-           
         }
     }
 
