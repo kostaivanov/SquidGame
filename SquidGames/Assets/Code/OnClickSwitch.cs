@@ -22,11 +22,18 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         if (buttonName.StartsWith("R"))
         {
             OnClicked("R", players, this.gameObject);
-
+        }
+        else if (buttonName.StartsWith("B"))
+        {
+            OnClicked("B", players, this.gameObject);
+        }
+        else if (buttonName.StartsWith("G"))
+        {
+            OnClicked("G", players, this.gameObject);
         }
         else
         {
-            OnClicked("B", players, this.gameObject);
+            OnClicked("W", players, this.gameObject);
         }
     }
 }

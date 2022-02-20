@@ -314,9 +314,10 @@ GameObject:
   - component: {fileID: 10069571}
   - component: {fileID: 10069570}
   - component: {fileID: 10069569}
-  m_Layer: 0
+  - component: {fileID: 10069572}
+  m_Layer: 6
   m_Name: WhiteRocky
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,6 +436,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &10069572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10069566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3850113781b7eb041a817fd9c287e55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &19400701
 GameObject:
   m_ObjectHideFlags: 0
@@ -10232,7 +10245,7 @@ GameObject:
   - component: {fileID: 107821411}
   - component: {fileID: 107821410}
   - component: {fileID: 107821409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10768,7 +10781,7 @@ GameObject:
   - component: {fileID: 234893137}
   - component: {fileID: 234893136}
   m_Layer: 5
-  m_Name: RedBomb
+  m_Name: WhiteBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11685,6 +11698,7 @@ GameObject:
   - component: {fileID: 319689755}
   - component: {fileID: 319689754}
   - component: {fileID: 319689753}
+  - component: {fileID: 319689759}
   m_Layer: 6
   m_Name: GreenCarrot
   m_TagString: Player
@@ -11828,6 +11842,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319689759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319689752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3850113781b7eb041a817fd9c287e55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &328689386
 GameObject:
   m_ObjectHideFlags: 0
@@ -12039,7 +12065,7 @@ GameObject:
   - component: {fileID: 344076549}
   - component: {fileID: 344076550}
   - component: {fileID: 344076551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24555,7 +24581,7 @@ GameObject:
   - component: {fileID: 820303379}
   - component: {fileID: 820303378}
   - component: {fileID: 820303377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24796,7 +24822,7 @@ GameObject:
   - component: {fileID: 834020573}
   - component: {fileID: 834020572}
   m_Layer: 5
-  m_Name: RedBomb
+  m_Name: GreenBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30676,7 +30702,7 @@ GameObject:
   - component: {fileID: 944578775}
   - component: {fileID: 944578774}
   - component: {fileID: 944578773}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30860,7 +30886,7 @@ GameObject:
   - component: {fileID: 960319943}
   - component: {fileID: 960319942}
   - component: {fileID: 960319941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37591,7 +37617,7 @@ GameObject:
   - component: {fileID: 1165280610}
   - component: {fileID: 1165280609}
   - component: {fileID: 1165280608}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46822,7 +46848,7 @@ GameObject:
   - component: {fileID: 1678842040}
   - component: {fileID: 1678842039}
   - component: {fileID: 1678842038}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocky_LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49374,7 +49400,7 @@ GameObject:
   - component: {fileID: 2080140945}
   - component: {fileID: 2080140944}
   m_Layer: 5
-  m_Name: RedSwitch
+  m_Name: GreenSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49943,7 +49969,7 @@ GameObject:
   - component: {fileID: 2146324214}
   - component: {fileID: 2146324213}
   m_Layer: 5
-  m_Name: RedSwitch
+  m_Name: WhiteSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

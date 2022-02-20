@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class PlayerClicker : MonoBehaviour
     private bool playerWasChosen;
     private MovePlayer movePlayer;
     internal LayerMask playerLayer;
+    private SpriteRenderer spriteRenderer;
+    private Color initialColor;
+    private Color currentColor;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +19,9 @@ public class PlayerClicker : MonoBehaviour
         playerWasChosen = false;
         movePlayer = GetComponent<MovePlayer>();
         playerLayer = LayerMask.GetMask("GroundLayer");
+        spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+        initialColor = spriteRenderer.color;
+        currentColor = initialColor;
     }
 
     private void Update()
@@ -36,8 +43,12 @@ public class PlayerClicker : MonoBehaviour
                 if (this.gameObject.name == hit.collider.gameObject.name)
                 {
                     playerWasChosen = true;
+                    spriteRenderer.color = new Color(1, 0, 0, 1);
+                    currentColor = spriteRenderer.color;
                 }
                 Debug.Log("Target Position: " + hit.collider.gameObject.name);
+                //SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+
             }
         }
     }
@@ -46,12 +57,15 @@ public class PlayerClicker : MonoBehaviour
     {
         OnClickSwitch.OnClicked += SwapPlayer;
         OnClickBomb.OnClicked += BombPlayer;
+        OnClickPush.OnClicked += MovePlayerForward;
+
     }
 
     private void OnDisable()
     {
         OnClickSwitch.OnClicked -= SwapPlayer;
         OnClickBomb.OnClicked -= BombPlayer;
+        OnClickPush.OnClicked -= MovePlayerForward;
     }
 
     private void SwapPlayer(string buttonName, GameObject[] players, GameObject buttonObject)
@@ -59,8 +73,11 @@ public class PlayerClicker : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + chosenClickedPlayer.gameObject.name);
+
             if (chosenClickedPlayer != null)
             {
+                Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + chosenClickedPlayer.gameObject.name);
                 Vector3 lastPosition = this.gameObject.transform.position;
                 Vector3 lastEulerAngle = this.gameObject.transform.eulerAngles;
                 this.gameObject.transform.position = chosenClickedPlayer.gameObject.transform.position;
@@ -70,10 +87,28 @@ public class PlayerClicker : MonoBehaviour
                 chosenClickedPlayer.playerWasChosen = false;
                 //Button button = buttonObject.GetComponent<Button>();
                 //button.interactable = false;
+                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+                spriteRenderer.color = initialColor;
 
                 SwapMovementtValues(this.movePlayer, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>());
             }
         }   
+    }
+    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players)
+    {
+        if (this.gameObject.name.Substring(0, 1) == colorButtong)
+        {
+            PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            if (chosenClickedPlayer != null)
+            {
+                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject);
+                chosenClickedPlayer.playerWasChosen = false;
+                //Button button = buttonObject.GetComponent<Button>();
+                // button.interactable = false;
+                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+                spriteRenderer.color = initialColor;
+            }
+        }
     }
 
     private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesmMnager, GameObject buttonObject)
@@ -87,7 +122,9 @@ public class PlayerClicker : MonoBehaviour
                 livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
                 chosenClickedPlayer.playerWasChosen = false;
                 //Button button = buttonObject.GetComponent<Button>();
-               // button.interactable = false;
+                // button.interactable = false;
+                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+                spriteRenderer.color = initialColor;
             }
         }
     }

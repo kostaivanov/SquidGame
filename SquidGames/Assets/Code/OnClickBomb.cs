@@ -22,12 +22,21 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
-            OnClicked("B", players, livesManager, this.gameObject);
+            OnClicked("R", players, livesManager, this.gameObject);
 
+        }
+        else if(buttonName.StartsWith("B"))
+        {
+            OnClicked("B", players, livesManager, this.gameObject);
+        }
+        else if (buttonName.StartsWith("G"))
+        {
+            OnClicked("G", players, livesManager, this.gameObject);
+            Debug.Log("Green + coun - " + players.Length);
         }
         else
         {
-            OnClicked("R", players, livesManager, this.gameObject);
+            OnClicked("W", players, livesManager, this.gameObject);
         }
     }
 }

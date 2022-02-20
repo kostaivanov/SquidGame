@@ -37,13 +37,11 @@ internal class MovePlayer : MonoBehaviour
     private void OnEnable()
     {
         OnClickMove.OnClicked += MovePlayerForward;
-        OnClickPush.OnClicked += MovePlayerForward;
     }
 
     private void OnDisable()
     {
         OnClickMove.OnClicked -= MovePlayerForward;
-        OnClickPush.OnClicked -= MovePlayerForward;
     }
 
     public void MoveByTrapDirection(string direction, int numberOfMoves, GameObject obj)
@@ -130,12 +128,6 @@ internal class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
-        //if (moveBlue == true || moveRed == true || move == true)
-        //{
-        //    Physics2D.IgnoreLayerCollision(6, 8);
-        //    Physics2D.IgnoreLayerCollision(7, 8);
-        //    Debug.Log("ignoring collision");
-        //}
 
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
@@ -208,15 +200,6 @@ internal class MovePlayer : MonoBehaviour
     {
         this.transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
-
-    //void OnDrawGizmosSelected()
-    //{
-    //    // Draw a yellow sphere at the transform's position
-    //    //Vector3 direction = (boxes[initialBlueIndex + 1].transform.position - this.transform.position);
-    //    Gizmos.color = Color.red;
-    //    //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * direction;
-    //    Debug.DrawRay(transform.position, Vector3.forward, Color.red);
-    //}
 
     internal bool StayOnTopOfCollectable()
     {
