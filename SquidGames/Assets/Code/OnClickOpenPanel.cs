@@ -9,18 +9,6 @@ internal class OnClickOpenPanel : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private GameObject Panel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         OpenPanel();

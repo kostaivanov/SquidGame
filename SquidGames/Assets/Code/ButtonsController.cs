@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ButtonsController : MonoBehaviour
 {
-    [SerializeField] private OnClickMove[] redButtons, blueButtons;
+    [SerializeField] private OnClickMove[] redButtons, blueButtons, greenButtons, whiteButtons;
     private GameObject[] players;
     private PlayerHealth playerHealthBlue, PlayerHealthRed;
+
     // Start is called before the first frame update
     void Start()
     {

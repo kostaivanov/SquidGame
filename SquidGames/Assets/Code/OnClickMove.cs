@@ -8,12 +8,13 @@ using System.Linq;
 
 internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 {
-    public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj);
+    public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj, Button[] moveButtons, Button[] skillsButtons);
     public static event Action OnClicked;
     [SerializeField] private Button[] moveButtons;
+    [SerializeField] private Button[] skillsButtons;
+    private MoveButtonsStateController moveButtonsStateController;
 
-
-    private Button button;
+    //private Button button;
     private string buttonName;
     internal Text moveNumber;
 
@@ -21,13 +22,11 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     private void Start()
     {
 
-        button = GetComponent<Button>();
+        //button = GetComponent<Button>();
         moveNumber = GetComponentInChildren<Text>();
         moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
-
+        moveButtonsStateController = GetComponentInParent<MoveButtonsStateController>();
     }
-
-
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -39,47 +38,51 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             int _moveNumber = int.Parse(moveNumber.text);
             if (buttonName.StartsWith("R"))
             {
-                OnClicked(_moveNumber, "R", this.gameObject);
-                if (TurnButtonsInteractable() == true)
-                {
-                    foreach (Button _button in moveButtons)
-                    {
-                        _button.interactable = true;
-                    }
-                }
+                OnClicked(_moveNumber, "R", this.gameObject, moveButtons, skillsButtons);
+                moveButtonsStateController.usedButtons.Add(this.gameObject);
+                moveButtonsStateController.CheckIfAllUsed(moveButtons);
+                //if (TurnButtonsInteractable() == true)
+                //{
+                //    foreach (Button _button in moveButtons)
+                //    {
+                //        _button.interactable = true;
+                //    }
+                //}
             }
             else if(buttonName.StartsWith("B"))
             {
-                OnClicked(_moveNumber, "B", this.gameObject);
-                if (TurnButtonsInteractable() == true)
-                {
-                    foreach (Button _button in moveButtons)
-                    {
-                        _button.interactable = true;
-                    }
-                }
+                OnClicked(_moveNumber, "B", this.gameObject, moveButtons, skillsButtons);
+                moveButtonsStateController.usedButtons.Add(this.gameObject);
+                moveButtonsStateController.CheckIfAllUsed(moveButtons);
+                //if (TurnButtonsInteractable() == true)
+                //{
+                //    foreach (Button _button in moveButtons)
+                //    {
+                //        _button.interactable = true;
+                //    }
+                //}
             }
             else if (buttonName.StartsWith("G"))
             {
-                OnClicked(_moveNumber, "G", this.gameObject);
-                if (TurnButtonsInteractable() == true)
-                {
-                    foreach (Button _button in moveButtons)
-                    {
-                        _button.interactable = true;
-                    }
-                }
+                OnClicked(_moveNumber, "G", this.gameObject, moveButtons, skillsButtons);
+                //if (TurnButtonsInteractable() == true)
+                //{
+                //    foreach (Button _button in moveButtons)
+                //    {
+                //        _button.interactable = true;
+                //    }
+                //}
             }
             else if (buttonName.StartsWith("W"))
             {
-                OnClicked(_moveNumber, "W", this.gameObject);
-                if (TurnButtonsInteractable() == true)
-                {
-                    foreach (Button _button in moveButtons)
-                    {
-                        _button.interactable = true;
-                    }
-                }
+                OnClicked(_moveNumber, "W", this.gameObject, moveButtons, skillsButtons);
+                //if (TurnButtonsInteractable() == true)
+                //{
+                //    foreach (Button _button in moveButtons)
+                //    {
+                //        _button.interactable = true;
+                //    }
+                //}
             }
 
         }

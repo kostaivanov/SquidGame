@@ -10706,6 +10706,10 @@ MonoBehaviour:
   - {fileID: 1542170212}
   - {fileID: 1293981822}
   - {fileID: 178136760}
+  skillsButtons:
+  - {fileID: 2009701441}
+  - {fileID: 584168962}
+  - {fileID: 1394427215}
 --- !u!1 &221446158
 GameObject:
   m_ObjectHideFlags: 0
@@ -11564,6 +11568,16 @@ MonoBehaviour:
   - {fileID: 1542170215}
   - {fileID: 1293981825}
   - {fileID: 178136763}
+  greenButtons:
+  - {fileID: 1103871423}
+  - {fileID: 894259566}
+  - {fileID: 1014207812}
+  - {fileID: 654111533}
+  whiteButtons:
+  - {fileID: 1961102071}
+  - {fileID: 1845684081}
+  - {fileID: 1132378828}
+  - {fileID: 932580189}
 --- !u!1 &307479374
 GameObject:
   m_ObjectHideFlags: 0
@@ -11615,6 +11629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313289581}
+  - component: {fileID: 313289582}
   m_Layer: 0
   m_Name: GreenPlayer
   m_TagString: Untagged
@@ -11645,6 +11660,18 @@ RectTransform:
   m_AnchoredPosition: {x: -960, y: -540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &313289582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313289580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0154ee2a172df4189163bb9cd25c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317232987
 GameObject:
   m_ObjectHideFlags: 0
@@ -11654,6 +11681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 317232988}
+  - component: {fileID: 317232989}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -11684,6 +11712,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &317232989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317232987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0154ee2a172df4189163bb9cd25c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319689752
 GameObject:
   m_ObjectHideFlags: 0
@@ -17663,7 +17703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470523607}
   m_Layer: 5
-  m_Name: SkillsBlue
+  m_Name: OpenPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23716,6 +23756,10 @@ MonoBehaviour:
   - {fileID: 894259564}
   - {fileID: 1014207810}
   - {fileID: 654111534}
+  skillsButtons:
+  - {fileID: 660771781}
+  - {fileID: 2080140945}
+  - {fileID: 834020573}
 --- !u!114 &654111534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23812,7 +23856,7 @@ GameObject:
   - component: {fileID: 660771781}
   - component: {fileID: 660771780}
   m_Layer: 5
-  m_Name: BluePush
+  m_Name: GreenPush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23850,6 +23894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1713644320dc8af4da396a6cc0184e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
+  skillsButtons: []
 --- !u!114 &660771781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23974,7 +24020,7 @@ GameObject:
   - component: {fileID: 708364575}
   - component: {fileID: 708364574}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: BlueSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30296,6 +30342,10 @@ MonoBehaviour:
   - {fileID: 894259564}
   - {fileID: 1014207810}
   - {fileID: 654111534}
+  skillsButtons:
+  - {fileID: 660771781}
+  - {fileID: 2080140945}
+  - {fileID: 834020573}
 --- !u!222 &894259567
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30498,6 +30548,10 @@ MonoBehaviour:
   - {fileID: 1845684079}
   - {fileID: 1132378826}
   - {fileID: 932580190}
+  skillsButtons:
+  - {fileID: 1242956520}
+  - {fileID: 2146324214}
+  - {fileID: 234893137}
 --- !u!114 &932580190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30592,7 +30646,7 @@ GameObject:
   - component: {fileID: 933737269}
   - component: {fileID: 933737268}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: RedSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36527,6 +36581,10 @@ MonoBehaviour:
   - {fileID: 894259564}
   - {fileID: 1014207810}
   - {fileID: 654111534}
+  skillsButtons:
+  - {fileID: 660771781}
+  - {fileID: 2080140945}
+  - {fileID: 834020573}
 --- !u!222 &1014207813
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37168,6 +37226,10 @@ MonoBehaviour:
   - {fileID: 894259564}
   - {fileID: 1014207810}
   - {fileID: 654111534}
+  skillsButtons:
+  - {fileID: 660771781}
+  - {fileID: 2080140945}
+  - {fileID: 834020573}
 --- !u!222 &1103871424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37307,6 +37369,10 @@ MonoBehaviour:
   - {fileID: 1845684079}
   - {fileID: 1132378826}
   - {fileID: 932580190}
+  skillsButtons:
+  - {fileID: 1242956520}
+  - {fileID: 2146324214}
+  - {fileID: 234893137}
 --- !u!222 &1132378829
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37349,7 +37415,7 @@ GameObject:
   - component: {fileID: 1146486524}
   - component: {fileID: 1146486527}
   m_Layer: 5
-  m_Name: BluePush
+  m_Name: RedPush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37469,6 +37535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1713644320dc8af4da396a6cc0184e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
+  skillsButtons: []
 --- !u!1 &1158401391
 GameObject:
   m_ObjectHideFlags: 0
@@ -38208,6 +38276,10 @@ MonoBehaviour:
   - {fileID: 1542170212}
   - {fileID: 1293981822}
   - {fileID: 178136760}
+  skillsButtons:
+  - {fileID: 2009701441}
+  - {fileID: 584168962}
+  - {fileID: 1394427215}
 --- !u!1 &1236316264
 GameObject:
   m_ObjectHideFlags: 0
@@ -38252,7 +38324,7 @@ GameObject:
   - component: {fileID: 1242956520}
   - component: {fileID: 1242956519}
   m_Layer: 5
-  m_Name: BluePush
+  m_Name: WhitePush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38290,6 +38362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1713644320dc8af4da396a6cc0184e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
+  skillsButtons: []
 --- !u!114 &1242956520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38839,6 +38913,10 @@ MonoBehaviour:
   - {fileID: 1542170212}
   - {fileID: 1293981822}
   - {fileID: 178136760}
+  skillsButtons:
+  - {fileID: 2009701441}
+  - {fileID: 584168962}
+  - {fileID: 1394427215}
 --- !u!1 &1308137697
 GameObject:
   m_ObjectHideFlags: 0
@@ -39312,7 +39390,7 @@ GameObject:
   - component: {fileID: 1384169584}
   - component: {fileID: 1384169583}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: WhiteSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45799,7 +45877,7 @@ GameObject:
   - component: {fileID: 1536909473}
   - component: {fileID: 1536909472}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: GreenSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46079,6 +46157,10 @@ MonoBehaviour:
   - {fileID: 1542170212}
   - {fileID: 1293981822}
   - {fileID: 178136760}
+  skillsButtons:
+  - {fileID: 2009701441}
+  - {fileID: 584168962}
+  - {fileID: 1394427215}
 --- !u!1 &1544396341
 GameObject:
   m_ObjectHideFlags: 0
@@ -46991,6 +47073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1682455018}
+  - component: {fileID: 1682455019}
   m_Layer: 0
   m_Name: BluePlayer
   m_TagString: Untagged
@@ -47021,6 +47104,18 @@ RectTransform:
   m_AnchoredPosition: {x: -960, y: -540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1682455019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682455017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0154ee2a172df4189163bb9cd25c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684006195
 GameObject:
   m_ObjectHideFlags: 0
@@ -47680,6 +47775,10 @@ MonoBehaviour:
   - {fileID: 1845684079}
   - {fileID: 1132378826}
   - {fileID: 932580190}
+  skillsButtons:
+  - {fileID: 1242956520}
+  - {fileID: 2146324214}
+  - {fileID: 234893137}
 --- !u!222 &1845684082
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48353,6 +48452,10 @@ MonoBehaviour:
   - {fileID: 1845684079}
   - {fileID: 1132378826}
   - {fileID: 932580190}
+  skillsButtons:
+  - {fileID: 1242956520}
+  - {fileID: 2146324214}
+  - {fileID: 234893137}
 --- !u!222 &1961102072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48506,7 +48609,7 @@ GameObject:
   - component: {fileID: 2009701441}
   - component: {fileID: 2009701444}
   m_Layer: 5
-  m_Name: RedPush
+  m_Name: BluePush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48626,6 +48729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1713644320dc8af4da396a6cc0184e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveButtons: []
+  skillsButtons: []
 --- !u!1 &2010169387
 GameObject:
   m_ObjectHideFlags: 0
@@ -49785,6 +49890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135932302}
+  - component: {fileID: 2135932303}
   m_Layer: 0
   m_Name: WhitePlayer
   m_TagString: Untagged
@@ -49815,6 +49921,18 @@ RectTransform:
   m_AnchoredPosition: {x: -960, y: -540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2135932303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135932301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0154ee2a172df4189163bb9cd25c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138188142
 GameObject:
   m_ObjectHideFlags: 0
@@ -50134,6 +50252,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
         type: 3}
+      propertyPath: skillsButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
+        type: 3}
       propertyPath: moveButtons.Array.data[0]
       value: 
       objectReference: {fileID: 896725963}
@@ -50147,10 +50270,30 @@ PrefabInstance:
       propertyPath: moveButtons.Array.data[3]
       value: 
       objectReference: {fileID: 924463673}
+    - target: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1146486524}
+    - target: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1527925020}
+    - target: {fileID: 1087689085179542497, guid: ff0d69c6d7fed714fb630492fef86bb2,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1158401394}
     - target: {fileID: 1087689085179542500, guid: ff0d69c6d7fed714fb630492fef86bb2,
         type: 3}
       propertyPath: m_Name
       value: RedButton_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087689085179542500, guid: ff0d69c6d7fed714fb630492fef86bb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1087689085179542501, guid: ff0d69c6d7fed714fb630492fef86bb2,
         type: 3}
@@ -50271,6 +50414,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedButton_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2005752571334920592, guid: 4c5d7c4e810202b479855138ca7158c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2005752571334920595, guid: 4c5d7c4e810202b479855138ca7158c1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -50383,6 +50531,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
         type: 3}
+      propertyPath: skillsButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
+        type: 3}
       propertyPath: moveButtons.Array.data[1]
       value: 
       objectReference: {fileID: 1880149209}
@@ -50396,6 +50549,21 @@ PrefabInstance:
       propertyPath: moveButtons.Array.data[3]
       value: 
       objectReference: {fileID: 924463673}
+    - target: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1146486524}
+    - target: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1527925020}
+    - target: {fileID: 2005752571334920599, guid: 4c5d7c4e810202b479855138ca7158c1,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1158401394}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5d7c4e810202b479855138ca7158c1, type: 3}
 --- !u!114 &2005752570958653936
@@ -50851,6 +51019,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
         type: 3}
+      propertyPath: skillsButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
+        type: 3}
       propertyPath: moveButtons.Array.data[0]
       value: 
       objectReference: {fileID: 896725963}
@@ -50864,10 +51037,30 @@ PrefabInstance:
       propertyPath: moveButtons.Array.data[3]
       value: 
       objectReference: {fileID: 924463673}
+    - target: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1146486524}
+    - target: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1527925020}
+    - target: {fileID: 5513149677355042853, guid: e9dd6c34599e7e644ad45f19007302b7,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1158401394}
     - target: {fileID: 5513149677355042862, guid: e9dd6c34599e7e644ad45f19007302b7,
         type: 3}
       propertyPath: m_Name
       value: RedButton_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513149677355042862, guid: e9dd6c34599e7e644ad45f19007302b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9dd6c34599e7e644ad45f19007302b7, type: 3}
@@ -50882,6 +51075,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedButton_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019513671714095489, guid: b827b2c425155a44ebe486aeb750210b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
+        type: 3}
+      propertyPath: skillsButtons.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
         type: 3}
@@ -50898,6 +51101,21 @@ PrefabInstance:
       propertyPath: moveButtons.Array.data[2]
       value: 
       objectReference: {fileID: 1570817282}
+    - target: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1146486524}
+    - target: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1527925020}
+    - target: {fileID: 9019513671714095498, guid: b827b2c425155a44ebe486aeb750210b,
+        type: 3}
+      propertyPath: skillsButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1158401394}
     - target: {fileID: 9019513671714095502, guid: b827b2c425155a44ebe486aeb750210b,
         type: 3}
       propertyPath: m_Pivot.x
