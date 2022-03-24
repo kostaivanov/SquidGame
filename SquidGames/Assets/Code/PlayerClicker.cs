@@ -94,14 +94,14 @@ public class PlayerClicker : MonoBehaviour
             }
         }   
     }
-    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players, Button[] moveButtons, Button[] skillsButtons)
+    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons)
     {
         if (this.gameObject.name.Substring(0, 1) == colorButtong)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
             if (chosenClickedPlayer != null)
             {
-                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons);
+                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, usedButtons);
                 chosenClickedPlayer.playerWasChosen = false;
                 //Button button = buttonObject.GetComponent<Button>();
                 // button.interactable = false;

@@ -82,7 +82,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    public void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons)
+    public void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
@@ -126,11 +126,12 @@ public class MovePlayer : MonoBehaviour
                 //button.interactable = false;
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
+
                 foreach (Button _button in moveButtons)
                 {
-                     _button.interactable = false;
+                    _button.interactable = false;
                 }
-                StartCoroutine(ActivateButtons(button, moveButtons, skillsButtons));
+                StartCoroutine(ActivateButtons(usedButtons, moveButtons, skillsButtons));
             }
         }
     }
@@ -222,19 +223,22 @@ public class MovePlayer : MonoBehaviour
         return false;
     }
 
-    private IEnumerator ActivateButtons(Button usedButton, Button[] moveButtons, Button[] skillsButtons)
+    private IEnumerator ActivateButtons(List<GameObject> usedButtons, Button[] moveButtons, Button[] skillsButtons)
     {
-       //TurnOnOffButtons(false, usedButton, moveButtons, skillsButtons);
+        //TurnOnOffButtons(false, usedButton, moveButtons, skillsButtons);
         yield return new WaitForSecondsRealtime(5f);
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
-            foreach (Button _button in moveButtons)
+        foreach (Button _button in moveButtons)
+        {
+            if (usedButtons.Any(x => x.name == _button.gameObject.name))
             {
-                if (_button.gameObject.name != usedButton.gameObject.name)
-                {
-                    _button.interactable = true;
-                }
+                continue;
             }
+
+            _button.interactable = true;
+
+        }
         // }
     }
 

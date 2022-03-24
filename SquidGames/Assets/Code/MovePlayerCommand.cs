@@ -13,6 +13,6 @@ public class MovePlayerCommand : ICommand
 
     public void Execute(MovePlayer player)
     {
-        player.MovePlayerForward(boxIndex, buttonColor, gameObject, moveButtons, skillsButtons);
+        //player.MovePlayerForward(boxIndex, buttonColor, gameObject, moveButtons, skillsButtons);
     }
 }

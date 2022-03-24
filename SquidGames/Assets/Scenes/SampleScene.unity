@@ -23896,6 +23896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveButtons: []
   skillsButtons: []
+  usedButtonsObject: {fileID: 313289580}
 --- !u!114 &660771781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37537,6 +37538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveButtons: []
   skillsButtons: []
+  usedButtonsObject: {fileID: 317232987}
 --- !u!1 &1158401391
 GameObject:
   m_ObjectHideFlags: 0
@@ -38364,6 +38366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveButtons: []
   skillsButtons: []
+  usedButtonsObject: {fileID: 2135932301}
 --- !u!114 &1242956520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48731,6 +48734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveButtons: []
   skillsButtons: []
+  usedButtonsObject: {fileID: 1682455017}
 --- !u!1 &2010169387
 GameObject:
   m_ObjectHideFlags: 0
