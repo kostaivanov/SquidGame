@@ -36471,6 +36471,11 @@ MonoBehaviour:
   pushButtons:
   - {fileID: 2009701441}
   - {fileID: 1146486524}
+  moveButtonsStateControllerList:
+  - {fileID: 317232989}
+  - {fileID: 1682455019}
+  - {fileID: 313289582}
+  - {fileID: 2135932303}
 --- !u!1 &1014207809
 GameObject:
   m_ObjectHideFlags: 0

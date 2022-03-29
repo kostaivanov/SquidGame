@@ -18,11 +18,13 @@ public class MovePlayer : MonoBehaviour
     internal bool plusOn, minusOn;
     internal bool rotationChanged;
 
+    internal bool untouchable;
+
     private bool goingBackwards;
 
     private void Start()
     {
-
+        untouchable = false;
         move = false;
 
         currentIndex = -1;
@@ -82,7 +84,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    public void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons)
+    internal void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
@@ -99,6 +101,13 @@ public class MovePlayer : MonoBehaviour
             {
                 button.interactable = false;
                 this.minusOn = false;
+                if (moveButtonsStateController.usedButtons.Count > 2)
+                {
+                    foreach (Button _button in moveButtons)
+                    {
+                        _button.interactable = true;
+                    }
+                }
             }
             else if (button.interactable == true)
             {
@@ -127,11 +136,15 @@ public class MovePlayer : MonoBehaviour
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
 
+                moveButtonsStateController.usedButtons.Add(obj);
+                moveButtonsStateController.CheckIfAllUsed(moveButtons);
+
                 foreach (Button _button in moveButtons)
                 {
                     _button.interactable = false;
                 }
-                StartCoroutine(ActivateButtons(usedButtons, moveButtons, skillsButtons));
+                StartCoroutine(ActivateButtons(moveButtonsStateController.usedButtons, moveButtons, skillsButtons));
+                untouchable = true;
             }
         }
     }
@@ -229,6 +242,7 @@ public class MovePlayer : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
+        untouchable = false;
         foreach (Button _button in moveButtons)
         {
             if (usedButtons.Any(x => x.name == _button.gameObject.name))

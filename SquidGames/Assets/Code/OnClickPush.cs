@@ -9,7 +9,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
 {
     private const int movesNumber = 1;
 
-    public delegate void Action(int numberMoves, string colorButtong, GameObject buttonObject, GameObject[] array, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons);
+    public delegate void Action(int numberMoves, string colorButtong, GameObject buttonObject, GameObject[] array, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController);
     public static event Action OnClicked;
 
     private GameObject[] players;
@@ -32,19 +32,19 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
         //bool anyCloseEnemies = players.ToList().ForEach(p => p.GetComponent<MovePlayer>().currentIndex)
         if (buttonName.StartsWith("R"))
         {
-            OnClicked(movesNumber, "R", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController.usedButtons);         
+            OnClicked(movesNumber, "R", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if(buttonName.StartsWith("B"))
         {
-            OnClicked(movesNumber, "B", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController.usedButtons);         
+            OnClicked(movesNumber, "B", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))
         {
-            OnClicked(movesNumber, "G", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController.usedButtons);
+            OnClicked(movesNumber, "G", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);
         }
         else
         { 
-            OnClicked(movesNumber, "W", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController.usedButtons);
+            OnClicked(movesNumber, "W", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);
         }
     }
 }

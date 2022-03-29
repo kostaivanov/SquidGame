@@ -7,7 +7,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
 {
     private GameObject[] players;
     [SerializeField] private List<Button> moveButtons, pushButtons;
-
+    [SerializeField] private List<MoveButtonsStateController> moveButtonsStateControllerList;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +41,14 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.position = playerStartPosition;
         PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
         MovePlayer movePlayer = playerObject.GetComponent<MovePlayer>();
+
+        if (moveButtonsStateControllerList != null)
+        {
+            foreach (var MoveButtonsStateController in moveButtonsStateControllerList)
+            {
+                MoveButtonsStateController.usedButtons.Clear();
+            }
+        }
 
         foreach (Transform bodyPart in playerObject.transform)
         {

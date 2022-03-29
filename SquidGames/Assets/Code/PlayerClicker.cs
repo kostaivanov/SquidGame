@@ -24,10 +24,10 @@ public class PlayerClicker : MonoBehaviour
         currentColor = initialColor;
     }
 
-    private void Update()
-    {
-        Debug.Log(this.gameObject.name + " = " + playerWasChosen);
-    }
+    //private void Update()
+    //{
+    //    Debug.Log(this.gameObject.name + " = " + playerWasChosen);
+    //}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -94,14 +94,14 @@ public class PlayerClicker : MonoBehaviour
             }
         }   
     }
-    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons)
+    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
         if (this.gameObject.name.Substring(0, 1) == colorButtong)
         {
             PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
             if (chosenClickedPlayer != null)
             {
-                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, usedButtons);
+                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
                 chosenClickedPlayer.playerWasChosen = false;
                 //Button button = buttonObject.GetComponent<Button>();
                 // button.interactable = false;
