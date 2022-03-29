@@ -21,7 +21,9 @@ public class MovePlayer : MonoBehaviour
     internal bool untouchable;
 
     private bool goingBackwards;
-
+    private MoveButtonsStateController moveButtonsStateController;
+    private Button[] moveButtons;
+    private Button[] skillsButtons;
     private void Start()
     {
         untouchable = false;
@@ -135,15 +137,16 @@ public class MovePlayer : MonoBehaviour
                 //button.interactable = false;
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
-
-                moveButtonsStateController.usedButtons.Add(obj);
-                moveButtonsStateController.CheckIfAllUsed(moveButtons);
+                this.moveButtons = moveButtons;
+                this.skillsButtons = skillsButtons;
+                this.moveButtonsStateController = moveButtonsStateController;
+                this.moveButtonsStateController.usedButtons.Add(obj);
+                this.moveButtonsStateController.CheckIfAllUsed(moveButtons);
 
                 foreach (Button _button in moveButtons)
                 {
                     _button.interactable = false;
                 }
-                StartCoroutine(ActivateButtons(moveButtonsStateController.usedButtons, moveButtons, skillsButtons));
                 untouchable = true;
             }
         }
@@ -192,7 +195,9 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
-           
+
+            StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+
             if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
                 collectableFound = true;
@@ -236,10 +241,11 @@ public class MovePlayer : MonoBehaviour
         return false;
     }
 
-    private IEnumerator ActivateButtons(List<GameObject> usedButtons, Button[] moveButtons, Button[] skillsButtons)
+    private IEnumerator ActivateButtons(List<GameObject> usedButtons, Button[] moveButtons, Button[] skillsButtons, int boxIndex)
     {
         //TurnOnOffButtons(false, usedButton, moveButtons, skillsButtons);
-        yield return new WaitForSecondsRealtime(5f);
+
+        yield return new WaitForSecondsRealtime(boxIndex + 1);
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
         untouchable = false;
@@ -256,34 +262,34 @@ public class MovePlayer : MonoBehaviour
         // }
     }
 
-    private bool TurnButtonsInteractable(Button[] moveButtons)
-    {
-        bool allInactive = true;
-        foreach (Button _button in moveButtons)
-        {
-            if (_button.interactable == true)
-            {
-                allInactive = false;
-            }
-        }
-        return allInactive;
-    }
+    //private bool TurnButtonsInteractable(Button[] moveButtons)
+    //{
+    //    bool allInactive = true;
+    //    foreach (Button _button in moveButtons)
+    //    {
+    //        if (_button.interactable == true)
+    //        {
+    //            allInactive = false;
+    //        }
+    //    }
+    //    return allInactive;
+    //}
 
-    private void TurnOnOffButtons(bool trueOrFalse, Button usedButton, Button[] moveButtons, Button[] skillsButtons)
-    {
-        foreach (Button _button in moveButtons)
-        {
-            if (_button.gameObject.name != usedButton.gameObject.name)
-            {
-                _button.interactable = trueOrFalse;
-            }
-        }
-        foreach (Button _button in skillsButtons)
-        {
-            if (_button.gameObject.name != usedButton.gameObject.name)
-            {
-                _button.interactable = trueOrFalse;
-            }
-        }
-    }
+    //private void TurnOnOffButtons(bool trueOrFalse, Button usedButton, Button[] moveButtons, Button[] skillsButtons)
+    //{
+    //    foreach (Button _button in moveButtons)
+    //    {
+    //        if (_button.gameObject.name != usedButton.gameObject.name)
+    //        {
+    //            _button.interactable = trueOrFalse;
+    //        }
+    //    }
+    //    foreach (Button _button in skillsButtons)
+    //    {
+    //        if (_button.gameObject.name != usedButton.gameObject.name)
+    //        {
+    //            _button.interactable = trueOrFalse;
+    //        }
+    //    }
+    //}
 }
