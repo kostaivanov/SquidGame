@@ -94,7 +94,11 @@ public class MovePlayer : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
             Button button = obj.GetComponent<Button>();
-           // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
+            // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
+
+            this.moveButtons = moveButtons;
+            this.skillsButtons = skillsButtons;
+            this.moveButtonsStateController = moveButtonsStateController;
 
             if (button.interactable == false && this.plusOn == true)
             {
@@ -106,6 +110,8 @@ public class MovePlayer : MonoBehaviour
             {
                 button.interactable = false;
                 this.minusOn = false;
+                this.moveButtonsStateController.usedButtons.Add(obj);
+
                 if (moveButtonsStateController.usedButtons.Count > 2)
                 {
                     foreach (Button _button in moveButtons)
@@ -140,9 +146,7 @@ public class MovePlayer : MonoBehaviour
                 //button.interactable = false;
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
-                this.moveButtons = moveButtons;
-                this.skillsButtons = skillsButtons;
-                this.moveButtonsStateController = moveButtonsStateController;
+                
                 this.moveButtonsStateController.usedButtons.Add(obj);
                 this.moveButtonsStateController.CheckIfAllUsed(moveButtons);
 
