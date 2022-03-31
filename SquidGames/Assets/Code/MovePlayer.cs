@@ -24,6 +24,9 @@ public class MovePlayer : MonoBehaviour
     private MoveButtonsStateController moveButtonsStateController;
     private Button[] moveButtons;
     private Button[] skillsButtons;
+    internal Coroutine coroutine;
+
+
     private void Start()
     {
         untouchable = false;
@@ -196,7 +199,8 @@ public class MovePlayer : MonoBehaviour
             }
             move = false;
 
-            StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+            coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+            //StartCoroutine(coroutine);
 
             if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
@@ -249,6 +253,7 @@ public class MovePlayer : MonoBehaviour
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
         untouchable = false;
+        Debug.Log("coroutine");
         foreach (Button _button in moveButtons)
         {
             if (usedButtons.Any(x => x.name == _button.gameObject.name))
