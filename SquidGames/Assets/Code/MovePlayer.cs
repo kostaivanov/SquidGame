@@ -68,6 +68,7 @@ public class MovePlayer : MonoBehaviour
                 {
                     currentIndex += numberOfMoves;
                 }
+                StopCoroutine(coroutine);
             }
             else if(direction == "GoBackward")
             {
@@ -84,8 +85,8 @@ public class MovePlayer : MonoBehaviour
                     currentIndex -= numberOfMoves;
                 }
                 goingBackwards = true;
-              
-            }         
+                StopCoroutine(coroutine);
+            }
         }
     }
 
@@ -104,7 +105,7 @@ public class MovePlayer : MonoBehaviour
             {
                 button.interactable = true;
                 this.plusOn = false;
-
+                this.moveButtonsStateController.usedButtons.Remove(this.moveButtonsStateController.usedButtons.SingleOrDefault(x => x.gameObject.name == obj.name));
             }
             else if (button.interactable == true && this.minusOn == true)
             {
