@@ -11,6 +11,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     //public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj, Button[] moveButtons, Button[] skillsButtons, List<GameObject> usedButtons);
     public delegate void Action(int nambuttonNamee, string colorButtong, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController);
     public static event Action OnClicked;
+
     [SerializeField] private Button[] moveButtons;
     [SerializeField] private Button[] skillsButtons;
     private MoveButtonsStateController moveButtonsStateController;
@@ -22,7 +23,6 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
 
     private void Start()
     {
-
         //button = GetComponent<Button>();
         moveNumber = GetComponentInChildren<Text>();
         moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();

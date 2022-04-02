@@ -6,6 +6,9 @@ using System.Linq;
 
 public class MovePlayer : MonoBehaviour
 {
+    public delegate void TimeTicking(float nambuttonNamee);
+    public static event TimeTicking OnClickTimer;
+
     [SerializeField] private Transform[] boxes;
     [SerializeField] private float speed = 1f;
     internal bool move;
@@ -205,6 +208,9 @@ public class MovePlayer : MonoBehaviour
             move = false;
 
             coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+            OnClickTimer(this.boxIndex);
+            Debug.Log("2 are de");
+
             //StartCoroutine(coroutine);
 
             if (StayOnTopOfCollectable() == true && collectableFound == false)
@@ -258,7 +264,7 @@ public class MovePlayer : MonoBehaviour
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
         untouchable = false;
-        Debug.Log("coroutine");
+        //Debug.Log("coroutine");
         foreach (Button _button in moveButtons)
         {
             if (usedButtons.Any(x => x.name == _button.gameObject.name))
