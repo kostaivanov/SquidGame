@@ -14,6 +14,7 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
+            movePlayer.trap = false;
         }
     }
     private void OnTriggerStay2D(Collider2D otherObject)
