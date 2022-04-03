@@ -42,8 +42,8 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (movePlayer != null)
         {
-            movePlayer = null;
             movePlayer.trap = false;
+            movePlayer = null;
         }
     }
 
