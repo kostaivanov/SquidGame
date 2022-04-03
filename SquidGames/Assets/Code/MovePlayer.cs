@@ -219,9 +219,8 @@ public class MovePlayer : MonoBehaviour
                 OnClickTimer(this.boxIndex);
             }
            
-
             Debug.Log("2 are de");
-            Debug.Log("3 are de");
+
 
             //StartCoroutine(coroutine);
             trap = false;
