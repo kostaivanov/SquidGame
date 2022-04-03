@@ -41,6 +41,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.position = playerStartPosition;
         PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
         MovePlayer movePlayer = playerObject.GetComponent<MovePlayer>();
+        movePlayer.trap = false;
         StopCoroutine(movePlayer.coroutine);
         if (moveButtonsStateControllerList != null)
         {

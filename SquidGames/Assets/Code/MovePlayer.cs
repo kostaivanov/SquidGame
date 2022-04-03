@@ -221,7 +221,6 @@ public class MovePlayer : MonoBehaviour
            
             Debug.Log("2 are de");
 
-
             //StartCoroutine(coroutine);
             trap = false;
             if (StayOnTopOfCollectable() == true && collectableFound == false)
