@@ -212,6 +212,7 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
+
             if (trap == false)
             {
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
@@ -220,6 +221,7 @@ public class MovePlayer : MonoBehaviour
            
 
             Debug.Log("2 are de");
+            Debug.Log("3 are de");
 
             //StartCoroutine(coroutine);
             trap = false;
