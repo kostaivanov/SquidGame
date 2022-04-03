@@ -21,7 +21,8 @@ public class MovePlayer : MonoBehaviour
     internal bool plusOn, minusOn;
     internal bool rotationChanged;
 
-    internal bool untouchable;
+    //internal bool untouchable;
+    internal bool trap;
 
     private bool goingBackwards;
     private MoveButtonsStateController moveButtonsStateController;
@@ -32,9 +33,8 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
-        untouchable = false;
         move = false;
-
+        trap = false;
         currentIndex = -1;
         initialIndex = -1;
 
@@ -59,6 +59,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (this.gameObject.name == obj.name)
         {
+            //trap = true;
             move = true;
             if (direction == "GoForward")
             {
@@ -71,7 +72,10 @@ public class MovePlayer : MonoBehaviour
                 {
                     currentIndex += numberOfMoves;
                 }
-                StopCoroutine(coroutine);
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
             }
             else if(direction == "GoBackward")
             {
@@ -88,7 +92,10 @@ public class MovePlayer : MonoBehaviour
                     currentIndex -= numberOfMoves;
                 }
                 goingBackwards = true;
-                StopCoroutine(coroutine);
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
             }
         }
     }
@@ -158,7 +165,6 @@ public class MovePlayer : MonoBehaviour
                 {
                     _button.interactable = false;
                 }
-                untouchable = true;
             }
         }
     }
@@ -166,7 +172,7 @@ public class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
-
+        Debug.Log("trap = " + trap);
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
@@ -206,13 +212,17 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
+            if (trap == false)
+            {
+                coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+                OnClickTimer(this.boxIndex);
+            }
+           
 
-            coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
-            OnClickTimer(this.boxIndex);
             Debug.Log("2 are de");
 
             //StartCoroutine(coroutine);
-
+            trap = false;
             if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
                 collectableFound = true;
@@ -263,7 +273,6 @@ public class MovePlayer : MonoBehaviour
         yield return new WaitForSecondsRealtime(boxIndex + 1);
         //if (TurnButtonsInteractable(moveButtons) == true)
         //{
-        untouchable = false;
         //Debug.Log("coroutine");
         foreach (Button _button in moveButtons)
         {

@@ -23,6 +23,8 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         startCounting = false;
+        timer.gameObject.SetActive(false);
+
     }
 
     private void OnEnable()
@@ -82,8 +84,10 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            //timer.text = minutes.ToString("00") + ":" + seconds.ToString("00");
             startCounting = false;
             timer.gameObject.SetActive(false);
+            time = 0;
         }
     }
 }

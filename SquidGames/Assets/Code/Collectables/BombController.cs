@@ -27,6 +27,7 @@ internal class BombController : MonoBehaviour, ICollectable
         if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
             movePlayer.collectableFound = false;
+            movePlayer.trap = true;
             Activate();
             StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
         }
@@ -39,6 +40,7 @@ internal class BombController : MonoBehaviour, ICollectable
             if (movePlayer != null)
             {
                 movePlayer = null;
+                movePlayer.trap = false;
             }
         }
     }
