@@ -43,7 +43,6 @@ public class Timer : MonoBehaviour
         startCounting = true;
         timeToWait = timeSeconds + 1;
         Debug.Log("1 are de");
-
     }
 
 
