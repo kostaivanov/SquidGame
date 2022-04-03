@@ -18,6 +18,7 @@ internal class BombController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
+            movePlayer.trap = true;
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
     }
@@ -27,7 +28,7 @@ internal class BombController : MonoBehaviour, ICollectable
         if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
         {
             movePlayer.collectableFound = false;
-            movePlayer.trap = true;
+
             Activate();
             StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
         }
