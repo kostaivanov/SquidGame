@@ -74,7 +74,7 @@ public class Timer : MonoBehaviour
     {
         if (time < timeSeconds)
         {
-            Debug.Log("timer = " + time);
+            //Debug.Log("timer = " + time);
 
             time += Time.deltaTime;
             seconds = Mathf.Floor(time % 60);
