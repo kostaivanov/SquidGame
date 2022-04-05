@@ -115,15 +115,21 @@ public class MovePlayer : MonoBehaviour
             {
                 button.interactable = true;
                 this.plusOn = false;
+
+                //Removingbutton when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Remove(this.moveButtonsStateController.usedButtons.SingleOrDefault(x => x.gameObject.name == obj.name));
+                Debug.Log("Used button was removed from List");
             }
             else if (button.interactable == true && this.minusOn == true)
             {
                 button.interactable = false;
                 this.minusOn = false;
+
+                //Adding button when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Add(obj);
 
-                if (moveButtonsStateController.usedButtons.Count > 2)
+                //Turn all buttons ON if all are not interactable and used.
+                if (moveButtonsStateController.usedButtons.Count > 3)
                 {
                     foreach (Button _button in moveButtons)
                     {
@@ -157,9 +163,10 @@ public class MovePlayer : MonoBehaviour
                 //button.interactable = false;
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
-                
+
+                //Adding button when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Add(obj);
-                this.moveButtonsStateController.CheckIfAllUsed(moveButtons);
+                this.moveButtonsStateController.CheckIfAllUsed(this.moveButtonsStateController.usedButtons);
 
                 foreach (Button _button in moveButtons)
                 {
@@ -217,12 +224,13 @@ public class MovePlayer : MonoBehaviour
             {
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
                 OnClickTimer(this.boxIndex);
+                trap = false;
             }
            
             Debug.Log("2 are de");
 
             //StartCoroutine(coroutine);
-            trap = false;
+
             if (StayOnTopOfCollectable() == true && collectableFound == false)
             {
                 collectableFound = true;

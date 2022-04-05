@@ -17,15 +17,14 @@ public class MoveButtonsStateController : MonoBehaviour
         Debug.Log("count = " + usedButtons.Count);
     }
 
-    internal void CheckIfAllUsed(Button[] moveButtons)
+    internal void CheckIfAllUsed(List<GameObject> moveButtons)
     {
         if (usedButtons.Count > 3)
         {
-
-            foreach (Button _button in moveButtons)
-            {
-                _button.interactable = true;
-            }
+            //foreach (Button _button in moveButtons)
+            //{
+            //    _button.interactable = true;
+            //}
             usedButtons.Clear();
             Debug.Log("taq pumiq li se puska");
         }
