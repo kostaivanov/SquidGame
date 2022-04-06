@@ -50,9 +50,10 @@ public class LivesManager : MonoBehaviour, IDestroyable
 
         if (moveButtonsStateControllerList != null)
         {
-            foreach (var MoveButtonsStateController in moveButtonsStateControllerList)
+            foreach (MoveButtonsStateController button in moveButtonsStateControllerList)
             {
-                MoveButtonsStateController.usedButtons.Clear();
+                Debug.Log(button.usedButtons.Count);
+                button.usedButtons.Clear();
             }
         }
 

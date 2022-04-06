@@ -40,7 +40,7 @@ internal class BombController : MonoBehaviour, ICollectable
         {
             if (movePlayer != null)
             {
-                //movePlayer.trap = false;
+                movePlayer.trap = false;
                 movePlayer = null;
             }
         }

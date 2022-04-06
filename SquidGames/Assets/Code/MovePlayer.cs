@@ -118,7 +118,7 @@ public class MovePlayer : MonoBehaviour
 
                 //Removingbutton when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Remove(this.moveButtonsStateController.usedButtons.SingleOrDefault(x => x.gameObject.name == obj.name));
-                Debug.Log("Used button was removed from List");
+                Debug.Log("Used button was removed from List = +");
             }
             else if (button.interactable == true && this.minusOn == true)
             {
@@ -127,6 +127,7 @@ public class MovePlayer : MonoBehaviour
 
                 //Adding button when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Add(obj);
+                Debug.Log("Used button was added from List = -");
 
                 //Turn all buttons ON if all are not interactable and used.
                 if (moveButtonsStateController.usedButtons.Count > 3)
@@ -222,12 +223,13 @@ public class MovePlayer : MonoBehaviour
 
             if (trap == false)
             {
+                Debug.Log("Coroutine for counting has started!");
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
                 OnClickTimer(this.boxIndex);
-                trap = false;
+                //trap = false;
             }
            
-            Debug.Log("2 are de");
+
 
             //StartCoroutine(coroutine);
 
