@@ -19,14 +19,8 @@ public class TrapController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
-            if (movePlayer.move == true)
-            {
-                movePlayer = null;
-            }
-            else
-            {
-                movePlayer.trap = true;
-            }
+            movePlayer.trap = true;
+
         }
     }
 
@@ -42,6 +36,9 @@ public class TrapController : MonoBehaviour, ICollectable
             }
 
             StartCoroutine(CallMovementFunciton(this.gameObject.tag, movePlayer, numberOfMoves));
+        }
+        {
+            movePlayer = null;
         }
     }
 

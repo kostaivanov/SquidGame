@@ -13,11 +13,6 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
-
-            if (movePlayer.move == true)
-            {
-                movePlayer = null;
-            }
         }
         //Debug.Log("opaa");
     }
@@ -45,6 +40,10 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             //    Activate();
             //    StartCoroutine(Deactivate());
             //}
+        }
+        else
+        {
+            movePlayer = null;
         }
     }
     private void OnTriggerExit2D(Collider2D otherObject)
