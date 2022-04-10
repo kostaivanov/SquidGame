@@ -27,9 +27,6 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
 
             StartCoroutine(Deactivate());
         }
-        {
-            movePlayer = null;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

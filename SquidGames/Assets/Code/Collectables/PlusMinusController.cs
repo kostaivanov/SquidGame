@@ -42,10 +42,6 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             //    StartCoroutine(Deactivate());
             //}
         }
-        else
-        {
-            movePlayer = null;
-        }
     }
     private void OnTriggerExit2D(Collider2D otherObject)
     {

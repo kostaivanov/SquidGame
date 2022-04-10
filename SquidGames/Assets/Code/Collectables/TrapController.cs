@@ -37,9 +37,6 @@ public class TrapController : MonoBehaviour, ICollectable
 
             StartCoroutine(CallMovementFunciton(this.gameObject.tag, movePlayer, numberOfMoves));
         }
-        {
-            movePlayer = null;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

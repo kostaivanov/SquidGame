@@ -34,9 +34,6 @@ internal class BombController : MonoBehaviour, ICollectable
             Activate();
             StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
         }
-        {
-            movePlayer = null;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D otherObject)
