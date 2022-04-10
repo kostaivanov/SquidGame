@@ -13,6 +13,11 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
+
+            if (movePlayer.move == true)
+            {
+                movePlayer = null;
+            }
         }
         //Debug.Log("opaa");
     }
