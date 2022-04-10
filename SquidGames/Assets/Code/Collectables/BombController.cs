@@ -19,7 +19,8 @@ internal class BombController : MonoBehaviour, ICollectable
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
             movePlayer.trap = true;
-            
+            Debug.Log("trap = " + otherObject.gameObject.name);
+
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
     }

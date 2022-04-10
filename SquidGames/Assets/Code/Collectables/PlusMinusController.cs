@@ -13,6 +13,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
+            Debug.Log("trap = " + otherObject.gameObject.name);
         }
         //Debug.Log("opaa");
     }

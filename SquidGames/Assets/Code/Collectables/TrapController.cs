@@ -20,7 +20,7 @@ public class TrapController : MonoBehaviour, ICollectable
         {
             movePlayer = otherObject.GetComponent<MovePlayer>();
             movePlayer.trap = true;
-
+            Debug.Log("trap = " + otherObject.gameObject.name);
         }
     }
 
