@@ -136,6 +136,7 @@ public class MovePlayer : MonoBehaviour
                     {
                         _button.interactable = true;
                     }
+                    this.moveButtonsStateController.usedButtons.Clear();
                 }
             }
             else if (button.interactable == true)
