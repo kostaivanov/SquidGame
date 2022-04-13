@@ -11,16 +11,24 @@ internal class BombController : MonoBehaviour, ICollectable
 
     public delegate void BombEventHandler(GameObject objBomb, GameObject player, Vector3 position);
     public static event BombEventHandler OnBombExplodeHandler;
+    private List<Collider2D> colliders;
 
+    private void Start()
+    {
+        colliders = new List<Collider2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            movePlayer = otherObject.GetComponent<MovePlayer>();
+            if (!colliders.Contains(otherObject))
+            {
+                colliders.Add(otherObject);
+            }
+            movePlayer = colliders[0].GetComponent<MovePlayer>();
             movePlayer.trap = true;
             Debug.Log("trap = " + otherObject.gameObject.name);
-
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
     }
@@ -32,7 +40,7 @@ internal class BombController : MonoBehaviour, ICollectable
             movePlayer.collectableFound = false;
 
             Activate();
-            StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition));
+            StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition, movePlayer));
         }
     }
 
@@ -48,9 +56,10 @@ internal class BombController : MonoBehaviour, ICollectable
         }
     }
 
-    private IEnumerator Explode(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
+    private IEnumerator Explode(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition, MovePlayer movePlayer)
     {
         yield return new WaitForSecondsRealtime(0.5f);
+        movePlayer.trap = false;
         //Deactivate(obj);
         //Restart(obj, position);
         OnBombExplodeHandler(bombObject, playerObject, playerStartPosition);

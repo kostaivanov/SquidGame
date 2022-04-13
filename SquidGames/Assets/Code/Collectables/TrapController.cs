@@ -8,19 +8,25 @@ public class TrapController : MonoBehaviour, ICollectable
 
     private MovePlayer movePlayer;
     [SerializeField] private GameObject[] collectables;
+    private List<Collider2D> colliders;
     // Start is called before the first frame update
     void Start()
     {
-        
+        colliders = new List<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            movePlayer = otherObject.GetComponent<MovePlayer>();
+            if (!colliders.Contains(otherObject))
+            {
+                colliders.Add(otherObject);
+            }
+            movePlayer = colliders[0].GetComponent<MovePlayer>();
             movePlayer.trap = true;
-            Debug.Log("trap = " + otherObject.gameObject.name);
+            Debug.Log("moving trap = " + otherObject.gameObject.name);
+
         }
     }
 
@@ -51,7 +57,7 @@ public class TrapController : MonoBehaviour, ICollectable
     private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
     {
         yield return new WaitForSecondsRealtime(1f);
-
+        _movePlayer.trap = false;
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
 
