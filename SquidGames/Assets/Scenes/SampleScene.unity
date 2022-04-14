@@ -337,7 +337,7 @@ Transform:
   - {fileID: 1165280606}
   - {fileID: 960319939}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &10069568
 BoxCollider2D:
@@ -415,6 +415,9 @@ MonoBehaviour:
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
+  trapsLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!50 &10069571
 Rigidbody2D:
   serializedVersion: 4
@@ -10561,6 +10564,9 @@ MonoBehaviour:
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 0
+  trapsLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &173672866
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11919,6 +11925,9 @@ MonoBehaviour:
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
+  trapsLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!95 &319689757
 Animator:
   serializedVersion: 3
@@ -12558,7 +12567,7 @@ Transform:
   - {fileID: 1481512101}
   - {fileID: 761651797}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &374058429
 BoxCollider2D:
@@ -18002,7 +18011,7 @@ Transform:
   - {fileID: 1016829298}
   - {fileID: 1076927408}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &489279984
 Animator:
@@ -18061,6 +18070,9 @@ MonoBehaviour:
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
+  trapsLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!61 &489279986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37667,7 +37679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088986741
 GameObject:
@@ -39985,7 +39997,7 @@ PrefabInstance:
     - target: {fileID: 8482716235005606181, guid: 836a61b16d3665e43b12f0b3da537fc6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8482716235005606181, guid: 836a61b16d3665e43b12f0b3da537fc6,
         type: 3}
@@ -41159,6 +41171,9 @@ MonoBehaviour:
   - {fileID: 1963016250}
   speed: 1
   collectablesLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  trapsLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!1 &1414857140
@@ -47862,7 +47877,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
@@ -49229,7 +49244,7 @@ PrefabInstance:
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
@@ -50294,6 +50309,9 @@ MonoBehaviour:
   collectablesLayer:
     serializedVersion: 2
     m_Bits: 256
+  trapsLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!61 &2042870734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50525,6 +50543,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4338715809349833126, guid: b6451ee03b9343948bf3dfe497f59cd9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4338715809349833127, guid: b6451ee03b9343948bf3dfe497f59cd9,
         type: 3}
       propertyPath: m_RootOrder
@@ -51953,7 +51976,7 @@ PrefabInstance:
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4993751615997273372, guid: 2054ac033289e5f4c80222629e15a62f,
         type: 3}

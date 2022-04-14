@@ -6,13 +6,31 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 {
     [SerializeField] private GameObject[] collectables;
     private MovePlayer movePlayer;
+    private List<Collider2D> colliders;
 
+    void Start()
+    {
+        colliders = new List<Collider2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            movePlayer = otherObject.GetComponent<MovePlayer>();
+            if (!colliders.Contains(otherObject))
+            {
+                colliders.Add(otherObject);
+            }
+            if (colliders.Count > 0)
+            {
+                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                {
+                    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                    //movePlayer.trap = true;
+                    Debug.Log("moving trap = " + otherObject.gameObject.name);
+                }
+            }
+            //movePlayer = otherObject.GetComponent<MovePlayer>();
             Debug.Log("trap = " + otherObject.gameObject.name);
         }
         //Debug.Log("opaa");

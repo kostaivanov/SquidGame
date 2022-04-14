@@ -13,7 +13,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float speed = 1f;
     internal bool move;
     internal int currentIndex, initialIndex;
-    [SerializeField] private LayerMask collectablesLayer;
+    [SerializeField] private LayerMask collectablesLayer, trapsLayer;
     private int boxIndex;
     internal bool collectableFound;
 
@@ -180,6 +180,8 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
+
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         Debug.Log(this.gameObject.name + " - trap = " + trap);
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
@@ -221,8 +223,8 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
-
-            if (trap == false)
+            //trap = false;
+            if (StayOnTopOfCollectable(trapsLayer) != true)
             {
                 Debug.Log("Coroutine for counting has started!");
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
@@ -234,7 +236,11 @@ public class MovePlayer : MonoBehaviour
 
             //StartCoroutine(coroutine);
 
-            if (StayOnTopOfCollectable() == true && collectableFound == false)
+            if (StayOnTopOfCollectable(collectablesLayer) == true && collectableFound == false)
+            {
+                collectableFound = true;
+            }
+            else if (StayOnTopOfCollectable(trapsLayer) && collectableFound == false)
             {
                 collectableFound = true;
             }
@@ -266,9 +272,9 @@ public class MovePlayer : MonoBehaviour
         this.transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
-    internal bool StayOnTopOfCollectable()
+    internal bool StayOnTopOfCollectable(LayerMask layer)
     {
-        Collider2D rayCastHit = Physics2D.OverlapCircle(this.transform.position, 0.5f, collectablesLayer);
+        Collider2D rayCastHit = Physics2D.OverlapCircle(this.transform.position, 0.5f, layer);
 
         if (rayCastHit != null)
         {

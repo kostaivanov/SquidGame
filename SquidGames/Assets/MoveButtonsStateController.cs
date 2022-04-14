@@ -14,7 +14,7 @@ public class MoveButtonsStateController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("count = " + usedButtons.Count);
+        //Debug.Log("count = " + usedButtons.Count);
     }
 
     internal void CheckIfAllUsed(List<GameObject> moveButtons)

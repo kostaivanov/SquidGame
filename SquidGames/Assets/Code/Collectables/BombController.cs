@@ -26,8 +26,14 @@ internal class BombController : MonoBehaviour, ICollectable
             {
                 colliders.Add(otherObject);
             }
-            movePlayer = colliders[0].GetComponent<MovePlayer>();
-            movePlayer.trap = true;
+            if (colliders.Count > 0)
+            {
+                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                {
+                    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                    //movePlayer.trap = true;
+                }
+            }
             Debug.Log("trap = " + otherObject.gameObject.name);
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
@@ -50,7 +56,7 @@ internal class BombController : MonoBehaviour, ICollectable
         {
             if (movePlayer != null)
             {
-                movePlayer.trap = false;
+                //movePlayer.trap = false;
                 movePlayer = null;
             }
         }
@@ -59,7 +65,7 @@ internal class BombController : MonoBehaviour, ICollectable
     private IEnumerator Explode(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition, MovePlayer movePlayer)
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        movePlayer.trap = false;
+        //movePlayer.trap = false;
         //Deactivate(obj);
         //Restart(obj, position);
         OnBombExplodeHandler(bombObject, playerObject, playerStartPosition);

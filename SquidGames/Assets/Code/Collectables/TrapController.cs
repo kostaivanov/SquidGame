@@ -23,10 +23,15 @@ public class TrapController : MonoBehaviour, ICollectable
             {
                 colliders.Add(otherObject);
             }
-            movePlayer = colliders[0].GetComponent<MovePlayer>();
-            movePlayer.trap = true;
-            Debug.Log("moving trap = " + otherObject.gameObject.name);
-
+            if (colliders.Count > 0)
+            {
+                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                {
+                    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                    //movePlayer.trap = true;
+                    Debug.Log("moving trap = " + otherObject.gameObject.name);
+                }
+            }
         }
     }
 
@@ -49,7 +54,7 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (movePlayer != null)
         {
-            movePlayer.trap = false;
+            //movePlayer.trap = false;
             movePlayer = null;
         }
     }
@@ -57,7 +62,7 @@ public class TrapController : MonoBehaviour, ICollectable
     private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
     {
         yield return new WaitForSecondsRealtime(1f);
-        _movePlayer.trap = false;
+        //_movePlayer.trap = false;
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
 
