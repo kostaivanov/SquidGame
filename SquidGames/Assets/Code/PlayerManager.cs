@@ -13,16 +13,4 @@ public class PlayerManager : MonoBehaviour, IPlayerDesribable
     private int currentIndexPosition;
     public int CurrentIndexPosition { get => currentIndexPosition; set => currentIndexPosition = - 1; }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

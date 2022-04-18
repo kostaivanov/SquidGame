@@ -240,10 +240,10 @@ public class MovePlayer : MonoBehaviour
             {
                 collectableFound = true;
             }
-            else if (StayOnTopOfCollectable(trapsLayer) && collectableFound == false)
-            {
-                collectableFound = true;
-            }
+            //else if (StayOnTopOfCollectable(trapsLayer) && collectableFound == false)
+            //{
+            //    collectableFound = true;
+            //}
         }
     }
 

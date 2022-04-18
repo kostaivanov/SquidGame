@@ -15,17 +15,20 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Button[] moveButtons;
     [SerializeField] private Button[] skillsButtons;
     private MoveButtonsStateController moveButtonsStateController;
+    private ButtonsController buttonsController;
 
     //private Button button;
     private string buttonName;
-    internal Text moveNumber;
-
+    //internal Text moveNumber;
+    internal Image moveNumberImage;
 
     private void Start()
     {
-        //button = GetComponent<Button>();
-        moveNumber = GetComponentInChildren<Text>();
-        moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
+        //moveNumber = GetComponentInChildren<Text>();
+        moveNumberImage = GetComponent<Image>();
+        buttonsController = this.gameObject.transform.root.gameObject.GetComponent<ButtonsController>();
+        moveNumberImage.sprite = buttonsController.numbersImages[UnityEngine.Random.Range(0, 4)];
+        //moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
         moveButtonsStateController = GetComponentInParent<MoveButtonsStateController>();
     }
 
@@ -36,7 +39,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
         if (OnClicked!= null)
         {
             //string _moveNumber = buttonName.Substring(buttonName.Length - 1);
-            int _moveNumber = int.Parse(moveNumber.text);
+            int _moveNumber = int.Parse(moveNumberImage.sprite.name);
             if (buttonName.StartsWith("R"))
             {
                 OnClicked(_moveNumber, "R", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);

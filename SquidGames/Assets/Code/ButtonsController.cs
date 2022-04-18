@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonsController : MonoBehaviour
 {
     [SerializeField] private OnClickMove[] redButtons, blueButtons, greenButtons, whiteButtons;
+    [SerializeField] internal Sprite[] numbersImages;
     private GameObject[] players;
     private PlayerHealth playerHealthBlue, PlayerHealthRed;
 
@@ -32,8 +34,9 @@ public class ButtonsController : MonoBehaviour
         {
             for (int i = 0; i < redButtons.Length; i++)
             {
-                blueButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
-
+                Image image = blueButtons[i].GetComponent<Image>();
+                //blueButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
+                image.sprite = numbersImages[Random.Range(0, numbersImages.Length)];
                 playerHealthBlue.numbersChanged = true;
 
                 //Debug.Log("asdadadasdas");
@@ -43,7 +46,10 @@ public class ButtonsController : MonoBehaviour
         {
             for (int i = 0; i < redButtons.Length; i++)
             {
-                redButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
+                Image image = redButtons[i].GetComponent<Image>();
+
+                //redButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
+                image.sprite = numbersImages[Random.Range(0, numbersImages.Length)];
 
                 PlayerHealthRed.numbersChanged = true;
 
