@@ -239,6 +239,7 @@ public class MovePlayer : MonoBehaviour
             if (StayOnTopOfCollectable(collectablesLayer) == true && collectableFound == false)
             {
                 collectableFound = true;
+                Debug.Log("sdfdsfsdfsdfsdfsdfdsfsd");
             }
             //else if (StayOnTopOfCollectable(trapsLayer) && collectableFound == false)
             //{

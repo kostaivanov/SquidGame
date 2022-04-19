@@ -37,9 +37,10 @@ public class TrapController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
+        //&& movePlayer.collectableFound == true
+        if (movePlayer != null  && movePlayer.move == false)
         {
-            movePlayer.collectableFound = false;
+            //movePlayer.collectableFound = false;
 
             if (movePlayer.move == false)
             {
