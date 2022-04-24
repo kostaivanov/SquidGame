@@ -7,18 +7,31 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
     [SerializeField] private GameObject[] collectables;
 
     private MovePlayer movePlayer;
+    private List<Collider2D> colliders;
 
+    void Start()
+    {
+        colliders = new List<Collider2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            movePlayer = otherObject.GetComponent<MovePlayer>();
-
-            //movePlayer.trap = false;
-            //Debug.Log("trap = " + otherObject.gameObject.name);
+            if (!colliders.Contains(otherObject))
+            {
+                colliders.Add(otherObject);
+            }
+            if (colliders.Count > 0)
+            {
+                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                {
+                    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                }
+            }
         }
     }
+
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)

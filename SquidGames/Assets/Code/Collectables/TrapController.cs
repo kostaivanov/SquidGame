@@ -9,6 +9,8 @@ public class TrapController : MonoBehaviour, ICollectable
     private MovePlayer movePlayer;
     [SerializeField] private GameObject[] collectables;
     private List<Collider2D> colliders;
+    [SerializeField] private LayerMask collectablesLayer, trapsLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,8 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            if (!colliders.Contains(otherObject))
+            MovePlayer currentMovePlayer = otherObject.gameObject.GetComponent<MovePlayer>();
+            if (!colliders.Contains(otherObject) && currentMovePlayer.currentIndex == int.Parse(this.gameObject.transform.parent.name))
             {
                 colliders.Add(otherObject);
             }
@@ -29,7 +32,7 @@ public class TrapController : MonoBehaviour, ICollectable
                 {
                     movePlayer = colliders[0].GetComponent<MovePlayer>();
                     //movePlayer.trap = true;
-                    Debug.Log("moving trap = " + otherObject.gameObject.name);
+                    Debug.Log("moving trap = " + movePlayer.gameObject.name);
                 }
             }
         }
@@ -38,26 +41,39 @@ public class TrapController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (movePlayer != null  && movePlayer.move == false)
+        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false)
         {
+            Debug.Log("trapy = " + otherObject.gameObject.name);
             //movePlayer.collectableFound = false;
 
-            if (movePlayer.move == false)
-            {
-                Activate();
-            }
+            //if (movePlayer.move == false)
+            //{
+            Activate();
+            //}
 
             StartCoroutine(CallMovementFunciton(this.gameObject.tag, movePlayer, numberOfMoves));
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (movePlayer != null)
+    //    {
+    //        //movePlayer.trap = false;
+    //        movePlayer = null;
+    //        Debug.Log("exiting?");
+    //    }
+    //}
+
+    internal bool StayOnTopOfCollectable(LayerMask layer)
     {
-        if (movePlayer != null)
+        Collider2D rayCastHit = Physics2D.OverlapCircle(this.transform.position, 0.5f, layer);
+
+        if (rayCastHit != null)
         {
-            //movePlayer.trap = false;
-            movePlayer = null;
+            return true;
         }
+        return false;
     }
 
     private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
@@ -66,9 +82,12 @@ public class TrapController : MonoBehaviour, ICollectable
         //_movePlayer.trap = false;
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
-
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
-
+        if (movePlayer != null)
+        {
+            movePlayer = null;
+            Debug.Log("exiting?");
+        }
         Destroy(this.gameObject);
     }
 

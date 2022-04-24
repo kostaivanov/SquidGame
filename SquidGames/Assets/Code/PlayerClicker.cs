@@ -111,7 +111,7 @@ public class PlayerClicker : MonoBehaviour
         }
     }
 
-    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesmMnager, GameObject buttonObject)
+    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesManager, GameObject buttonObject)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
@@ -119,7 +119,7 @@ public class PlayerClicker : MonoBehaviour
             if (chosenClickedPlayer != null)
             {
                 Debug.Log(chosenClickedPlayer.gameObject.name);
-                livesmMnager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
+                livesManager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
                 chosenClickedPlayer.playerWasChosen = false;
                 //Button button = buttonObject.GetComponent<Button>();
                 // button.interactable = false;

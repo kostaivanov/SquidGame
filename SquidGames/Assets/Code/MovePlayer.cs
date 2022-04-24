@@ -180,9 +180,15 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
-
-        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
+        //if (StayOnTopOfCollectable(trapsLayer) == true)
+        //{
+        //    Debug.Log("below me is a traaaaaaaaaaaaaaaaaaaaaaaaaap");
+        //    //coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+        //    //OnClickTimer(this.boxIndex);
+        //    //trap = false;
+        //}
+        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         Debug.Log(this.gameObject.name + " - trap = " + trap);
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
@@ -223,28 +229,26 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
-            //trap = false;
-            if (StayOnTopOfCollectable(trapsLayer) != true)
+            if (StayOnTopOfCollectable(trapsLayer) == true && trap == false)
             {
-                Debug.Log("Coroutine for counting has started!");
-                coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
-                OnClickTimer(this.boxIndex);
-                //trap = false;
+                trap = true;
             }
-           
-
 
             //StartCoroutine(coroutine);
 
             if (StayOnTopOfCollectable(collectablesLayer) == true && collectableFound == false)
             {
                 collectableFound = true;
-                Debug.Log("sdfdsfsdfsdfsdfsdfdsfsd");
+                Debug.Log("Coroutine for counting has started!");
+                coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+                OnClickTimer(this.boxIndex);
+                //Debug.Log("sdfdsfsdfsdfsdfsdfdsfsd");
             }
-            //else if (StayOnTopOfCollectable(trapsLayer) && collectableFound == false)
-            //{
-            //    collectableFound = true;
-            //}
+            else if(StayOnTopOfCollectable(collectablesLayer) == false && StayOnTopOfCollectable(trapsLayer) == false)
+            {
+                coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
+                OnClickTimer(this.boxIndex);
+            }
         }
     }
 

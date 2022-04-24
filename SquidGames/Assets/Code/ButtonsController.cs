@@ -37,10 +37,8 @@ public class ButtonsController : MonoBehaviour
                 Image image = blueButtons[i].GetComponent<Image>();
                 //blueButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
                 image.sprite = numbersImages[Random.Range(0, numbersImages.Length)];
-                playerHealthBlue.numbersChanged = true;
-
-                //Debug.Log("asdadadasdas");
             }
+            playerHealthBlue.numbersChanged = true;
         }
         if (PlayerHealthRed != null && PlayerHealthRed.dead == true && PlayerHealthRed.numbersChanged == false)
         {
@@ -50,11 +48,8 @@ public class ButtonsController : MonoBehaviour
 
                 //redButtons[i].moveNumber.text = UnityEngine.Random.Range(1, 5).ToString();
                 image.sprite = numbersImages[Random.Range(0, numbersImages.Length)];
-
-                PlayerHealthRed.numbersChanged = true;
-
-                //Debug.Log("asdadadasdas");
             }
+            PlayerHealthRed.numbersChanged = true;
         }
     }
 }

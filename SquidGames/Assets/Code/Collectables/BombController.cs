@@ -34,7 +34,6 @@ internal class BombController : MonoBehaviour, ICollectable
                     //movePlayer.trap = true;
                 }
             }
-            Debug.Log("trap = " + otherObject.gameObject.name);
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
     }
@@ -42,12 +41,13 @@ internal class BombController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (movePlayer != null  && movePlayer.move == false)
+        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false && movePlayer.trap == true)
         {
-            //movePlayer.collectableFound = false;
+            movePlayer.trap = false;
 
             Activate();
             StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition, movePlayer));
+            Debug.Log("bomb = " + otherObject.gameObject.name);
         }
     }
 

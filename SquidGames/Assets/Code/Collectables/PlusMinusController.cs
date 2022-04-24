@@ -44,21 +44,6 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             DetectIfPlusOrMinus();
             Activate();
             StartCoroutine(Deactivate());
-
-            //if (movePlayer.gameObject.name.StartsWith("B"))
-            //{
-            //    movePlayer.collectableFound = false;
-            //    DetectIfPlusOrMinus();
-            //    Activate();
-            //    StartCoroutine(Deactivate());
-            //}
-            //if (movePlayer.gameObject.name.StartsWith("R"))
-            //{
-            //    movePlayer.collectableFound = false;
-            //    DetectIfPlusOrMinus();
-            //    Activate();
-            //    StartCoroutine(Deactivate());
-            //}
         }
     }
     private void OnTriggerExit2D(Collider2D otherObject)

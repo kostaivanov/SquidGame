@@ -100,5 +100,6 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
+        Debug.Log("restarting the player");
     }
 }
