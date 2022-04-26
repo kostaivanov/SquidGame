@@ -31,7 +31,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                 }
             }
             //movePlayer = otherObject.GetComponent<MovePlayer>();
-            Debug.Log("trap = " + otherObject.gameObject.name);
+            //Debug.Log("trap = " + otherObject.gameObject.name);
         }
         //Debug.Log("opaa");
     }

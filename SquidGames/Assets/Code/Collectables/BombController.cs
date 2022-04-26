@@ -47,7 +47,7 @@ internal class BombController : MonoBehaviour, ICollectable
 
             Activate();
             StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition, movePlayer));
-            Debug.Log("bomb = " + otherObject.gameObject.name);
+            //Debug.Log("bomb = " + otherObject.gameObject.name);
         }
     }
 

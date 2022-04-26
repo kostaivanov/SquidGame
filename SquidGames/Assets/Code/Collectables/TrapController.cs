@@ -41,10 +41,10 @@ public class TrapController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false)
+        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false && movePlayer.trap == true)
         {
-            Debug.Log("trapy = " + otherObject.gameObject.name);
-            //movePlayer.collectableFound = false;
+            Debug.Log("trapy move forward or backward = " + otherObject.gameObject.name);
+            movePlayer.trap = false;
 
             //if (movePlayer.move == false)
             //{

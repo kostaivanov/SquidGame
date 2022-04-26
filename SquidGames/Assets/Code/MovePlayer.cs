@@ -188,8 +188,8 @@ public class MovePlayer : MonoBehaviour
         //    //OnClickTimer(this.boxIndex);
         //    //trap = false;
         //}
-        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
-        Debug.Log(this.gameObject.name + " - trap = " + trap);
+        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //Debug.Log(this.gameObject.name + " - trap = " + trap);
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
