@@ -14,14 +14,17 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
 
     private GameObject[] players;
     private string buttonName;
-    [SerializeField] private Button[] moveButtons;
-    [SerializeField] private Button[] skillsButtons;
+    private Button thisButton;
+    private Color newColor;
+    private Button[] moveButtons;
+    private Button[] skillsButtons;
     [SerializeField] private GameObject usedButtonsObject;
     private MoveButtonsStateController moveButtonsStateController;
 
     // Start is called before the first frame update
     void Start()
     {
+        thisButton = GetComponent<Button>();
         players = GameObject.FindGameObjectsWithTag("Player");
         moveButtonsStateController = usedButtonsObject.GetComponent<MoveButtonsStateController>();
     }
@@ -36,6 +39,10 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
         }
         else if(buttonName.StartsWith("B"))
         {
+            ColorBlock cb = thisButton.colors;
+            cb.selectedColor = thisButton.colors.pressedColor;
+            thisButton.colors = cb;
+
             OnClicked(movesNumber, "B", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))

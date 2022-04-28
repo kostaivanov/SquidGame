@@ -27,7 +27,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                 {
                     movePlayer = colliders[0].GetComponent<MovePlayer>();
                     //movePlayer.trap = true;
-                    Debug.Log("moving trap = " + otherObject.gameObject.name);
+                    Debug.Log("plus or minus = " + otherObject.gameObject.name);
                 }
             }
             //movePlayer = otherObject.GetComponent<MovePlayer>();
@@ -53,6 +53,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             if (movePlayer != null)
             {
                 movePlayer = null;
+                colliders.Clear();
             }
         }
     }

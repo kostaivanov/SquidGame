@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
         timer.gameObject.SetActive(true);
         startCounting = true;
         timeToWait = timeSeconds + 1;
-        Debug.Log("1 are de");
+        //Debug.Log("1 are de");
     }
 
 

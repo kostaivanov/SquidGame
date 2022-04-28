@@ -52,7 +52,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         {
             foreach (MoveButtonsStateController button in moveButtonsStateControllerList)
             {
-                Debug.Log(button.usedButtons.Count);
+                //Debug.Log(button.usedButtons.Count);
                 button.usedButtons.Clear();
             }
         }
@@ -100,6 +100,6 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
-        Debug.Log("restarting the player");
+        //Debug.Log("restarting the player");
     }
 }

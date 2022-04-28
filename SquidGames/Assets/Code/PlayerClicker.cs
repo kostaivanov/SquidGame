@@ -13,10 +13,12 @@ public class PlayerClicker : MonoBehaviour
     private Color initialColor;
     private Color currentColor;
 
+    private bool toPushEnemy;
     // Start is called before the first frame update
     void Start()
     {
         playerWasChosen = false;
+        toPushEnemy = false;
         movePlayer = GetComponent<MovePlayer>();
         playerLayer = LayerMask.GetMask("GroundLayer");
         spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -30,28 +32,28 @@ public class PlayerClicker : MonoBehaviour
     //}
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+    //void FixedUpdate()
+    //{
+    //    if (Input.GetMouseButton(0))
+    //    {
+    //        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+    //        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        //RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-            if (hit.collider != null)
-            {
-                if (this.gameObject.name == hit.collider.gameObject.name)
-                {
-                    playerWasChosen = true;
-                    spriteRenderer.color = new Color(1, 0, 0, 1);
-                    currentColor = spriteRenderer.color;
-                }
-                Debug.Log("Target Position: " + hit.collider.gameObject.name);
-                //SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+    //        if (hit.collider != null)
+    //        {
+    //            if (this.gameObject.name == hit.collider.gameObject.name)
+    //            {
+    //                playerWasChosen = true;
+    //                spriteRenderer.color = new Color(1, 0, 0, 1);
+    //                currentColor = spriteRenderer.color;
+    //            }
+    //            Debug.Log("Target Position: " + hit.collider.gameObject.name);
+    //            //SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
     private void OnEnable()
     {
@@ -98,16 +100,18 @@ public class PlayerClicker : MonoBehaviour
     {
         if (this.gameObject.name.Substring(0, 1) == colorButtong)
         {
-            PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            if (chosenClickedPlayer != null)
-            {
-                chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
-                chosenClickedPlayer.playerWasChosen = false;
-                //Button button = buttonObject.GetComponent<Button>();
-                // button.interactable = false;
-                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
-                spriteRenderer.color = initialColor;
-            }
+            toPushEnemy = true;
+
+            //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+            //if (chosenClickedPlayer != null)
+            //{
+            //    chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
+            //    chosenClickedPlayer.playerWasChosen = false;
+            //    //Button button = buttonObject.GetComponent<Button>();
+            //    // button.interactable = false;
+            //    chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+            //    spriteRenderer.color = initialColor;
+            //}
         }
     }
 

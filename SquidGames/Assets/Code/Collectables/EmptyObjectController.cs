@@ -47,6 +47,7 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
         if (movePlayer != null)
         {
             movePlayer = null;
+            colliders.Clear();
         }
     }
 
