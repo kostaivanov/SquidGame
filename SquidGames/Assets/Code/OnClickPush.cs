@@ -9,7 +9,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
 {
     private const int movesNumber = 1;
 
-    public delegate void Action(int numberMoves, string colorButtong, GameObject buttonObject, GameObject[] array, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController);
+    public delegate void Action(int numberMoves, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController);
     public static event Action OnClicked;
 
     private GameObject[] players;
@@ -35,7 +35,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
         //bool anyCloseEnemies = players.ToList().ForEach(p => p.GetComponent<MovePlayer>().currentIndex)
         if (buttonName.StartsWith("R"))
         {
-            OnClicked(movesNumber, "R", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);         
+            OnClicked(movesNumber, "R", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if(buttonName.StartsWith("B"))
         {
@@ -43,15 +43,15 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
             cb.selectedColor = thisButton.colors.pressedColor;
             thisButton.colors = cb;
 
-            OnClicked(movesNumber, "B", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);         
+            OnClicked(movesNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))
         {
-            OnClicked(movesNumber, "G", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);
+            OnClicked(movesNumber, "G", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
         else
         { 
-            OnClicked(movesNumber, "W", this.gameObject, players, moveButtons, skillsButtons, moveButtonsStateController);
+            OnClicked(movesNumber, "W", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
     }
 }

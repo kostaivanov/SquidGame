@@ -10,6 +10,11 @@ public class MovePlayer : MonoBehaviour
     public static event TimeTicking OnClickTimer;
 
     [SerializeField] private Transform[] boxes;
+
+    private GameObject[] players;
+    private PlayerClicker playerClicker;
+    //private List<MovePlayer> playersMove;
+
     [SerializeField] private float speed = 1f;
     internal bool move;
     internal int currentIndex, initialIndex;
@@ -23,26 +28,30 @@ public class MovePlayer : MonoBehaviour
 
     //internal bool untouchable;
     internal bool trap;
-
+    internal bool push;
     private bool goingBackwards;
     private MoveButtonsStateController moveButtonsStateController;
     private Button[] moveButtons;
     private Button[] skillsButtons;
     internal Coroutine coroutine;
 
+    private int indexToPush;
 
     private void Start()
     {
         move = false;
         trap = false;
+        push = false;
+
         currentIndex = -1;
         initialIndex = -1;
-
+        indexToPush = -1;
         initialIndex = currentIndex;
 
         collectableFound = false;
         startPosition = this.transform.position;
         rotationChanged = false;
+        playerClicker = GetComponent<PlayerClicker>();
     }
 
     private void OnEnable()
@@ -106,12 +115,17 @@ public class MovePlayer : MonoBehaviour
         {
             Button button = obj.GetComponent<Button>();
             // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
-
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             this.moveButtonsStateController = moveButtonsStateController;
-
-            if (button.interactable == false && this.plusOn == true)
+            if (playerClicker.toPushEnemy == true)
+            {
+                indexToPush = currentIndex + boxIndex;
+                //push = true;
+                //move = true;
+                Debug.Log(this.gameObject.name + " - Index to push = " + indexToPush);
+            }
+            else if (button.interactable == false && this.plusOn == true)
             {
                 button.interactable = true;
                 this.plusOn = false;
@@ -180,6 +194,30 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
+
+        Debug.Log(this.gameObject.name + " - playerClicker = " + playerClicker.toPushEnemy);
+        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+
+        //MovePlayer movePlayer = playersClicker.FirstOrDefault(p => p.toPushEnemy == true).GetComponent<MovePlayer>();
+        //PlayerClicker playerClicker = playersClicker.FirstOrDefault(p => p.toPushEnemy == true);
+        //MovePlayer movePlayer = player.GetComponent<MovePlayer>();
+        //int index = movePlayer.currentIndex;
+        //if (playersMove.Any(p => p.currentIndex == index + 2))
+        //{
+        //    MovePlayer playerToPush = playersMove.FirstOrDefault(p => p.currentIndex == index + 2);
+        //    if (playerToPush != null)
+        //    {
+        //        MoveButtonsStateController moveButtonsStateController = moveButtonsStateControllerList.FirstOrDefault(p => p.gameObject.name.StartsWith(movePlayer.gameObject.name.Substring(0)));
+        //        playerToPush.MovePlayerForward(2, playerToPush.gameObject.name.Substring(0), playerToPush.gameObject, moveButtons.ToArray(), pushButtons.ToArray(), moveButtonsStateController);
+        //    }
+        //}
+
+        if (move == false && currentIndex == indexToPush && currentIndex > -1)
+        {
+            Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
+
+            Move(direction, boxes[initialIndex + 1]);
+        }
         //Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
         //if (StayOnTopOfCollectable(trapsLayer) == true)
         //{
@@ -190,7 +228,7 @@ public class MovePlayer : MonoBehaviour
         //}
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " - trap = " + trap);
-        if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
+        else if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
@@ -229,6 +267,11 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
+            if (playerClicker.toPushEnemy == true)
+            {
+                push = false;
+                playerClicker.toPushEnemy = false;
+            }
             if (StayOnTopOfCollectable(trapsLayer) == true && trap == false)
             {
                 trap = true;

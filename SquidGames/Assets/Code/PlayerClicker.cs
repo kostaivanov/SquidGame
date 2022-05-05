@@ -13,7 +13,7 @@ public class PlayerClicker : MonoBehaviour
     private Color initialColor;
     private Color currentColor;
 
-    private bool toPushEnemy;
+    internal bool toPushEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,12 +96,17 @@ public class PlayerClicker : MonoBehaviour
             }
         }   
     }
-    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, GameObject[] players, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
+    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
         if (this.gameObject.name.Substring(0, 1) == colorButtong)
         {
             toPushEnemy = true;
 
+            //MovePlayer movePlayer = GetComponent<MovePlayer>();
+            
+            //movePlayer.MovePlayerForward(moveNumber, this.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
+            
+            
             //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
             //if (chosenClickedPlayer != null)
             //{

@@ -16,6 +16,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Button[] skillsButtons;
     private MoveButtonsStateController moveButtonsStateController;
     private ButtonsController buttonsController;
+    private GameObject[] players;
 
     //private Button button;
     private string buttonName;
