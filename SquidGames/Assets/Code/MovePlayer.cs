@@ -11,9 +11,9 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] private Transform[] boxes;
 
-    private GameObject[] players;
+    private List<GameObject> players;
     private PlayerClicker playerClicker;
-    //private List<MovePlayer> playersMove;
+    private List<MovePlayer> playersMove;
 
     [SerializeField] private float speed = 1f;
     internal bool move;
@@ -39,6 +39,18 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
+        players = new List<GameObject>();
+        players = GameObject.FindGameObjectsWithTag("Player").ToList();
+        playersMove = new List<MovePlayer>();
+        if (players != null )
+        {
+            foreach (GameObject p in players)
+            {
+                //MovePlayer moveP = p.GetComponent<MovePlayer>();
+                playersMove.Add(p.GetComponent<MovePlayer>());
+            }
+        }
+        
         move = false;
         trap = false;
         push = false;
@@ -121,6 +133,14 @@ public class MovePlayer : MonoBehaviour
             if (playerClicker.toPushEnemy == true)
             {
                 indexToPush = currentIndex + boxIndex;
+                foreach (MovePlayer p in playersMove)
+                {
+                    if (p.currentIndex == indexToPush)
+                    {
+                        p.move = true;
+                        p.currentIndex += 1;
+                    }
+                }
                 //push = true;
                 //move = true;
                 Debug.Log(this.gameObject.name + " - Index to push = " + indexToPush);
@@ -194,9 +214,10 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-
-        Debug.Log(this.gameObject.name + " - playerClicker = " + playerClicker.toPushEnemy);
-        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        Debug.Log("players count = " + players.Count);
+        //Debug.Log(this.gameObject.name + " - playerClicker to push enemy = " + playerClicker.toPushEnemy);
+        // Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //Debug.Log(this.gameObject.name + " = index to push = " + indexToPush);
 
         //MovePlayer movePlayer = playersClicker.FirstOrDefault(p => p.toPushEnemy == true).GetComponent<MovePlayer>();
         //PlayerClicker playerClicker = playersClicker.FirstOrDefault(p => p.toPushEnemy == true);
@@ -212,12 +233,12 @@ public class MovePlayer : MonoBehaviour
         //    }
         //}
 
-        if (move == false && currentIndex == indexToPush && currentIndex > -1)
-        {
-            Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
+        //if (move == false && currentIndex == indexToPush && currentIndex > -1)
+        //{
+        //    Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
-            Move(direction, boxes[initialIndex + 1]);
-        }
+        //    Move(direction, boxes[initialIndex + 1]);
+        //}
         //Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
         //if (StayOnTopOfCollectable(trapsLayer) == true)
         //{
@@ -228,7 +249,7 @@ public class MovePlayer : MonoBehaviour
         //}
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " - trap = " + trap);
-        else if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
+        if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
