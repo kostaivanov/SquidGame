@@ -26,10 +26,10 @@ public class PlayerClicker : MonoBehaviour
         currentColor = initialColor;
     }
 
-    //private void Update()
-    //{
-    //    Debug.Log(this.gameObject.name + " = " + playerWasChosen);
-    //}
+    private void Update()
+    {
+        Debug.Log(this.gameObject.name + " = to push enemy = " + toPushEnemy);
+    }
 
     // Update is called once per frame
     //void FixedUpdate()

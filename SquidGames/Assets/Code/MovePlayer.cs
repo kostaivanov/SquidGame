@@ -28,7 +28,7 @@ public class MovePlayer : MonoBehaviour
 
     //internal bool untouchable;
     internal bool trap;
-    internal bool push;
+    //internal bool push;
     private bool goingBackwards;
     private MoveButtonsStateController moveButtonsStateController;
     private Button[] moveButtons;
@@ -53,7 +53,6 @@ public class MovePlayer : MonoBehaviour
         
         move = false;
         trap = false;
-        push = false;
 
         currentIndex = -1;
         initialIndex = -1;
@@ -141,8 +140,8 @@ public class MovePlayer : MonoBehaviour
                         p.currentIndex += 1;
                     }
                 }
-                //push = true;
                 //move = true;
+                playerClicker.toPushEnemy = false;
                 Debug.Log(this.gameObject.name + " - Index to push = " + indexToPush);
             }
             else if (button.interactable == false && this.plusOn == true)
@@ -288,11 +287,7 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
-            if (playerClicker.toPushEnemy == true)
-            {
-                push = false;
-                playerClicker.toPushEnemy = false;
-            }
+          
             if (StayOnTopOfCollectable(trapsLayer) == true && trap == false)
             {
                 trap = true;
@@ -306,7 +301,6 @@ public class MovePlayer : MonoBehaviour
                 Debug.Log("Coroutine for counting has started!");
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
                 OnClickTimer(this.boxIndex);
-                //Debug.Log("sdfdsfsdfsdfsdfsdfdsfsd");
             }
             else if(StayOnTopOfCollectable(collectablesLayer) == false && StayOnTopOfCollectable(trapsLayer) == false)
             {
