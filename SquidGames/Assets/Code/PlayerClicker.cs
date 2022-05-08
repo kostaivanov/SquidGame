@@ -14,11 +14,17 @@ public class PlayerClicker : MonoBehaviour
     private Color currentColor;
 
     internal bool toPushEnemy;
+    internal bool toSwitchEnemy;
+    internal bool toBombEnemy;
     // Start is called before the first frame update
     void Start()
     {
         playerWasChosen = false;
+
         toPushEnemy = false;
+        toSwitchEnemy = false;
+        toBombEnemy = false;
+
         movePlayer = GetComponent<MovePlayer>();
         playerLayer = LayerMask.GetMask("GroundLayer");
         spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -26,10 +32,10 @@ public class PlayerClicker : MonoBehaviour
         currentColor = initialColor;
     }
 
-    private void Update()
-    {
-        Debug.Log(this.gameObject.name + " = to push enemy = " + toPushEnemy);
-    }
+    //private void Update()
+    //{
+    //    Debug.Log(this.gameObject.name + " = to push enemy = " + toPushEnemy);
+    //}
 
     // Update is called once per frame
     //void FixedUpdate()
@@ -74,26 +80,7 @@ public class PlayerClicker : MonoBehaviour
     {
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
-            PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + chosenClickedPlayer.gameObject.name);
-
-            if (chosenClickedPlayer != null)
-            {
-                Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + chosenClickedPlayer.gameObject.name);
-                Vector3 lastPosition = this.gameObject.transform.position;
-                Vector3 lastEulerAngle = this.gameObject.transform.eulerAngles;
-                this.gameObject.transform.position = chosenClickedPlayer.gameObject.transform.position;
-                this.gameObject.transform.eulerAngles = chosenClickedPlayer.gameObject.transform.eulerAngles;
-                chosenClickedPlayer.gameObject.transform.position = lastPosition;
-                chosenClickedPlayer.gameObject.transform.eulerAngles = lastEulerAngle;
-                chosenClickedPlayer.playerWasChosen = false;
-                //Button button = buttonObject.GetComponent<Button>();
-                //button.interactable = false;
-                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
-                spriteRenderer.color = initialColor;
-
-                SwapMovementtValues(this.movePlayer, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>());
-            }
+            toSwitchEnemy = true;           
         }   
     }
     private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
@@ -152,13 +139,5 @@ public class PlayerClicker : MonoBehaviour
         return null;
     }
 
-    private void SwapMovementtValues(MovePlayer rootPlayer, MovePlayer chosenPlayer)
-    {
-        int lastInitialIndex = rootPlayer.initialIndex;
-        int lastCurrentIndex = rootPlayer.currentIndex;
-        rootPlayer.initialIndex = chosenPlayer.initialIndex;
-        rootPlayer.currentIndex = chosenPlayer.currentIndex;
-        chosenPlayer.initialIndex = lastInitialIndex;
-        chosenPlayer.currentIndex = lastCurrentIndex;
-    }
+  
 }

@@ -15,7 +15,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
     private GameObject[] players;
     private string buttonName;
     private Button thisButton;
-    private Color newColor;
+    //private Color newColor;
     private Button[] moveButtons;
     private Button[] skillsButtons;
     [SerializeField] private GameObject usedButtonsObject;

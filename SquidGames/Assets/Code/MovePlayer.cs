@@ -11,9 +11,9 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] private Transform[] boxes;
 
-    private List<GameObject> players;
+    internal List<GameObject> players;
     private PlayerClicker playerClicker;
-    private List<MovePlayer> playersMove;
+    internal List<MovePlayer> playersMove;
 
     [SerializeField] private float speed = 1f;
     internal bool move;
@@ -134,7 +134,7 @@ public class MovePlayer : MonoBehaviour
                 indexToPush = currentIndex + boxIndex;
                 foreach (MovePlayer p in playersMove)
                 {
-                    if (p.currentIndex == indexToPush)
+                    if (p.initialIndex == indexToPush)
                     {
                         p.move = true;
                         p.currentIndex += 1;
@@ -174,46 +174,53 @@ public class MovePlayer : MonoBehaviour
             }
             else if (button.interactable == true)
             {
-                this.boxIndex = boxIndex;
-                this.plusOn = false;
-                this.minusOn = false;
-                move = true;
-
-                if (currentIndex == 19)
+                if (playerClicker.toSwitchEnemy == true)
                 {
-                    currentIndex += 1;
-                }
-                else if (currentIndex == 18 && this.boxIndex > 2)
-                {
-                    currentIndex += 2;
-                }
-                else if (currentIndex == 18 && this.boxIndex > 3)
-                {
-                    currentIndex += 3;
+                    playerClicker.toSwitchEnemy = false;
                 }
                 else
                 {
-                    currentIndex += this.boxIndex;
-                }
-                //button.interactable = false;
-                //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
-                //moveButtons.ToList().ForEach(x => x.interactable = false);
+                    this.boxIndex = boxIndex;
+                    this.plusOn = false;
+                    this.minusOn = false;
+                    move = true;
 
-                //Adding button when used/clicked to the used buttons list.
-                this.moveButtonsStateController.usedButtons.Add(obj);
-                this.moveButtonsStateController.CheckIfAllUsed(this.moveButtonsStateController.usedButtons);
+                    if (currentIndex == 19)
+                    {
+                        currentIndex += 1;
+                    }
+                    else if (currentIndex == 18 && this.boxIndex > 2)
+                    {
+                        currentIndex += 2;
+                    }
+                    else if (currentIndex == 18 && this.boxIndex > 3)
+                    {
+                        currentIndex += 3;
+                    }
+                    else
+                    {
+                        currentIndex += this.boxIndex;
+                    }
+                    //button.interactable = false;
+                    //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
+                    //moveButtons.ToList().ForEach(x => x.interactable = false);
 
-                foreach (Button _button in moveButtons)
-                {
-                    _button.interactable = false;
-                }
+                    //Adding button when used/clicked to the used buttons list.
+                    this.moveButtonsStateController.usedButtons.Add(obj);
+                    this.moveButtonsStateController.CheckIfAllUsed(this.moveButtonsStateController.usedButtons);
+
+                    foreach (Button _button in moveButtons)
+                    {
+                        _button.interactable = false;
+                    }
+                }              
             }
         }
     }
 
     private void Update()
     {
-        Debug.Log("players count = " + players.Count);
+       // Debug.Log("players count = " + players.Count);
         //Debug.Log(this.gameObject.name + " - playerClicker to push enemy = " + playerClicker.toPushEnemy);
         // Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = index to push = " + indexToPush);
