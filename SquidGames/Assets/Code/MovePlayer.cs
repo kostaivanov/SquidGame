@@ -13,6 +13,7 @@ public class MovePlayer : MonoBehaviour
 
     internal List<GameObject> players;
     private PlayerClicker playerClicker;
+    private SwapPlayer swapPlayer;
     internal List<MovePlayer> playersMove;
 
     [SerializeField] private float speed = 1f;
@@ -63,6 +64,7 @@ public class MovePlayer : MonoBehaviour
         startPosition = this.transform.position;
         rotationChanged = false;
         playerClicker = GetComponent<PlayerClicker>();
+        swapPlayer = GetComponent<SwapPlayer>();
     }
 
     private void OnEnable()
@@ -172,48 +174,41 @@ public class MovePlayer : MonoBehaviour
                     this.moveButtonsStateController.usedButtons.Clear();
                 }
             }
-            else if (button.interactable == true)
+            else if (button.interactable == true && swapPlayer.toSwitchEnemy == false)
             {
-                if (playerClicker.toSwitchEnemy == true)
+                this.boxIndex = boxIndex;
+                this.plusOn = false;
+                this.minusOn = false;
+                move = true;
+
+                if (currentIndex == 19)
                 {
-                    playerClicker.toSwitchEnemy = false;
+                    currentIndex += 1;
+                }
+                else if (currentIndex == 18 && this.boxIndex > 2)
+                {
+                    currentIndex += 2;
+                }
+                else if (currentIndex == 18 && this.boxIndex > 3)
+                {
+                    currentIndex += 3;
                 }
                 else
                 {
-                    this.boxIndex = boxIndex;
-                    this.plusOn = false;
-                    this.minusOn = false;
-                    move = true;
+                    currentIndex += this.boxIndex;
+                }
+                //button.interactable = false;
+                //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
+                //moveButtons.ToList().ForEach(x => x.interactable = false);
 
-                    if (currentIndex == 19)
-                    {
-                        currentIndex += 1;
-                    }
-                    else if (currentIndex == 18 && this.boxIndex > 2)
-                    {
-                        currentIndex += 2;
-                    }
-                    else if (currentIndex == 18 && this.boxIndex > 3)
-                    {
-                        currentIndex += 3;
-                    }
-                    else
-                    {
-                        currentIndex += this.boxIndex;
-                    }
-                    //button.interactable = false;
-                    //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
-                    //moveButtons.ToList().ForEach(x => x.interactable = false);
+                //Adding button when used/clicked to the used buttons list.
+                this.moveButtonsStateController.usedButtons.Add(obj);
+                this.moveButtonsStateController.CheckIfAllUsed(this.moveButtonsStateController.usedButtons);
 
-                    //Adding button when used/clicked to the used buttons list.
-                    this.moveButtonsStateController.usedButtons.Add(obj);
-                    this.moveButtonsStateController.CheckIfAllUsed(this.moveButtonsStateController.usedButtons);
-
-                    foreach (Button _button in moveButtons)
-                    {
-                        _button.interactable = false;
-                    }
-                }              
+                foreach (Button _button in moveButtons)
+                {
+                    _button.interactable = false;
+                }            
             }
         }
     }

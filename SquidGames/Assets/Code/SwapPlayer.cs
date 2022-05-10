@@ -14,20 +14,34 @@ public class SwapPlayer : MonoBehaviour
     //private MoveButtonsStateController moveButtonsStateController;
     private MovePlayer movePlayer;
     private int indexToSwitchWith;
+    internal bool toSwitchEnemy;
+
+
     // Start is called before the first frame update
     void Start()
     {
         movePlayer = GetComponent<MovePlayer>();
         playerClicker = GetComponent<PlayerClicker>();
+        toSwitchEnemy = false;
+    }
+
+    private void Update()
+    {
+        Debug.Log(this.gameObject.name + " = " + toSwitchEnemy);
 
     }
+
     private void OnEnable()
     {
+        OnClickSwitch.OnClicked += ActivateSwap;
+
         OnClickMove.OnClicked += SwapPlayerFunc;
     }
 
     private void OnDisable()
     {
+        OnClickSwitch.OnClicked -= ActivateSwap;
+
         OnClickMove.OnClicked -= SwapPlayerFunc;
     }
 
@@ -38,8 +52,10 @@ public class SwapPlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
-            if (playerClicker.toSwitchEnemy == true)
+            if (toSwitchEnemy == true)
             {
+                Debug.Log("swap?");
+
                 indexToSwitchWith = movePlayer.currentIndex + boxIndex;
                 foreach (MovePlayer p in movePlayer.playersMove)
                 {
@@ -54,7 +70,7 @@ public class SwapPlayer : MonoBehaviour
 
     private void Swap(MovePlayer target)
     {
-        //Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + target.gameObject.name);
+        Debug.Log("this player name = " + this.gameObject.name + " - chosen player = " + target.gameObject.name);
         Vector3 lastPosition = this.gameObject.transform.position;
         Vector3 lastEulerAngle = this.gameObject.transform.eulerAngles;
         this.gameObject.transform.position = target.gameObject.transform.position;
@@ -79,5 +95,17 @@ public class SwapPlayer : MonoBehaviour
         thisPlayer.currentIndex = targetPlayer.currentIndex;
         targetPlayer.initialIndex = lastInitialIndex;
         targetPlayer.currentIndex = lastCurrentIndex;
+        if (toSwitchEnemy == true)
+        {
+            toSwitchEnemy = false;
+        }
+    }
+
+    private void ActivateSwap(string buttonName, GameObject[] players, GameObject buttonObject)
+    {
+        if (this.gameObject.name.Substring(0, 1) == buttonName)
+        {
+            toSwitchEnemy = true;
+        }
     }
 }

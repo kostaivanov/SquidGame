@@ -14,7 +14,7 @@ public class PlayerClicker : MonoBehaviour
     private Color currentColor;
 
     internal bool toPushEnemy;
-    internal bool toSwitchEnemy;
+    //internal bool toSwitchEnemy;
     internal bool toBombEnemy;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class PlayerClicker : MonoBehaviour
         playerWasChosen = false;
 
         toPushEnemy = false;
-        toSwitchEnemy = false;
+        //toSwitchEnemy = false;
         toBombEnemy = false;
 
         movePlayer = GetComponent<MovePlayer>();
@@ -63,26 +63,26 @@ public class PlayerClicker : MonoBehaviour
 
     private void OnEnable()
     {
-        OnClickSwitch.OnClicked += SwapPlayer;
-        OnClickBomb.OnClicked += BombPlayer;
+       // OnClickSwitch.OnClicked += SwapPlayer;
+        //OnClickBomb.OnClicked += BombPlayer;
         OnClickPush.OnClicked += MovePlayerForward;
 
     }
 
     private void OnDisable()
     {
-        OnClickSwitch.OnClicked -= SwapPlayer;
-        OnClickBomb.OnClicked -= BombPlayer;
+        //OnClickSwitch.OnClicked -= SwapPlayer;
+        //OnClickBomb.OnClicked -= BombPlayer;
         OnClickPush.OnClicked -= MovePlayerForward;
     }
 
-    private void SwapPlayer(string buttonName, GameObject[] players, GameObject buttonObject)
-    {
-        if (this.gameObject.name.Substring(0, 1) == buttonName)
-        {
-            toSwitchEnemy = true;           
-        }   
-    }
+    //private void SwapPlayer(string buttonName, GameObject[] players, GameObject buttonObject)
+    //{
+    //    if (this.gameObject.name.Substring(0, 1) == buttonName)
+    //    {
+    //        toSwitchEnemy = true;           
+    //    }   
+    //}
     private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
         if (this.gameObject.name.Substring(0, 1) == colorButtong)
@@ -107,37 +107,37 @@ public class PlayerClicker : MonoBehaviour
         }
     }
 
-    private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesManager, GameObject buttonObject)
-    {
-        if (this.gameObject.name.Substring(0, 1) == buttonName)
-        {
-            PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            if (chosenClickedPlayer != null)
-            {
-                Debug.Log(chosenClickedPlayer.gameObject.name);
-                livesManager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
-                chosenClickedPlayer.playerWasChosen = false;
-                //Button button = buttonObject.GetComponent<Button>();
-                // button.interactable = false;
-                chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
-                spriteRenderer.color = initialColor;
-            }
-        }
-    }
+    //private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesManager, GameObject buttonObject)
+    //{
+    //    if (this.gameObject.name.Substring(0, 1) == buttonName)
+    //    {
+    //        PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+    //        if (chosenClickedPlayer != null)
+    //        {
+    //            Debug.Log(chosenClickedPlayer.gameObject.name);
+    //            livesManager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
+    //            chosenClickedPlayer.playerWasChosen = false;
+    //            //Button button = buttonObject.GetComponent<Button>();
+    //            // button.interactable = false;
+    //            chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+    //            spriteRenderer.color = initialColor;
+    //        }
+    //    }
+    //}
 
-    private PlayerClicker GetMovePlayerVariable(GameObject[] players)
-    {        
-        foreach (GameObject player in players)
-        {
-            PlayerClicker clickedPlayer = player.GetComponent<PlayerClicker>();
-            if (clickedPlayer.playerWasChosen == true)
-            {
-                return clickedPlayer;
-            }
+    //private PlayerClicker GetMovePlayerVariable(GameObject[] players)
+    //{        
+    //    foreach (GameObject player in players)
+    //    {
+    //        PlayerClicker clickedPlayer = player.GetComponent<PlayerClicker>();
+    //        if (clickedPlayer.playerWasChosen == true)
+    //        {
+    //            return clickedPlayer;
+    //        }
 
-        }
-        return null;
-    }
+    //    }
+    //    return null;
+    //}
 
   
 }
