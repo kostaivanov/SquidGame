@@ -25,12 +25,6 @@ public class SwapPlayer : MonoBehaviour
         toSwitchEnemy = false;
     }
 
-    private void Update()
-    {
-        Debug.Log(this.gameObject.name + " = " + toSwitchEnemy);
-
-    }
-
     private void OnEnable()
     {
         OnClickSwitch.OnClicked += ActivateSwap;

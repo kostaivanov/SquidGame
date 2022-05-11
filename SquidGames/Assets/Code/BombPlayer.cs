@@ -13,8 +13,9 @@ public class BombPlayer : MonoBehaviour
     private Button[] skillsButtons;
     //private MoveButtonsStateController moveButtonsStateController;
     private MovePlayer movePlayer;
-    private int indexToSwitchWith;
+    private int indexToBomb;
     internal bool toBombEnemy;
+    private LivesManager livesManager;
 
 
     // Start is called before the first frame update
@@ -40,7 +41,12 @@ public class BombPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(this.gameObject.name + " = " + toBombEnemy);
 
+        if (livesManager != null)
+        {
+            Debug.Log(livesManager == null);
+        }
     }
     internal void BombPlayerFunc(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
@@ -49,14 +55,15 @@ public class BombPlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
+
             if (toBombEnemy == true)
             {
-                Debug.Log("swap?");
 
-                indexToSwitchWith = movePlayer.currentIndex + boxIndex;
+                indexToBomb = movePlayer.currentIndex + boxIndex;
+                Debug.Log("bomb? = index to bomb - " + indexToBomb);
                 foreach (MovePlayer p in movePlayer.playersMove)
                 {
-                    if (p.currentIndex == indexToSwitchWith)
+                    if (p.currentIndex == indexToBomb)
                     {
                         Bomb(p);
                     }
@@ -69,6 +76,8 @@ public class BombPlayer : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             toBombEnemy = true;
+            this.livesManager = livesManager;
+
             //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
             //if (chosenClickedPlayer != null)
             //{
@@ -80,11 +89,16 @@ public class BombPlayer : MonoBehaviour
             //chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
             //spriteRenderer.color = initialColor;
             //}
+   
         }
     }
 
     private void Bomb(MovePlayer target)
     {
-        //livesManager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
+        livesManager.Restart(null, target.gameObject, target.startPosition);
+        if (toBombEnemy == true)
+        {
+            toBombEnemy = false;
+        }
     }
 }

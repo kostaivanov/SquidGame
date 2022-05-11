@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.UI;
 
 public class OnClickBomb : MonoBehaviour, IPointerDownHandler
 {
@@ -11,10 +12,12 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
     private string buttonName;
     private GameObject[] players;
     [SerializeField] private LivesManager livesManager;
+    private Button thisButton;
 
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        thisButton = GetComponent<Button>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -27,6 +30,10 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
         }
         else if(buttonName.StartsWith("B"))
         {
+            ColorBlock cb = thisButton.colors;
+            cb.selectedColor = thisButton.colors.pressedColor;
+            thisButton.colors = cb;
+
             OnClicked("B", players, livesManager, this.gameObject);
         }
         else if (buttonName.StartsWith("G"))

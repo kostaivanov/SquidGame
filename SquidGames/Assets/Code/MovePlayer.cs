@@ -12,8 +12,11 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private Transform[] boxes;
 
     internal List<GameObject> players;
+
     private PlayerClicker playerClicker;
     private SwapPlayer swapPlayer;
+    private BombPlayer bombPlayer;
+
     internal List<MovePlayer> playersMove;
 
     [SerializeField] private float speed = 1f;
@@ -65,6 +68,7 @@ public class MovePlayer : MonoBehaviour
         rotationChanged = false;
         playerClicker = GetComponent<PlayerClicker>();
         swapPlayer = GetComponent<SwapPlayer>();
+        bombPlayer = GetComponent<BombPlayer>();
     }
 
     private void OnEnable()
@@ -174,7 +178,7 @@ public class MovePlayer : MonoBehaviour
                     this.moveButtonsStateController.usedButtons.Clear();
                 }
             }
-            else if (button.interactable == true && swapPlayer.toSwitchEnemy == false)
+            else if (button.interactable == true && swapPlayer.toSwitchEnemy == false && bombPlayer.toBombEnemy == false)
             {
                 this.boxIndex = boxIndex;
                 this.plusOn = false;
