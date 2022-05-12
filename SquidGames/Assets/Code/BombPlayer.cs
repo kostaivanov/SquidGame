@@ -89,16 +89,16 @@ public class BombPlayer : MonoBehaviour
             //chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
             //spriteRenderer.color = initialColor;
             //}
-   
+            buttonObject.GetComponent<Button>().interactable = false;
         }
     }
 
     private void Bomb(MovePlayer target)
     {
         livesManager.Restart(null, target.gameObject, target.startPosition);
-        if (toBombEnemy == true)
-        {
-            toBombEnemy = false;
-        }
+        //if (toBombEnemy == true)
+        //{
+        //    toBombEnemy = false;
+        //}
     }
 }

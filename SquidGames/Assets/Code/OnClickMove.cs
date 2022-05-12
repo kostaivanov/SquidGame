@@ -37,7 +37,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     {
         buttonName = this.gameObject.name;
 
-        if (OnClicked!= null)
+        if (OnClicked!= null && CheckIfAnyButtonIsDisabled(skillsButtons) == false)
         {
             //string _moveNumber = buttonName.Substring(buttonName.Length - 1);
             int _moveNumber = int.Parse(moveNumberImage.sprite.name);
@@ -95,6 +95,18 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             }
 
         }
+    }
+
+    private bool CheckIfAnyButtonIsDisabled(Button[] buttons)
+    {
+        foreach (Button b in buttons)
+        {
+            if (b.interactable == false)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //private bool TurnButtonsInteractable()

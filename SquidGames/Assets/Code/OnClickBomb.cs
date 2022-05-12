@@ -30,9 +30,9 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
         }
         else if(buttonName.StartsWith("B"))
         {
-            ColorBlock cb = thisButton.colors;
-            cb.selectedColor = thisButton.colors.pressedColor;
-            thisButton.colors = cb;
+            //ColorBlock cb = thisButton.colors;
+            //cb.selectedColor = thisButton.colors.pressedColor;
+            //thisButton.colors = cb;
 
             OnClicked("B", players, livesManager, this.gameObject);
         }
