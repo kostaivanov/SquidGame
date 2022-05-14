@@ -17,7 +17,6 @@ public class BombPlayer : MonoBehaviour
     internal bool toBombEnemy;
     private LivesManager livesManager;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,15 +38,11 @@ public class BombPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(this.gameObject.name + " = " + toBombEnemy);
+    //void Update()
+    //{
+    //    Debug.Log(this.gameObject.name + " = " + toBombEnemy);
 
-        if (livesManager != null)
-        {
-            Debug.Log(livesManager == null);
-        }
-    }
+    //}
     internal void BombPlayerFunc(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
@@ -55,12 +50,12 @@ public class BombPlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
+            Debug.Log("bomb? = index to bomb - " + indexToBomb);
 
             if (toBombEnemy == true)
             {
 
                 indexToBomb = movePlayer.currentIndex + boxIndex;
-                Debug.Log("bomb? = index to bomb - " + indexToBomb);
                 foreach (MovePlayer p in movePlayer.playersMove)
                 {
                     if (p.currentIndex == indexToBomb)
@@ -95,7 +90,7 @@ public class BombPlayer : MonoBehaviour
 
     private void Bomb(MovePlayer target)
     {
-        livesManager.Restart(null, target.gameObject, target.startPosition);
+        livesManager.Restart(skillsButtons[2].gameObject, target.gameObject, target.startPosition);
         //if (toBombEnemy == true)
         //{
         //    toBombEnemy = false;

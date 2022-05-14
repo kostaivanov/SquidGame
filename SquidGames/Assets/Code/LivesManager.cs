@@ -131,6 +131,12 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
+        if (bombObject.name.EndsWith("C"))
+        {
+            Button button = bombObject.GetComponent<Button>();
+            button.interactable = true;
+
+        }
         //Debug.Log("restarting the player");
     }
 }

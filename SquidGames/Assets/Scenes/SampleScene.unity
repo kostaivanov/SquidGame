@@ -10715,7 +10715,7 @@ MonoBehaviour:
   skillsButtons:
   - {fileID: 2009701441}
   - {fileID: 584168962}
-  - {fileID: 1394427215}
+  - {fileID: 1351523434}
 --- !u!1 &221446158
 GameObject:
   m_ObjectHideFlags: 0
@@ -18464,7 +18464,7 @@ GameObject:
   - component: {fileID: 571507682}
   - component: {fileID: 571507685}
   m_Layer: 5
-  m_Name: BlueSwitch
+  m_Name: BlueSwitch_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31340,7 +31340,7 @@ GameObject:
   - component: {fileID: 942860683}
   - component: {fileID: 942860686}
   m_Layer: 5
-  m_Name: BluePush
+  m_Name: BluePush_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39140,7 +39140,7 @@ MonoBehaviour:
   skillsButtons:
   - {fileID: 2009701441}
   - {fileID: 584168962}
-  - {fileID: 1394427215}
+  - {fileID: 1351523434}
 --- !u!1 &1225051826
 GameObject:
   m_ObjectHideFlags: 0
@@ -39855,7 +39855,7 @@ MonoBehaviour:
   skillsButtons:
   - {fileID: 2009701441}
   - {fileID: 584168962}
-  - {fileID: 1394427215}
+  - {fileID: 1351523434}
 --- !u!1 &1308137697
 GameObject:
   m_ObjectHideFlags: 0
@@ -40077,7 +40077,7 @@ GameObject:
   - component: {fileID: 1351523434}
   - component: {fileID: 1351523437}
   m_Layer: 5
-  m_Name: Bomb
+  m_Name: BlueBomb_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47317,7 +47317,7 @@ MonoBehaviour:
   skillsButtons:
   - {fileID: 2009701441}
   - {fileID: 584168962}
-  - {fileID: 1394427215}
+  - {fileID: 1351523434}
 --- !u!1 &1544396341
 GameObject:
   m_ObjectHideFlags: 0
