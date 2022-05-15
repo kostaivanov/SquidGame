@@ -20,13 +20,14 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
     private Button[] skillsButtons;
     [SerializeField] private GameObject usedButtonsObject;
     private MoveButtonsStateController moveButtonsStateController;
-
+    internal bool activated;
     // Start is called before the first frame update
     void Start()
     {
         thisButton = GetComponent<Button>();
         players = GameObject.FindGameObjectsWithTag("Player");
         moveButtonsStateController = usedButtonsObject.GetComponent<MoveButtonsStateController>();
+        activated = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -42,7 +43,7 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
             ColorBlock cb = thisButton.colors;
             cb.selectedColor = thisButton.colors.pressedColor;
             thisButton.colors = cb;
-
+            activated = true;
             OnClicked(movesNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))

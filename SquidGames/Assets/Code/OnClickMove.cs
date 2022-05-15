@@ -37,7 +37,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
     {
         buttonName = this.gameObject.name;
 
-        if (OnClicked!= null && CheckIfAnyButtonIsDisabled(skillsButtons) == false)
+        if (OnClicked!= null)
         {
             //string _moveNumber = buttonName.Substring(buttonName.Length - 1);
             int _moveNumber = int.Parse(moveNumberImage.sprite.name);
@@ -57,6 +57,7 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             }
             else if(buttonName.StartsWith("B"))
             {
+                Debug.Log("Clicked Move Button!");
                 OnClicked(_moveNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
                 //moveButtonsStateController.usedButtons.Add(this.gameObject);
                 //moveButtonsStateController.CheckIfAllUsed(moveButtons);
@@ -97,17 +98,17 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private bool CheckIfAnyButtonIsDisabled(Button[] buttons)
-    {
-        foreach (Button b in buttons)
-        {
-            if (b.interactable == false)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    //private bool CheckIfAnyButtonIsDisabled(Button[] buttons)
+    //{
+    //    foreach (Button b in buttons)
+    //    {
+    //        if (b.interactable == false)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
     //private bool TurnButtonsInteractable()
     //{

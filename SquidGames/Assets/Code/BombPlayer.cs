@@ -45,12 +45,13 @@ public class BombPlayer : MonoBehaviour
     //}
     internal void BombPlayerFunc(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
+        //Debug.Log("bomb? = index to bomb - " + indexToBomb);
+
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
-            Debug.Log("bomb? = index to bomb - " + indexToBomb);
 
             if (toBombEnemy == true)
             {

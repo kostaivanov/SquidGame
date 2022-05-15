@@ -128,7 +128,7 @@ public class MovePlayer : MonoBehaviour
 
     internal void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
-        if (this.gameObject.name.Substring(0, 1) == buttonColor)
+        if (this.gameObject.name.Substring(0, 1) == buttonColor && CheckIfAnySkillActivated(skillsButtons) == false)
         {
             Button button = obj.GetComponent<Button>();
             // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
@@ -371,6 +371,42 @@ public class MovePlayer : MonoBehaviour
 
         }
         // }
+    }
+
+    private bool CheckIfAnySkillActivated(Button[] buttons)
+    {
+        string[] separatingStrings = { "_" };
+        foreach (Button b in buttons)
+        {
+            string[] words = b.gameObject.name.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+            //foreach (var w in words)
+            //{
+            //    Debug.Log(w);
+            //}
+            if (words[1].StartsWith("B"))
+            {
+                if (b.GetComponent<OnClickBomb>().activated == true)
+                {
+                    return true;
+                }
+               
+            }
+            else if(words[1].StartsWith("P"))
+            {
+                if (b.GetComponent<OnClickPush>().activated == true)
+                {
+                    return true;
+                }
+            }
+            else if (words[1].StartsWith("S"))
+            {
+                if (b.GetComponent<OnClickSwitch>().activated == true)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     //private bool TurnButtonsInteractable(Button[] moveButtons)

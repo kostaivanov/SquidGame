@@ -10713,8 +10713,8 @@ MonoBehaviour:
   - {fileID: 1293981822}
   - {fileID: 178136760}
   skillsButtons:
-  - {fileID: 2009701441}
-  - {fileID: 584168962}
+  - {fileID: 942860683}
+  - {fileID: 571507682}
   - {fileID: 1351523434}
 --- !u!1 &221446158
 GameObject:
@@ -18464,7 +18464,7 @@ GameObject:
   - component: {fileID: 571507682}
   - component: {fileID: 571507685}
   m_Layer: 5
-  m_Name: BlueSwitch_C
+  m_Name: Blue_Switch_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31340,7 +31340,7 @@ GameObject:
   - component: {fileID: 942860683}
   - component: {fileID: 942860686}
   m_Layer: 5
-  m_Name: BluePush_C
+  m_Name: Blue_Push_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38142,7 +38142,7 @@ GameObject:
   - component: {fileID: 1146486524}
   - component: {fileID: 1146486527}
   m_Layer: 5
-  m_Name: RedPush
+  m_Name: Red_Push_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38277,7 +38277,7 @@ GameObject:
   - component: {fileID: 1158401394}
   - component: {fileID: 1158401393}
   m_Layer: 5
-  m_Name: RedBomb
+  m_Name: Red_Bomb_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39138,8 +39138,8 @@ MonoBehaviour:
   - {fileID: 1293981822}
   - {fileID: 178136760}
   skillsButtons:
-  - {fileID: 2009701441}
-  - {fileID: 584168962}
+  - {fileID: 942860683}
+  - {fileID: 571507682}
   - {fileID: 1351523434}
 --- !u!1 &1225051826
 GameObject:
@@ -39853,8 +39853,8 @@ MonoBehaviour:
   - {fileID: 1293981822}
   - {fileID: 178136760}
   skillsButtons:
-  - {fileID: 2009701441}
-  - {fileID: 584168962}
+  - {fileID: 942860683}
+  - {fileID: 571507682}
   - {fileID: 1351523434}
 --- !u!1 &1308137697
 GameObject:
@@ -40077,7 +40077,7 @@ GameObject:
   - component: {fileID: 1351523434}
   - component: {fileID: 1351523437}
   m_Layer: 5
-  m_Name: BlueBomb_C
+  m_Name: Blue_Bomb_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46902,7 +46902,7 @@ GameObject:
   - component: {fileID: 1527925020}
   - component: {fileID: 1527925019}
   m_Layer: 5
-  m_Name: RedSwitch
+  m_Name: Red_Switch_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47315,8 +47315,8 @@ MonoBehaviour:
   - {fileID: 1293981822}
   - {fileID: 178136760}
   skillsButtons:
-  - {fileID: 2009701441}
-  - {fileID: 584168962}
+  - {fileID: 942860683}
+  - {fileID: 571507682}
   - {fileID: 1351523434}
 --- !u!1 &1544396341
 GameObject:

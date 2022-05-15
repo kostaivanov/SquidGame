@@ -12,11 +12,13 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
     private string buttonName;
     private GameObject[] players;
     private Button thisButton;
+    internal bool activated;
 
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         thisButton = GetComponent<Button>();
+        activated = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -31,7 +33,7 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
             ColorBlock cb = thisButton.colors;
             cb.selectedColor = thisButton.colors.pressedColor;
             thisButton.colors = cb;
-
+            activated = true;
             OnClicked("B", players, this.gameObject);
         }
         else if (buttonName.StartsWith("G"))

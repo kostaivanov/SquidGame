@@ -13,11 +13,12 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
     private GameObject[] players;
     [SerializeField] private LivesManager livesManager;
     private Button thisButton;
-
+    internal bool activated;
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         thisButton = GetComponent<Button>();
+        activated = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -33,7 +34,7 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
             //ColorBlock cb = thisButton.colors;
             //cb.selectedColor = thisButton.colors.pressedColor;
             //thisButton.colors = cb;
-
+            activated = true;
             OnClicked("B", players, livesManager, this.gameObject);
         }
         else if (buttonName.StartsWith("G"))
