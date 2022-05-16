@@ -6,10 +6,10 @@ using System.Linq;
 
 public class BombPlayer : MonoBehaviour
 {
-    private List<GameObject> players;
-    private PlayerClicker playerClicker;
+    //private List<GameObject> players;
+    //private PlayerClicker playerClicker;
     //private List<MovePlayer> playersMove;
-    private Button[] moveButtons;
+    //private Button[] moveButtons;
     private Button[] skillsButtons;
     //private MoveButtonsStateController moveButtonsStateController;
     private MovePlayer movePlayer;
@@ -21,7 +21,7 @@ public class BombPlayer : MonoBehaviour
     void Start()
     {
         movePlayer = GetComponent<MovePlayer>();
-        playerClicker = GetComponent<PlayerClicker>();
+        //playerClicker = GetComponent<PlayerClicker>();
         toBombEnemy = false;
     }
 
@@ -37,29 +37,20 @@ public class BombPlayer : MonoBehaviour
         OnClickMove.OnClicked -= BombPlayerFunc;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    Debug.Log(this.gameObject.name + " = " + toBombEnemy);
-
-    //}
     internal void BombPlayerFunc(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
-        //Debug.Log("bomb? = index to bomb - " + indexToBomb);
-
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
-            this.moveButtons = moveButtons;
+            //this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
 
             if (toBombEnemy == true)
             {
-
                 indexToBomb = movePlayer.currentIndex + boxIndex;
                 foreach (MovePlayer p in movePlayer.playersMove)
                 {
-                    if (p.currentIndex == indexToBomb)
+                    if (p.initialIndex == indexToBomb)
                     {
                         Bomb(p);
                     }
@@ -92,9 +83,9 @@ public class BombPlayer : MonoBehaviour
     private void Bomb(MovePlayer target)
     {
         livesManager.Restart(skillsButtons[2].gameObject, target.gameObject, target.startPosition);
-        //if (toBombEnemy == true)
-        //{
-        //    toBombEnemy = false;
-        //}
+        if (toBombEnemy == true)
+        {
+            toBombEnemy = false;
+        }
     }
 }

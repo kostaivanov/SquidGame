@@ -100,6 +100,9 @@ public class SwapPlayer : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             toSwitchEnemy = true;
+
+            buttonObject.GetComponent<Button>().interactable = false;
+
         }
     }
 }

@@ -30,9 +30,6 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         }
         else if (buttonName.StartsWith("B"))
         {
-            ColorBlock cb = thisButton.colors;
-            cb.selectedColor = thisButton.colors.pressedColor;
-            thisButton.colors = cb;
             activated = true;
             OnClicked("B", players, this.gameObject);
         }

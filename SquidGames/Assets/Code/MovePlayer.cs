@@ -224,36 +224,6 @@ public class MovePlayer : MonoBehaviour
         // Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = index to push = " + indexToPush);
 
-        //MovePlayer movePlayer = playersClicker.FirstOrDefault(p => p.toPushEnemy == true).GetComponent<MovePlayer>();
-        //PlayerClicker playerClicker = playersClicker.FirstOrDefault(p => p.toPushEnemy == true);
-        //MovePlayer movePlayer = player.GetComponent<MovePlayer>();
-        //int index = movePlayer.currentIndex;
-        //if (playersMove.Any(p => p.currentIndex == index + 2))
-        //{
-        //    MovePlayer playerToPush = playersMove.FirstOrDefault(p => p.currentIndex == index + 2);
-        //    if (playerToPush != null)
-        //    {
-        //        MoveButtonsStateController moveButtonsStateController = moveButtonsStateControllerList.FirstOrDefault(p => p.gameObject.name.StartsWith(movePlayer.gameObject.name.Substring(0)));
-        //        playerToPush.MovePlayerForward(2, playerToPush.gameObject.name.Substring(0), playerToPush.gameObject, moveButtons.ToArray(), pushButtons.ToArray(), moveButtonsStateController);
-        //    }
-        //}
-
-        //if (move == false && currentIndex == indexToPush && currentIndex > -1)
-        //{
-        //    Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
-
-        //    Move(direction, boxes[initialIndex + 1]);
-        //}
-        //Debug.Log(this.gameObject.name + " - found the collectable = " + collectableFound);
-        //if (StayOnTopOfCollectable(trapsLayer) == true)
-        //{
-        //    Debug.Log("below me is a traaaaaaaaaaaaaaaaaaaaaaaaaap");
-        //    //coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
-        //    //OnClickTimer(this.boxIndex);
-        //    //trap = false;
-        //}
-        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
-        //Debug.Log(this.gameObject.name + " - trap = " + trap);
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
@@ -420,23 +390,5 @@ public class MovePlayer : MonoBehaviour
     //        }
     //    }
     //    return allInactive;
-    //}
-
-    //private void TurnOnOffButtons(bool trueOrFalse, Button usedButton, Button[] moveButtons, Button[] skillsButtons)
-    //{
-    //    foreach (Button _button in moveButtons)
-    //    {
-    //        if (_button.gameObject.name != usedButton.gameObject.name)
-    //        {
-    //            _button.interactable = trueOrFalse;
-    //        }
-    //    }
-    //    foreach (Button _button in skillsButtons)
-    //    {
-    //        if (_button.gameObject.name != usedButton.gameObject.name)
-    //        {
-    //            _button.interactable = trueOrFalse;
-    //        }
-    //    }
     //}
 }

@@ -26,24 +26,22 @@ public class OnClickBomb : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
+            activated = true;
             OnClicked("R", players, livesManager, this.gameObject);
-
         }
         else if(buttonName.StartsWith("B"))
         {
-            //ColorBlock cb = thisButton.colors;
-            //cb.selectedColor = thisButton.colors.pressedColor;
-            //thisButton.colors = cb;
             activated = true;
             OnClicked("B", players, livesManager, this.gameObject);
         }
         else if (buttonName.StartsWith("G"))
         {
+            activated = true;
             OnClicked("G", players, livesManager, this.gameObject);
-            Debug.Log("Green + coun - " + players.Length);
         }
         else
         {
+            activated = true;
             OnClicked("W", players, livesManager, this.gameObject);
         }
     }
