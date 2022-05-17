@@ -57,7 +57,6 @@ internal class OnClickMove : MonoBehaviour, IPointerDownHandler
             }
             else if(buttonName.StartsWith("B"))
             {
-                Debug.Log("Clicked Move Button!");
                 OnClicked(_moveNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
                 //moveButtonsStateController.usedButtons.Add(this.gameObject);
                 //moveButtonsStateController.CheckIfAllUsed(moveButtons);

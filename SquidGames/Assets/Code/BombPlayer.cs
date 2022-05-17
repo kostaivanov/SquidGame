@@ -82,7 +82,7 @@ public class BombPlayer : MonoBehaviour
 
     private void Bomb(MovePlayer target)
     {
-        livesManager.Restart(skillsButtons[2].gameObject, target.gameObject, target.startPosition);
+        livesManager.Restart(true, skillsButtons[2].gameObject, target.gameObject, target.startPosition);
         if (toBombEnemy == true)
         {
             toBombEnemy = false;

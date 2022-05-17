@@ -26,6 +26,7 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         buttonName = this.gameObject.name;
         if (buttonName.StartsWith("R"))
         {
+            activated = true;
             OnClicked("R", players, this.gameObject);
         }
         else if (buttonName.StartsWith("B"))
@@ -35,10 +36,12 @@ public class OnClickSwitch : MonoBehaviour, IPointerDownHandler
         }
         else if (buttonName.StartsWith("G"))
         {
+            activated = true;
             OnClicked("G", players, this.gameObject);
         }
         else
         {
+            activated = true;
             OnClicked("W", players, this.gameObject);
         }
     }

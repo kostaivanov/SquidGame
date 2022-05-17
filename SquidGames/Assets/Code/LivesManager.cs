@@ -58,7 +58,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
  
     }
 
-    public void Deactivate(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
+    public void Deactivate(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
         bombObject.GetComponent<SpriteRenderer>().enabled = false;
         foreach (Transform bodyPart in playerObject.transform)
@@ -67,7 +67,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         }
     }
 
-    public void Restart(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
+    public void Restart(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
         playerObject.transform.position = playerStartPosition;
         PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
@@ -132,12 +132,14 @@ public class LivesManager : MonoBehaviour, IDestroyable
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
         bombObject.GetComponent<OnClickBomb>().activated = false;
-        if (bombObject.name.EndsWith("C"))
-        {
-            Button button = bombObject.GetComponent<Button>();
-            button.interactable = true;
 
-        }
-        //Debug.Log("restarting the player");
+        if (killedByTrap == false)
+        {
+            if (bombObject.name.EndsWith("C"))
+            {
+                Button button = bombObject.GetComponent<Button>();
+                button.interactable = true;
+            }
+        }      
     }
 }

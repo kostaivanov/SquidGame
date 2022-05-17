@@ -128,8 +128,11 @@ public class MovePlayer : MonoBehaviour
 
     internal void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
+        Debug.Log(" testing if not moving - " + CheckIfAnySkillActivated(skillsButtons));
+
         if (this.gameObject.name.Substring(0, 1) == buttonColor && CheckIfAnySkillActivated(skillsButtons) == false)
         {
+
             Button button = obj.GetComponent<Button>();
             // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
             this.moveButtons = moveButtons;
@@ -180,6 +183,7 @@ public class MovePlayer : MonoBehaviour
             }
             else if (button.interactable == true && swapPlayer.toSwitchEnemy == false && bombPlayer.toBombEnemy == false)
             {
+                Debug.Log("not moving");
                 this.boxIndex = boxIndex;
                 this.plusOn = false;
                 this.minusOn = false;
@@ -353,6 +357,8 @@ public class MovePlayer : MonoBehaviour
             //{
             //    Debug.Log(w);
             //}
+            Debug.Log(words[1]);
+
             if (words[1].StartsWith("B"))
             {
                 if (b.GetComponent<OnClickBomb>().activated == true)

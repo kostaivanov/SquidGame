@@ -9,7 +9,7 @@ internal class BombController : MonoBehaviour, ICollectable
     private MovePlayer movePlayer;
     //private PlayerHealth playerHealth;
 
-    public delegate void BombEventHandler(GameObject objBomb, GameObject player, Vector3 position);
+    public delegate void BombEventHandler(bool killedByTrap, GameObject objBomb, GameObject player, Vector3 position);
     public static event BombEventHandler OnBombExplodeHandler;
     private List<Collider2D> colliders;
 
@@ -69,7 +69,7 @@ internal class BombController : MonoBehaviour, ICollectable
         //movePlayer.trap = false;
         //Deactivate(obj);
         //Restart(obj, position);
-        OnBombExplodeHandler(bombObject, playerObject, playerStartPosition);
+        OnBombExplodeHandler(false, bombObject, playerObject, playerStartPosition);
     }
 
     public void Activate()
