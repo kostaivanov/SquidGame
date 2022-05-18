@@ -61,20 +61,20 @@ public class PlayerClicker : MonoBehaviour
     //    }
     //}
 
-    private void OnEnable()
-    {
-       // OnClickSwitch.OnClicked += SwapPlayer;
-        //OnClickBomb.OnClicked += BombPlayer;
-        OnClickPush.OnClicked += MovePlayerForward;
+    //private void OnEnable()
+    //{
+    //   // OnClickSwitch.OnClicked += SwapPlayer;
+    //    //OnClickBomb.OnClicked += BombPlayer;
+    //    OnClickPush.OnClicked += MovePlayerForward;
 
-    }
+    //}
 
-    private void OnDisable()
-    {
-        //OnClickSwitch.OnClicked -= SwapPlayer;
-        //OnClickBomb.OnClicked -= BombPlayer;
-        OnClickPush.OnClicked -= MovePlayerForward;
-    }
+    //private void OnDisable()
+    //{
+    //    //OnClickSwitch.OnClicked -= SwapPlayer;
+    //    //OnClickBomb.OnClicked -= BombPlayer;
+    //    OnClickPush.OnClicked -= MovePlayerForward;
+    //}
 
     //private void SwapPlayer(string buttonName, GameObject[] players, GameObject buttonObject)
     //{
@@ -83,29 +83,29 @@ public class PlayerClicker : MonoBehaviour
     //        toSwitchEnemy = true;           
     //    }   
     //}
-    private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
-    {
-        if (this.gameObject.name.Substring(0, 1) == colorButtong)
-        {
-            toPushEnemy = true;
+    //private void MovePlayerForward(int moveNumber, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
+    //{
+    //    if (this.gameObject.name.Substring(0, 1) == colorButtong)
+    //    {
+    //        toPushEnemy = true;
 
-            //MovePlayer movePlayer = GetComponent<MovePlayer>();
+    //        //MovePlayer movePlayer = GetComponent<MovePlayer>();
             
-            //movePlayer.MovePlayerForward(moveNumber, this.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
+    //        //movePlayer.MovePlayerForward(moveNumber, this.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
             
             
-            //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            //if (chosenClickedPlayer != null)
-            //{
-            //    chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
-            //    chosenClickedPlayer.playerWasChosen = false;
-            //    //Button button = buttonObject.GetComponent<Button>();
-            //    // button.interactable = false;
-            //    chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
-            //    spriteRenderer.color = initialColor;
-            //}
-        }
-    }
+    //        //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
+    //        //if (chosenClickedPlayer != null)
+    //        //{
+    //        //    chosenClickedPlayer.GetComponentInChildren<MovePlayer>().MovePlayerForward(moveNumber, chosenClickedPlayer.gameObject.name.Substring(0, 1), buttonObject, moveButtons, skillsButtons, moveButtonsStateController);
+    //        //    chosenClickedPlayer.playerWasChosen = false;
+    //        //    //Button button = buttonObject.GetComponent<Button>();
+    //        //    // button.interactable = false;
+    //        //    chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
+    //        //    spriteRenderer.color = initialColor;
+    //        //}
+    //    }
+    //}
 
     //private void BombPlayer(string buttonName, GameObject[] players, LivesManager livesManager, GameObject buttonObject)
     //{

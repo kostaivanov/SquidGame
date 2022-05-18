@@ -7,7 +7,7 @@ using System.Linq;
 public class SwapPlayer : MonoBehaviour
 {
     private List<GameObject> players;
-    private PlayerClicker playerClicker;
+    //private PlayerClicker playerClicker;
     //private List<MovePlayer> playersMove;
     private Button[] moveButtons;
     private Button[] skillsButtons;
@@ -15,20 +15,16 @@ public class SwapPlayer : MonoBehaviour
     private MovePlayer movePlayer;
     private int indexToSwitchWith;
     internal bool toSwitchEnemy;
-
+    private OnClickSwitch onClickSwitchRef;
 
     // Start is called before the first frame update
     void Start()
     {
         movePlayer = GetComponent<MovePlayer>();
-        playerClicker = GetComponent<PlayerClicker>();
+        //playerClicker = GetComponent<PlayerClicker>();
         toSwitchEnemy = false;
     }
 
-    private void Update()
-    {
-        Debug.Log(this.gameObject.name + " = to switch enemy = " + toSwitchEnemy);
-    }
     private void OnEnable()
     {
         OnClickSwitch.OnClicked += ActivateSwap;
@@ -96,6 +92,7 @@ public class SwapPlayer : MonoBehaviour
         if (toSwitchEnemy == true)
         {
             toSwitchEnemy = false;
+            onClickSwitchRef.activated = false;
         }
     }
 
@@ -104,7 +101,7 @@ public class SwapPlayer : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonName)
         {
             toSwitchEnemy = true;
-
+            onClickSwitchRef = buttonObject.GetComponent<OnClickSwitch>();
             buttonObject.GetComponent<Button>().interactable = false;
 
         }

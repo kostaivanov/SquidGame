@@ -13,7 +13,7 @@ public class MovePlayer : MonoBehaviour
 
     internal List<GameObject> players;
 
-    private PlayerClicker playerClicker;
+    private PushPlayer pusPlayerRef;
     private SwapPlayer swapPlayer;
     private BombPlayer bombPlayer;
 
@@ -66,7 +66,7 @@ public class MovePlayer : MonoBehaviour
         collectableFound = false;
         startPosition = this.transform.position;
         rotationChanged = false;
-        playerClicker = GetComponent<PlayerClicker>();
+        pusPlayerRef = GetComponent<PushPlayer>();
         swapPlayer = GetComponent<SwapPlayer>();
         bombPlayer = GetComponent<BombPlayer>();
     }
@@ -138,7 +138,7 @@ public class MovePlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             this.moveButtonsStateController = moveButtonsStateController;
-            if (playerClicker.toPushEnemy == true)
+            if (pusPlayerRef.toPushEnemy == true)
             {
                 indexToPush = currentIndex + boxIndex;
                 foreach (MovePlayer p in playersMove)
@@ -150,7 +150,7 @@ public class MovePlayer : MonoBehaviour
                     }
                 }
                 //move = true;
-                playerClicker.toPushEnemy = false;
+                pusPlayerRef.toPushEnemy = false;
                 Debug.Log(this.gameObject.name + " - Index to push = " + indexToPush);
             }
             else if (button.interactable == false && this.plusOn == true)
@@ -357,11 +357,11 @@ public class MovePlayer : MonoBehaviour
             //{
             //    Debug.Log(w);
             //}
-            Debug.Log(words[1]);
+            //Debug.Log(words[1]);
 
             if (words[1].StartsWith("B"))
             {
-                if (b.GetComponent<OnClickBomb>().activated == true)
+                if (b.GetComponent<OnClickBomb>().activated == true || b.GetComponent<OnClickPush>().activated == true)
                 {
                     return true;
                 }
@@ -369,14 +369,14 @@ public class MovePlayer : MonoBehaviour
             }
             else if(words[1].StartsWith("P"))
             {
-                if (b.GetComponent<OnClickPush>().activated == true)
+                if (b.GetComponent<OnClickPush>().activated == true || b.GetComponent<OnClickPush>().activated == true)
                 {
                     return true;
                 }
             }
             else if (words[1].StartsWith("S"))
             {
-                if (b.GetComponent<OnClickSwitch>().activated == true)
+                if (b.GetComponent<OnClickSwitch>().activated == true || b.GetComponent<OnClickPush>().activated == true)
                 {
                     return true;
                 }

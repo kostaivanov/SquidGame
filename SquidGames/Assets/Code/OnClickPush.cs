@@ -36,22 +36,22 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
         //bool anyCloseEnemies = players.ToList().ForEach(p => p.GetComponent<MovePlayer>().currentIndex)
         if (buttonName.StartsWith("R"))
         {
+            activated = true;
             OnClicked(movesNumber, "R", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if(buttonName.StartsWith("B"))
         {
-            ColorBlock cb = thisButton.colors;
-            cb.selectedColor = thisButton.colors.pressedColor;
-            thisButton.colors = cb;
             activated = true;
             OnClicked(movesNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))
         {
+            activated = true;
             OnClicked(movesNumber, "G", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
         else
-        { 
+        {
+            activated = true;
             OnClicked(movesNumber, "W", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
     }
