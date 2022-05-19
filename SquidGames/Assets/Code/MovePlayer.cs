@@ -151,7 +151,6 @@ public class MovePlayer : MonoBehaviour
                 }
                 //move = true;
                 pusPlayerRef.toPushEnemy = false;
-                Debug.Log(this.gameObject.name + " - Index to push = " + indexToPush);
             }
             else if (button.interactable == false && this.plusOn == true)
             {
@@ -223,9 +222,7 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-       // Debug.Log("players count = " + players.Count);
-        //Debug.Log(this.gameObject.name + " - playerClicker to push enemy = " + playerClicker.toPushEnemy);
-        // Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = index to push = " + indexToPush);
 
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
@@ -329,11 +326,8 @@ public class MovePlayer : MonoBehaviour
     private IEnumerator ActivateButtons(List<GameObject> usedButtons, Button[] moveButtons, Button[] skillsButtons, int boxIndex)
     {
         //TurnOnOffButtons(false, usedButton, moveButtons, skillsButtons);
-
         yield return new WaitForSecondsRealtime(boxIndex + 1);
-        //if (TurnButtonsInteractable(moveButtons) == true)
-        //{
-        //Debug.Log("coroutine");
+
         foreach (Button _button in moveButtons)
         {
             if (usedButtons.Any(x => x.name == _button.gameObject.name))
@@ -342,9 +336,7 @@ public class MovePlayer : MonoBehaviour
             }
 
             _button.interactable = true;
-
         }
-        // }
     }
 
     private bool CheckIfAnySkillActivated(Button[] buttons)
@@ -353,11 +345,6 @@ public class MovePlayer : MonoBehaviour
         foreach (Button b in buttons)
         {
             string[] words = b.gameObject.name.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-            //foreach (var w in words)
-            //{
-            //    Debug.Log(w);
-            //}
-            Debug.Log(words[1]);
 
             if (words[1].StartsWith("B"))
             {
@@ -366,13 +353,6 @@ public class MovePlayer : MonoBehaviour
                     return true;
                 }
                
-            }
-            else if(words[1].StartsWith("P"))
-            {
-                if (b.GetComponent<OnClickPush>().activated == true)
-                {
-                    return true;
-                }
             }
             else if (words[1].StartsWith("S"))
             {

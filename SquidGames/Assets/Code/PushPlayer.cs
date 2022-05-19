@@ -6,21 +6,19 @@ using System.Linq;
 
 public class PushPlayer : MonoBehaviour
 {
-    private List<GameObject> players;
+    //private List<GameObject> players;
     //private List<MovePlayer> playersMove;
     private Button[] moveButtons;
     private Button[] skillsButtons;
     //private MoveButtonsStateController moveButtonsStateController;
-    private MovePlayer movePlayer;
-    private int indexToSwitchWith;
+    //private MovePlayer movePlayer;
     internal bool toSwitchEnemy;
-    private OnClickSwitch onClickSwitchRef;
     internal bool toPushEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        movePlayer = GetComponent<MovePlayer>();
+        //movePlayer = GetComponent<MovePlayer>();
         toPushEnemy = false;
     }
 

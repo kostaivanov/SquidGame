@@ -12,22 +12,21 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
     public delegate void Action(int numberMoves, string colorButtong, GameObject buttonObject, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController);
     public static event Action OnClicked;
 
-    private GameObject[] players;
+    //private GameObject[] players;
     private string buttonName;
-    private Button thisButton;
+    //private Button thisButton;
     //private Color newColor;
     private Button[] moveButtons;
     private Button[] skillsButtons;
     [SerializeField] private GameObject usedButtonsObject;
     private MoveButtonsStateController moveButtonsStateController;
-    internal bool activated;
+
     // Start is called before the first frame update
     void Start()
     {
-        thisButton = GetComponent<Button>();
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //thisButton = GetComponent<Button>();
+        //players = GameObject.FindGameObjectsWithTag("Player");
         moveButtonsStateController = usedButtonsObject.GetComponent<MoveButtonsStateController>();
-        activated = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -36,22 +35,18 @@ public class OnClickPush : MonoBehaviour, IPointerDownHandler
         //bool anyCloseEnemies = players.ToList().ForEach(p => p.GetComponent<MovePlayer>().currentIndex)
         if (buttonName.StartsWith("R"))
         {
-            activated = true;
             OnClicked(movesNumber, "R", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if(buttonName.StartsWith("B"))
         {
-            activated = true;
             OnClicked(movesNumber, "B", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);         
         }
         else if (buttonName.StartsWith("G"))
         {
-            activated = true;
             OnClicked(movesNumber, "G", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
         else
         {
-            activated = true;
             OnClicked(movesNumber, "W", this.gameObject, moveButtons, skillsButtons, moveButtonsStateController);
         }
     }

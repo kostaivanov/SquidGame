@@ -37190,7 +37190,7 @@ MonoBehaviour:
   - {fileID: 1293981822}
   - {fileID: 178136760}
   pushButtons:
-  - {fileID: 2009701441}
+  - {fileID: 942860683}
   - {fileID: 1146486524}
   moveButtonsStateControllerList:
   - {fileID: 317232989}
