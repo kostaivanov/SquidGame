@@ -6,22 +6,22 @@ using System.Linq;
 
 public class LivesManager : MonoBehaviour, IDestroyable
 {
-    private GameObject[] players;
-    private List<PlayerClicker> playersClicker;
-    private List<MovePlayer> playersMove;
+    //private GameObject[] players;
+    //private List<PlayerClicker> playersClicker;
+    //private List<MovePlayer> playersMove;
     [SerializeField] private List<Button> moveButtons, pushButtons;
     [SerializeField] private List<MoveButtonsStateController> moveButtonsStateControllerList;
     // Start is called before the first frame update
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        playersClicker = new List<PlayerClicker>();
-        playersMove = new List<MovePlayer>();
-        foreach (GameObject p in players)
-        {
-            playersClicker.Add(p.GetComponent<PlayerClicker>());
-            playersMove.Add(p.GetComponent<MovePlayer>());
-        }
+        //players = GameObject.FindGameObjectsWithTag("Player");
+        //playersClicker = new List<PlayerClicker>();
+        //playersMove = new List<MovePlayer>();
+        //foreach (GameObject p in players)
+        //{
+        //    playersClicker.Add(p.GetComponent<PlayerClicker>());
+        //    playersMove.Add(p.GetComponent<MovePlayer>());
+        //}
     }
 
     private void Update()

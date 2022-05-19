@@ -6,31 +6,31 @@ using UnityEngine.UI;
 
 public class PlayerClicker : MonoBehaviour
 {
-    private bool playerWasChosen;
-    private MovePlayer movePlayer;
-    internal LayerMask playerLayer;
-    private SpriteRenderer spriteRenderer;
-    private Color initialColor;
-    private Color currentColor;
+    //private bool playerWasChosen;
+    //private MovePlayer movePlayer;
+    //internal LayerMask playerLayer;
+    //private SpriteRenderer spriteRenderer;
+    //private Color initialColor;
+    //private Color currentColor;
 
-    internal bool toPushEnemy;
-    //internal bool toSwitchEnemy;
-    internal bool toBombEnemy;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerWasChosen = false;
+    //internal bool toPushEnemy;
+    ////internal bool toSwitchEnemy;
+    //internal bool toBombEnemy;
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    playerWasChosen = false;
 
-        toPushEnemy = false;
-        //toSwitchEnemy = false;
-        toBombEnemy = false;
+    //    toPushEnemy = false;
+    //    //toSwitchEnemy = false;
+    //    toBombEnemy = false;
 
-        movePlayer = GetComponent<MovePlayer>();
-        playerLayer = LayerMask.GetMask("GroundLayer");
-        spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
-        initialColor = spriteRenderer.color;
-        currentColor = initialColor;
-    }
+    //    movePlayer = GetComponent<MovePlayer>();
+    //    playerLayer = LayerMask.GetMask("GroundLayer");
+    //    spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+    //    initialColor = spriteRenderer.color;
+    //    currentColor = initialColor;
+    //}
 
     //private void Update()
     //{

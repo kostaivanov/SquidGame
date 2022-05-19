@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using System.Linq;
 internal class BombController : MonoBehaviour, ICollectable
 {
-    private MovePlayer movePlayer;
+    private List<MovePlayer> movePlayer;
     //private PlayerHealth playerHealth;
 
     public delegate void BombEventHandler(bool killedByTrap, GameObject objBomb, GameObject player, Vector3 position);
@@ -16,6 +16,7 @@ internal class BombController : MonoBehaviour, ICollectable
     private void Start()
     {
         colliders = new List<Collider2D>();
+        movePlayer = new List<MovePlayer>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -28,11 +29,14 @@ internal class BombController : MonoBehaviour, ICollectable
             }
             if (colliders.Count > 0)
             {
-                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                foreach (Collider2D coll in colliders)
                 {
-                    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                    //movePlayer.trap = true;
+                    movePlayer.Add(coll.GetComponent<MovePlayer>());
                 }
+                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                //{
+                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                //}
             }
             //playerHealth = otherObject.GetComponent<PlayerHealth>();
         }
@@ -41,12 +45,17 @@ internal class BombController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false && movePlayer.trap == true)
+        if (otherObject.gameObject.tag == "Player" && movePlayer != null)
         {
-            movePlayer.trap = false;
-
-            Activate();
-            StartCoroutine(Explode(this.gameObject, movePlayer.gameObject, movePlayer.startPosition, movePlayer));
+            foreach (MovePlayer p in movePlayer)
+            {
+                if (p.move == false && p.trap == true)
+                {
+                    p.trap = false;
+                    Activate();
+                    StartCoroutine(Explode(this.gameObject, p.gameObject, p.startPosition, p));
+                }
+            }          
             //Debug.Log("bomb = " + otherObject.gameObject.name);
         }
     }
