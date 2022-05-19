@@ -357,11 +357,11 @@ public class MovePlayer : MonoBehaviour
             //{
             //    Debug.Log(w);
             //}
-            //Debug.Log(words[1]);
+            Debug.Log(words[1]);
 
             if (words[1].StartsWith("B"))
             {
-                if (b.GetComponent<OnClickBomb>().activated == true || b.GetComponent<OnClickPush>().activated == true)
+                if (b.GetComponent<OnClickBomb>().activated == true)
                 {
                     return true;
                 }
@@ -369,14 +369,14 @@ public class MovePlayer : MonoBehaviour
             }
             else if(words[1].StartsWith("P"))
             {
-                if (b.GetComponent<OnClickPush>().activated == true || b.GetComponent<OnClickPush>().activated == true)
+                if (b.GetComponent<OnClickPush>().activated == true)
                 {
                     return true;
                 }
             }
             else if (words[1].StartsWith("S"))
             {
-                if (b.GetComponent<OnClickSwitch>().activated == true || b.GetComponent<OnClickPush>().activated == true)
+                if (b.GetComponent<OnClickSwitch>().activated == true)
                 {
                     return true;
                 }
