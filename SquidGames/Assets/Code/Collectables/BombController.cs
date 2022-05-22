@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 internal class BombController : MonoBehaviour, ICollectable
 {
-    private List<MovePlayer> movePlayer;
+    private List<MovePlayer> movePlayerList;
     //private PlayerHealth playerHealth;
 
     public delegate void BombEventHandler(bool killedByTrap, GameObject objBomb, GameObject player, Vector3 position);
@@ -16,7 +16,7 @@ internal class BombController : MonoBehaviour, ICollectable
     private void Start()
     {
         colliders = new List<Collider2D>();
-        movePlayer = new List<MovePlayer>();
+        movePlayerList = new List<MovePlayer>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -31,7 +31,7 @@ internal class BombController : MonoBehaviour, ICollectable
             //{
                 foreach (Collider2D coll in colliders)
                 {
-                    movePlayer.Add(coll.GetComponent<MovePlayer>());
+                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
                 }
                 //if (colliders[0].gameObject.name == otherObject.gameObject.name)
                 //{
@@ -45,9 +45,9 @@ internal class BombController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (otherObject.gameObject.tag == "Player" && movePlayer != null)
+        if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
-            foreach (MovePlayer p in movePlayer)
+            foreach (MovePlayer p in movePlayerList)
             {
                 if (p.move == false && p.trap == true)
                 {
@@ -64,10 +64,11 @@ internal class BombController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            if (movePlayer != null)
+            if (movePlayerList != null && !movePlayerList.Any())
             {
                 //movePlayer.trap = false;
-                movePlayer = null;
+                movePlayerList.Clear();
+                //movePlayerList = null;
             }
         }
     }
