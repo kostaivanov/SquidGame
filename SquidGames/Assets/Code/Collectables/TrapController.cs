@@ -21,6 +21,8 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
+            //Debug.Log("moving trap = " + movePlayer.gameObject.name);
+
             MovePlayer currentMovePlayer = otherObject.gameObject.GetComponent<MovePlayer>();
             if (!colliders.Contains(otherObject) && currentMovePlayer.currentIndex == int.Parse(this.gameObject.transform.parent.name))
             {
@@ -32,7 +34,6 @@ public class TrapController : MonoBehaviour, ICollectable
                 {
                     movePlayer = colliders[0].GetComponent<MovePlayer>();
                     //movePlayer.trap = true;
-                    Debug.Log("moving trap = " + movePlayer.gameObject.name);
                 }
             }
         }

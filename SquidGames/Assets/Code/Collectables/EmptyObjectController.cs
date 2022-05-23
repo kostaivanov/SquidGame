@@ -18,6 +18,8 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
+            Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
+
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);

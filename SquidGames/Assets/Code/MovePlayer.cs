@@ -128,7 +128,7 @@ public class MovePlayer : MonoBehaviour
 
     internal void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
-        Debug.Log(" testing if not moving - " + CheckIfAnySkillActivated(skillsButtons));
+        //Debug.Log(" testing if not moving - " + CheckIfAnySkillActivated(skillsButtons));
 
         if (this.gameObject.name.Substring(0, 1) == buttonColor && CheckIfAnySkillActivated(skillsButtons) == false)
         {
@@ -159,7 +159,7 @@ public class MovePlayer : MonoBehaviour
 
                 //Removingbutton when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Remove(this.moveButtonsStateController.usedButtons.SingleOrDefault(x => x.gameObject.name == obj.name));
-                Debug.Log("Used button was removed from List = +");
+                //Debug.Log("Used button was removed from List = +");
             }
             else if (button.interactable == true && this.minusOn == true)
             {
@@ -168,7 +168,7 @@ public class MovePlayer : MonoBehaviour
 
                 //Adding button when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Add(obj);
-                Debug.Log("Used button was added from List = -");
+                //Debug.Log("Used button was added from List = - by = " + this.gameObject.name);
 
                 //Turn all buttons ON if all are not interactable and used.
                 if (moveButtonsStateController.usedButtons.Count > 3)
@@ -182,7 +182,7 @@ public class MovePlayer : MonoBehaviour
             }
             else if (button.interactable == true && swapPlayer.toSwitchEnemy == false && bombPlayer.toBombEnemy == false)
             {
-                Debug.Log("not moving");
+                //Debug.Log("not moving");
                 this.boxIndex = boxIndex;
                 this.plusOn = false;
                 this.minusOn = false;
