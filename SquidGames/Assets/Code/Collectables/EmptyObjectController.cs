@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EmptyObjectController : MonoBehaviour, ICollectable
 {
     [SerializeField] private GameObject[] collectables;
 
-    private MovePlayer movePlayer;
+    private List<MovePlayer> movePlayerList;
     private List<Collider2D> colliders;
 
     void Start()
     {
         colliders = new List<Collider2D>();
+        movePlayerList = new List<MovePlayer>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -26,9 +28,9 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
             }
             if (colliders.Count > 0)
             {
-                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                foreach (Collider2D coll in colliders)
                 {
-                    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
                 }
             }
         }
@@ -36,19 +38,25 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
+        if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
-            movePlayer.collectableFound = false;
-
-            StartCoroutine(Deactivate());
+            foreach (MovePlayer p in movePlayerList)
+            {
+                if (p.collectableFound == true && p.move == false)
+                {
+                    p.collectableFound = false;
+                    Debug.Log("empty object = " + otherObject.gameObject.name);
+                    StartCoroutine(Deactivate());
+                }
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (movePlayer != null)
+        if (movePlayerList != null && !movePlayerList.Any())
         {
-            movePlayer = null;
+            movePlayerList.Clear();
             colliders.Clear();
         }
     }

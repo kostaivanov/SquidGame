@@ -29,12 +29,12 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             }
             if (colliders.Count > 0)
             {
-                foreach (MovePlayer player  in movePlayerList)
+                foreach (MovePlayer player in movePlayerList)
                 {
                     if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
                     {
                         player.holdsCollectable = true;
-                        Debug.Log("Ontrigger Enter Players = "+ player.gameObject.name);
+                        Debug.Log("Ontrigger Enter Players = "+ player.gameObject.name + " - " + Time.realtimeSinceStartup);
                         break;
                     }
                 }
