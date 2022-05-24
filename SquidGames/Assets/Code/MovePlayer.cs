@@ -226,7 +226,8 @@ public class MovePlayer : MonoBehaviour
     private void Update()
     {
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
-        //Debug.Log(this.gameObject.name + " = index to push = " + indexToPush);
+        Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
+
 
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {

@@ -18,38 +18,40 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         entered = false;
     }
 
+    private void OnEnable()
+    {
+        //collider2D.enabled = true;
+    }
+    private void OnDisable()
+    {
+        collider2D.enabled = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
+            entered = true;
+            Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
                 movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
                 //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             }
-            if (colliders.Count > 0)
-            {
-                foreach (MovePlayer player in movePlayerList)
-                {
-                    if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
-                    {
-                        player.holdsCollectable = true;
-                        entered = true;
-                        Debug.Log("Ontrigger Enter Players = "+ player.gameObject.name + " - " + Time.realtimeSinceStartup);
-                        break;
-                    }
-                }
-                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
-                //{
-                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                //    movePlayer.holdsCollectable = true;
-
-                //    //movePlayer.trap = true;
-                //    //Debug.Log("plus or minus = " + otherObject.gameObject.name);
-                //}
-            }
+            //if (colliders.Count > 0)
+            //{
+            //    foreach (MovePlayer player in movePlayerList)
+            //    {
+            //        if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
+            //        {
+            //            player.holdsCollectable = true;
+            //            entered = true;
+            //            Debug.Log("Ontrigger Enter Players = " + player.gameObject.name + " - " + Time.realtimeSinceStartup);
+            //            break;
+            //        }
+            //    }
+            //}
             //movePlayer = otherObject.GetComponent<MovePlayer>();
             //Debug.Log("trap = " + otherObject.gameObject.name);
         }
@@ -62,8 +64,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         {
             foreach (MovePlayer player in movePlayerList)
             {
-                Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
-                if (player != null && collider2D != null && player.holdsCollectable == true && player.collectableFound == true && player.move == false)
+                if (player != null && player.collectableFound == true && player.move == false)
                 {
                     player.collectableFound = false;
 
@@ -73,6 +74,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                     StartCoroutine(Deactivate());
                     player.holdsCollectable = false;
                     entered = false;
+                    Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
                     break;
                 }
             }            
