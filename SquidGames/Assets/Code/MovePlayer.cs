@@ -25,6 +25,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private LayerMask collectablesLayer, trapsLayer;
     private int boxIndex;
     internal bool collectableFound;
+    internal bool holdsCollectable;
 
     internal Vector3 startPosition;
     internal bool plusOn, minusOn;
@@ -64,6 +65,8 @@ public class MovePlayer : MonoBehaviour
         initialIndex = currentIndex;
 
         collectableFound = false;
+        holdsCollectable = false;
+
         startPosition = this.transform.position;
         rotationChanged = false;
         pusPlayerRef = GetComponent<PushPlayer>();
@@ -275,7 +278,7 @@ public class MovePlayer : MonoBehaviour
             if (StayOnTopOfCollectable(collectablesLayer) == true && collectableFound == false)
             {
                 collectableFound = true;
-                Debug.Log("Coroutine for counting has started!");
+                //Debug.Log("Coroutine for counting has started!");
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
                 OnClickTimer(this.boxIndex);
             }

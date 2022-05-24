@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TrapController : MonoBehaviour, ICollectable
 {
     private const int numberOfMoves = 2;
 
-    private MovePlayer movePlayer;
+    private List<MovePlayer> movePlayerList;
     [SerializeField] private GameObject[] collectables;
     private List<Collider2D> colliders;
     [SerializeField] private LayerMask collectablesLayer, trapsLayer;
@@ -15,6 +16,7 @@ public class TrapController : MonoBehaviour, ICollectable
     void Start()
     {
         colliders = new List<Collider2D>();
+        movePlayerList = new List<MovePlayer>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -30,11 +32,15 @@ public class TrapController : MonoBehaviour, ICollectable
             }
             if (colliders.Count > 0)
             {
-                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                foreach (Collider2D coll in colliders)
                 {
-                    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                    //movePlayer.trap = true;
+                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
                 }
+                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                //{
+                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                //    //movePlayer.trap = true;
+                //}
             }
         }
     }
@@ -42,29 +48,37 @@ public class TrapController : MonoBehaviour, ICollectable
     private void OnTriggerStay2D(Collider2D otherObject)
     {
         //&& movePlayer.collectableFound == true
-        if (otherObject.gameObject.tag == "Player" && movePlayer != null && movePlayer.move == false && movePlayer.trap == true)
+        if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
-            Debug.Log("trapy move forward or backward = " + otherObject.gameObject.name);
-            movePlayer.trap = false;
+            foreach (MovePlayer p in movePlayerList)
+            {
+                if (p.move == false && p.trap == true)
+                {
+                    Debug.Log("trapy move forward or backward = " + otherObject.gameObject.name);
+                    p.trap = false;
 
-            //if (movePlayer.move == false)
-            //{
-            Activate();
-            //}
+                    //if (movePlayer.move == false)
+                    //{
+                    Activate();
+                    //}
 
-            StartCoroutine(CallMovementFunciton(this.gameObject.tag, movePlayer, numberOfMoves));
+                    StartCoroutine(CallMovementFunciton(this.gameObject.tag, p, numberOfMoves));
+                }
+            }
+
+            
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (movePlayer != null)
-    //    {
-    //        //movePlayer.trap = false;
-    //        movePlayer = null;
-    //        Debug.Log("exiting?");
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (movePlayerList != null && !movePlayerList.Any())
+        {
+            //movePlayer.trap = false;
+            movePlayerList.Clear();
+            //movePlayerList = null;
+        }        
+    }
 
     internal bool StayOnTopOfCollectable(LayerMask layer)
     {
@@ -84,9 +98,9 @@ public class TrapController : MonoBehaviour, ICollectable
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
-        if (movePlayer != null)
+        if (movePlayerList != null)
         {
-            movePlayer = null;
+            movePlayerList.Clear();
             colliders.Clear();
             Debug.Log("exiting?");
         }

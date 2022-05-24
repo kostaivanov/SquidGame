@@ -5,7 +5,7 @@ using UnityEngine;
 internal class PlusMinusController : MonoBehaviour, ICollectable
 {
     [SerializeField] private GameObject[] collectables;
-    private MovePlayer movePlayer;
+    private List<MovePlayer> movePlayerList;
     private List<Collider2D> colliders;
     private Collider2D collider2D;
 
@@ -13,26 +13,39 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
     {
         colliders = new List<Collider2D>();
         collider2D = GetComponent<Collider2D>();
+        movePlayerList = new List<MovePlayer>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
+            //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
+                movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
+                //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             }
             if (colliders.Count > 0)
             {
-                if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                foreach (MovePlayer player  in movePlayerList)
                 {
-                    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                   
-                    //movePlayer.trap = true;
-                    //Debug.Log("plus or minus = " + otherObject.gameObject.name);
+                    if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
+                    {
+                        player.holdsCollectable = true;
+                        Debug.Log("Ontrigger Enter Players = "+ player.gameObject.name);
+                        break;
+                    }
                 }
+                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
+                //{
+                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
+                //    movePlayer.holdsCollectable = true;
+
+                //    //movePlayer.trap = true;
+                //    //Debug.Log("plus or minus = " + otherObject.gameObject.name);
+                //}
             }
             //movePlayer = otherObject.GetComponent<MovePlayer>();
             //Debug.Log("trap = " + otherObject.gameObject.name);
@@ -42,47 +55,59 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (movePlayer != null && movePlayer.collectableFound == true && movePlayer.move == false)
+        if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
-            movePlayer.collectableFound = false;
-            DetectIfPlusOrMinus();
-            Activate();
-            StartCoroutine(Deactivate());
-        }
+            foreach (MovePlayer player in movePlayerList)
+            {
+                Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
+                if (player != null && collider2D != null && player.holdsCollectable == true && player.collectableFound == true && player.move == false)
+                {
+                    player.collectableFound = false;
+
+                    DetectIfPlusOrMinus(player);
+
+                    Activate();
+                    StartCoroutine(Deactivate());
+                    player.holdsCollectable = false;
+                    break;
+                }
+            }            
+        }      
     }
+
     private void OnTriggerExit2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            if (movePlayer != null)
+            if (movePlayerList != null)
             {
-                movePlayer = null;
+                movePlayerList.Clear();
                 colliders.Clear();
             }
         }
     }
 
-    private void DetectIfPlusOrMinus()
+    private void DetectIfPlusOrMinus(MovePlayer player)
     {
         string firstLetter = this.gameObject.name.Substring(0, 1);
         //Debug.Log(firstLetter);
-        movePlayer.plusOn = false;
-        movePlayer.minusOn = false;
+        player.plusOn = false;
+        player.minusOn = false;
         if (firstLetter == "+")
         {
-            movePlayer.plusOn = true;
-            Debug.Log(movePlayer.gameObject.name + " took the PLUS");
+            player.plusOn = true;
+            Debug.Log(player.gameObject.name + " took the PLUS");
         }
         else if (firstLetter == "-")
         {
-            Debug.Log(movePlayer.gameObject.name + " took the MINUS");
-            movePlayer.minusOn = true;
+            Debug.Log(player.gameObject.name + " took the MINUS");
+            player.minusOn = true;
         }
+        collider2D.enabled = false;
     }
 
     public IEnumerator Deactivate()
     {
-        collider2D.enabled = false;
         InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
 
