@@ -8,12 +8,14 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
     private List<MovePlayer> movePlayerList;
     private List<Collider2D> colliders;
     private Collider2D collider2D;
+    private bool entered;
 
     void Start()
     {
         colliders = new List<Collider2D>();
         collider2D = GetComponent<Collider2D>();
         movePlayerList = new List<MovePlayer>();
+        entered = false;
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -34,6 +36,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                     if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
                     {
                         player.holdsCollectable = true;
+                        entered = true;
                         Debug.Log("Ontrigger Enter Players = "+ player.gameObject.name + " - " + Time.realtimeSinceStartup);
                         break;
                     }
@@ -55,7 +58,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
+        if (otherObject.gameObject.tag == "Player" && movePlayerList != null && entered == true)
         {
             foreach (MovePlayer player in movePlayerList)
             {
@@ -69,6 +72,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                     Activate();
                     StartCoroutine(Deactivate());
                     player.holdsCollectable = false;
+                    entered = false;
                     break;
                 }
             }            
