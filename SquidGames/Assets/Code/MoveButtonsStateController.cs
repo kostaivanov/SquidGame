@@ -26,7 +26,7 @@ public class MoveButtonsStateController : MonoBehaviour
             //    _button.interactable = true;
             //}
             usedButtons.Clear();
-            Debug.Log("taq pumiq li se puska");
+            //Debug.Log("taq pumiq li se puska");
         }
     }
 }

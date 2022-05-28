@@ -73,7 +73,7 @@ public class MovePlayer : MonoBehaviour
         swapPlayer = GetComponent<SwapPlayer>();
         bombPlayer = GetComponent<BombPlayer>();
     }
-
+    
     private void OnEnable()
     {
         OnClickMove.OnClicked += MovePlayerForward;
@@ -131,7 +131,7 @@ public class MovePlayer : MonoBehaviour
 
     internal void MovePlayerForward(int boxIndex, string buttonColor, GameObject obj, Button[] moveButtons, Button[] skillsButtons, MoveButtonsStateController moveButtonsStateController)
     {
-        Debug.Log(" testing if not moving - " + CheckIfAnySkillActivated(skillsButtons));
+        //Debug.Log(" testing if not moving - " + CheckIfAnySkillActivated(skillsButtons));
 
         if (this.gameObject.name.Substring(0, 1) == buttonColor && CheckIfAnySkillActivated(skillsButtons) == false)
         {
@@ -227,7 +227,7 @@ public class MovePlayer : MonoBehaviour
     {
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
-
+        Debug.Log(this.gameObject.name + " = collectable = " + collectableFound);
 
         if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
@@ -279,7 +279,7 @@ public class MovePlayer : MonoBehaviour
             if (StayOnTopOfCollectable(collectablesLayer) == true && collectableFound == false)
             {
                 collectableFound = true;
-                //Debug.Log("Coroutine for counting has started!");
+                Debug.Log("Coroutine for counting has started!");
                 coroutine = StartCoroutine(ActivateButtons(this.moveButtonsStateController.usedButtons, this.moveButtons, this.skillsButtons, this.boxIndex));
                 OnClickTimer(this.boxIndex);
             }

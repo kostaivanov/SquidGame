@@ -20,19 +20,21 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
+            //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
 
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
+                movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
+
             }
-            if (colliders.Count > 0)
-            {
-                foreach (Collider2D coll in colliders)
-                {
-                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
-                }
-            }
+            //if (colliders.Count > 0)
+            //{
+            //    foreach (Collider2D coll in colliders)
+            //    {
+            //        movePlayerList.Add(coll.GetComponent<MovePlayer>());
+            //    }
+            //}
         }
     }
 
@@ -65,7 +67,8 @@ public class EmptyObjectController : MonoBehaviour, ICollectable
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        //InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        InstantiateItems.SpawnRandomObject(this.gameObject);
         Destroy(this.gameObject);
     }
 

@@ -95,14 +95,14 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         yield return new WaitForSecondsRealtime(1f);
         //_movePlayer.trap = false;
-        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        InstantiateItems.SpawnRandomObject(this.gameObject);
 
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
         if (movePlayerList != null)
         {
             movePlayerList.Clear();
             colliders.Clear();
-            Debug.Log("exiting?");
+            //Debug.Log("exiting?");
         }
         Destroy(this.gameObject);
     }

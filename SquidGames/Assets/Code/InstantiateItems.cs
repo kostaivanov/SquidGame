@@ -11,11 +11,14 @@ internal class InstantiateItems : MonoBehaviour
     private List<int> pushForward;
     private List<int> pushBack;
 
+    public static GameObject[] collectables;
+
     private bool spawned;
 
     // Start is called before the first frame update
     void Start()
     {
+        collectables = items;
         usedIndexes = new List<int>();
         plusesMinuses = new List<int>();
         pushForward = new List<int>();
@@ -88,42 +91,43 @@ internal class InstantiateItems : MonoBehaviour
         }
     }
 
-    internal static void Shuffle(GameObject[] platforms, GameObject collectable)
-    {
-        bool indexFound = false;
-        do
-        {
-            // Find a random index
-            int destIndex = Random.Range(0, platforms.Length);
-            GameObject source = collectable.transform.parent.gameObject;
-            GameObject destination = platforms[destIndex];
+    //internal static void Shuffle(GameObject[] platforms, GameObject collectable)
+    //{
+    //    bool indexFound = false;
+    //    do
+    //    {
+    //        // Find a random index
+    //        int destIndex = Random.Range(0, platforms.Length);
+    //        GameObject source = collectable.transform.parent.gameObject;
+    //        GameObject destination = platforms[destIndex];
 
-            // If is not identical
-            if (source != destination && destination.transform.childCount == 0)
-            {
+    //        // If is not identical
+    //        if (source != destination && destination.transform.childCount == 0)
+    //        {
 
-                // Swap the position
-                collectable.transform.position = destination.transform.position;
+    //            // Swap the position
+    //            collectable.transform.position = destination.transform.position;
 
-                collectable.transform.parent = platforms[destIndex].transform;
-                indexFound = true;
-                // Swap the array item
-            }
-        } 
-        while (indexFound == false);       
-    }
+    //            collectable.transform.parent = platforms[destIndex].transform;
+    //            indexFound = true;
+    //            // Swap the array item
+    //        }
+    //    } 
+    //    while (indexFound == false);       
+    //}
 
-    internal static void SpawnRandomObject(GameObject[] collectables, GameObject currentCollectable)
+    internal static void SpawnRandomObject(GameObject currentCollectable)
     {
         GameObject spawnObj;
         int boxIndex = int.Parse(currentCollectable.transform.parent.name);
+
         if (boxIndex < 2)
         {
-            spawnObj = Instantiate(collectables[Random.Range(0, collectables.Length - 1)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
+            spawnObj = Instantiate(collectables[Random.Range(1, collectables.Length - 1)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
         }
         else
         {
-            spawnObj = Instantiate(collectables[Random.Range(0, collectables.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
+            spawnObj = Instantiate(collectables[Random.Range(1, collectables.Length)], currentCollectable.transform.position, currentCollectable.transform.rotation, currentCollectable.transform.parent);
         }
         SpriteRenderer sprite = spawnObj.GetComponent<SpriteRenderer>();
         if (sprite != null)
@@ -142,7 +146,7 @@ internal class InstantiateItems : MonoBehaviour
         {
             pushForward.Add(index);
             usedIndexes.Add(index);
-            GameObject obj = Instantiate(items[3], boxes[index].transform.position, items[3].transform.rotation, boxes[index].transform);
+            GameObject obj = Instantiate(collectables[4], boxes[index].transform.position, items[4].transform.rotation, boxes[index].transform);
             if (index > 9)
             {
                 obj.transform.localScale = new Vector2(-1, 1);
@@ -160,7 +164,7 @@ internal class InstantiateItems : MonoBehaviour
         {
             pushBack.Add(index);
             usedIndexes.Add(index);
-            GameObject obj = Instantiate(items[4], boxes[index].transform.position, items[4].transform.rotation, boxes[index].transform);
+            GameObject obj = Instantiate(items[5], boxes[index].transform.position, items[5].transform.rotation, boxes[index].transform);
             if (index > 9)
             {
                 obj.transform.localScale = new Vector2(-1, 1);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 internal class PlusMinusController : MonoBehaviour, ICollectable
 {
-    [SerializeField] private GameObject[] collectables;
+    //[SerializeField] private GameObject[] collectables;
     private List<MovePlayer> movePlayerList;
     private List<Collider2D> colliders;
     private Collider2D collider2D;
@@ -32,7 +32,6 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         if (otherObject.gameObject.tag == "Player")
         {
             entered = true;
-            Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
@@ -74,7 +73,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                     StartCoroutine(Deactivate());
                     player.holdsCollectable = false;
                     entered = false;
-                    Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
+                    //Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
                     break;
                 }
             }            
@@ -102,7 +101,6 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         if (firstLetter == "+")
         {
             player.plusOn = true;
-            Debug.Log(player.gameObject.name + " took the PLUS");
         }
         else if (firstLetter == "-")
         {
@@ -114,7 +112,10 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 
     public IEnumerator Deactivate()
     {
-        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        //InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
+        Debug.Log("instantiating new obj");
+
+        InstantiateItems.SpawnRandomObject(this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
 
         //this.GetComponent<SpriteRenderer>().enabled = false;
