@@ -9,7 +9,7 @@ public class MovePlayer : MonoBehaviour
     public delegate void TimeTicking(float nambuttonNamee);
     public static event TimeTicking OnClickTimer;
 
-    [SerializeField] private Transform[] boxes;
+    private List<Transform> boxes;
 
     internal List<GameObject> players;
 
@@ -44,6 +44,17 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
+        //boxes = new List<Transform>();
+        //foreach  (GameObject box in InstantiateItems.moveBoxes)
+        //{
+        //    boxes.Add(box.transform);
+        //}
+        boxes = InstantiateItems.moveBoxes.Select(obj => obj.transform).ToList();
+        if (boxes != null)
+        {
+            Debug.Log(boxes.Count);
+
+        }
         players = new List<GameObject>();
         players = GameObject.FindGameObjectsWithTag("Player").ToList();
         playersMove = new List<MovePlayer>();
@@ -59,9 +70,9 @@ public class MovePlayer : MonoBehaviour
         move = false;
         trap = false;
 
-        currentIndex = -1;
-        initialIndex = -1;
-        indexToPush = -1;
+        currentIndex = 0;
+        initialIndex = 0;
+        indexToPush = 0;
         initialIndex = currentIndex;
 
         collectableFound = false;
@@ -191,11 +202,11 @@ public class MovePlayer : MonoBehaviour
                 this.minusOn = false;
                 move = true;
 
-                if (currentIndex == 19)
+                if (currentIndex == 20)
                 {
                     currentIndex += 1;
                 }
-                else if (currentIndex == 18 && this.boxIndex > 2)
+                else if (currentIndex == 19 && this.boxIndex > 2)
                 {
                     currentIndex += 2;
                 }
@@ -227,9 +238,9 @@ public class MovePlayer : MonoBehaviour
     {
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
-        Debug.Log(this.gameObject.name + " = collectable = " + collectableFound);
+        Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
 
-        if (move == true && currentIndex < boxes.Length && initialIndex < 20 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
+        if (move == true && currentIndex < boxes.Count && initialIndex < boxes.Count - 1 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
@@ -238,7 +249,7 @@ public class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) < 0.1)
             {
                 initialIndex++;
-                if (initialIndex == 10 && rotationChanged == false)
+                if (initialIndex == 11 && rotationChanged == false)
                 {
                     RotatePlayer();
                     rotationChanged = true;
@@ -253,8 +264,14 @@ public class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialIndex - 1].transform.position) < 0.1)
             {
                 initialIndex--;
-                if (initialIndex == 10 && rotationChanged == false)
+                if (initialIndex == 11 && rotationChanged == false)
                 {
+                    RotatePlayer();
+                    rotationChanged = true;
+                }
+                else if(initialIndex == 0 && rotationChanged == false)
+                {
+                    Debug.Log(this.gameObject.name + " = rotated" );
                     RotatePlayer();
                     rotationChanged = true;
                 }

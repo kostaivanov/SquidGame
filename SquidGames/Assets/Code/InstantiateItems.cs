@@ -12,13 +12,17 @@ internal class InstantiateItems : MonoBehaviour
     private List<int> pushBack;
 
     public static GameObject[] collectables;
-
+    public static GameObject[] moveBoxes;
     private bool spawned;
+    private void Awake()
+    {
+        collectables = items;
+        moveBoxes = boxes;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        collectables = items;
         usedIndexes = new List<int>();
         plusesMinuses = new List<int>();
         pushForward = new List<int>();
@@ -53,11 +57,11 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnRandomBombs()
     {
-        int index = Random.Range(0, boxes.Length -1);
+        int index = Random.Range(1, boxes.Length -1);
 
         if (!usedIndexes.Contains(index))
         {
-            if ((index - 1 >= 0 && usedIndexes.Contains(index - 1)) && (index - 2 >= 0 && usedIndexes.Contains(index - 2)))
+            if ((index - 1 >= 1 && usedIndexes.Contains(index - 1)) && (index - 2 >= 1 && usedIndexes.Contains(index - 2)))
             {
                 return;
             }
@@ -65,7 +69,7 @@ internal class InstantiateItems : MonoBehaviour
             {
                 return;
             }
-            if ((index - 1 >= 0 && usedIndexes.Contains(index - 1)) && (index + 1 <= boxes.Length - 1 && usedIndexes.Contains(index + 1)))
+            if ((index - 1 >= 1 && usedIndexes.Contains(index - 1)) && (index + 1 <= boxes.Length - 1 && usedIndexes.Contains(index + 1)))
             {
                 return;
             }
@@ -78,7 +82,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnPlusAndMinus()
     {
-        int index = Random.Range(0, boxes.Length - 1);
+        int index = Random.Range(1, boxes.Length - 1);
 
         if (!usedIndexes.Contains(index) && !plusesMinuses.Contains(index))
         {
@@ -140,7 +144,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnPushForwardObject()
     {
-        int index = Random.Range(0, boxes.Length - 3);
+        int index = Random.Range(1, boxes.Length - 3);
 
         if (!usedIndexes.Contains(index) && !pushForward.Contains(index))
         {
@@ -158,7 +162,7 @@ internal class InstantiateItems : MonoBehaviour
 
     private void SpawnPushBackObject()
     {
-        int index = Random.Range(2, boxes.Length - 1);
+        int index = Random.Range(1, boxes.Length - 1);
 
         if (!usedIndexes.Contains(index) && !pushBack.Contains(index))
         {
