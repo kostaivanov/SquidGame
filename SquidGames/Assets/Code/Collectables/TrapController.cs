@@ -78,6 +78,7 @@ public class TrapController : MonoBehaviour, ICollectable
             //movePlayer.trap = false;
             movePlayerList.Clear();
             //movePlayerList = null;
+            colliders.Clear();
         }        
     }
 
@@ -94,17 +95,17 @@ public class TrapController : MonoBehaviour, ICollectable
 
     private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
     {
+        InstantiateItems.SpawnRandomObject(this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
         //_movePlayer.trap = false;
-        InstantiateItems.SpawnRandomObject(this.gameObject);
 
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
-        if (movePlayerList != null)
-        {
-            movePlayerList.Clear();
-            colliders.Clear();
-            //Debug.Log("exiting?");
-        }
+        //if (movePlayerList != null)
+        //{
+        //    movePlayerList.Clear();
+        //    colliders.Clear();
+        //    //Debug.Log("exiting?");
+        //}
         Destroy(this.gameObject);
     }
 
