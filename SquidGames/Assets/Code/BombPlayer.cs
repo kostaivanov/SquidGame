@@ -47,7 +47,7 @@ public class BombPlayer : MonoBehaviour
             //this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
-
+            obj.GetComponent<Button>().interactable = false;
             if (toBombEnemy == true)
             {
                 indexToBomb = movePlayer.currentIndex + boxIndex;
@@ -92,7 +92,8 @@ public class BombPlayer : MonoBehaviour
 
     private void Bomb(MovePlayer target)
     {
-        livesManager.Restart(true, skillsButtons[2].gameObject, target.gameObject, target.startPosition);
+        //livesManager.Restart(true, skillsButtons[2].gameObject, target.gameObject, target.startPosition);
+        livesManager.Restart(true, this.gameObject, target.gameObject, target.startPosition);
         if (toBombEnemy == true)
         {
             toBombEnemy = false;

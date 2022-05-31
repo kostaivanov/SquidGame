@@ -9,7 +9,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
     //private GameObject[] players;
     //private List<PlayerClicker> playersClicker;
     //private List<MovePlayer> playersMove;
-    [SerializeField] private List<Button> moveButtons, pushButtons;
+    [SerializeField] private List<Button> moveButtons, pushButtons, switchButtons, bombButtons;
     [SerializeField] private List<MoveButtonsStateController> moveButtonsStateControllerList;
     // Start is called before the first frame update
     void Start()
@@ -67,7 +67,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         }
     }
 
-    public void Restart(bool killedByTrap, GameObject bombOrSkillObject, GameObject playerObject, Vector3 playerStartPosition)
+    public void Restart(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
     {
         playerObject.transform.position = playerStartPosition;
         PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
@@ -105,17 +105,17 @@ public class LivesManager : MonoBehaviour, IDestroyable
             }
 
         }
-        foreach (Button button in pushButtons)
-        {
-            if (playerObject.name.StartsWith("B") && button.gameObject.name.StartsWith("R"))
-            {
-                button.interactable = true;
-            }
-            else if (playerObject.name.StartsWith("R") && button.gameObject.name.StartsWith("B"))
-            {
-                button.interactable = true;
-            }
-        }
+        //foreach (Button button in pushButtons)
+        //{
+        //    if (playerObject.name.StartsWith("B") && button.gameObject.name.StartsWith("R"))
+        //    {
+        //        button.interactable = true;
+        //    }
+        //    else if (playerObject.name.StartsWith("R") && button.gameObject.name.StartsWith("B"))
+        //    {
+        //        button.interactable = true;
+        //    }
+        //}
         if (movePlayer != null)
         {
             movePlayer.currentIndex = 0;
@@ -131,18 +131,32 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
-        if (!bombOrSkillObject.name.Any(char.IsDigit))
+
+
+        for (int i = 0; i < switchButtons.Count; i++)
         {
-            bombOrSkillObject.GetComponent<OnClickBomb>().activated = false;
+            if (playerObject.name.Substring(0, 1) == switchButtons[i].gameObject.name.Substring(0, 1))
+            {
+                switchButtons[i].interactable = true;
+                switchButtons[i].GetComponent<OnClickSwitch>().activated = false;
+                bombButtons[i].interactable = true;
+                bombButtons[i].GetComponent<OnClickBomb>().activated = false;
+                pushButtons[i].interactable = true;
+            }
         }
 
-        if (killedByTrap == false)
-        {
-            if (bombOrSkillObject.name.EndsWith("C"))
-            {
-                Button button = bombOrSkillObject.GetComponent<Button>();
-                button.interactable = true;
-            }
-        }      
+        //if (!bombOrSkillObject.name.Any(char.IsDigit))
+        //{
+        //    bombOrSkillObject.GetComponent<OnClickBomb>().activated = false;
+        //}
+
+        //if (killedByTrap == false)
+        //{
+        //    if (bombOrSkillObject.name.EndsWith("C"))
+        //    {
+        //        Button button = bombOrSkillObject.GetComponent<Button>();
+        //        button.interactable = true;
+        //    }
+        //}      
     }
 }

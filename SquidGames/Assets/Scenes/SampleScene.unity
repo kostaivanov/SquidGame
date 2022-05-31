@@ -37115,6 +37115,12 @@ MonoBehaviour:
   pushButtons:
   - {fileID: 942860683}
   - {fileID: 1146486524}
+  switchButtons:
+  - {fileID: 571507682}
+  - {fileID: 1527925020}
+  bombButtons:
+  - {fileID: 1351523434}
+  - {fileID: 1158401394}
   moveButtonsStateControllerList:
   - {fileID: 317232989}
   - {fileID: 1682455019}

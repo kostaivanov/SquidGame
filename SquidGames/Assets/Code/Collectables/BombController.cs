@@ -9,7 +9,7 @@ internal class BombController : MonoBehaviour, ICollectable
     private List<MovePlayer> movePlayerList;
     //private PlayerHealth playerHealth;
 
-    public delegate void BombEventHandler(bool killedByTrap, GameObject objBomb, GameObject player, Vector3 position);
+    public delegate void BombEventHandler(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 position);
     public static event BombEventHandler OnBombExplodeHandler;
     private List<Collider2D> colliders;
 

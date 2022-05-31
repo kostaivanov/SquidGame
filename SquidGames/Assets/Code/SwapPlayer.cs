@@ -49,6 +49,7 @@ public class SwapPlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             //this.moveButtonsStateController = moveButtonsStateController;
+            obj.GetComponent<Button>().interactable = false;
             if (toSwitchEnemy == true)
             {
                 Debug.Log("swap?");
