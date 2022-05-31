@@ -17,12 +17,15 @@ public class BombPlayer : MonoBehaviour
     internal bool toBombEnemy;
     private LivesManager livesManager;
 
+    private bool found;
+
     // Start is called before the first frame update
     void Start()
     {
         movePlayer = GetComponent<MovePlayer>();
         //playerClicker = GetComponent<PlayerClicker>();
         toBombEnemy = false;
+        found = false;
     }
 
     private void OnEnable()
@@ -48,12 +51,19 @@ public class BombPlayer : MonoBehaviour
             if (toBombEnemy == true)
             {
                 indexToBomb = movePlayer.currentIndex + boxIndex;
+
                 foreach (MovePlayer p in movePlayer.playersMove)
                 {
                     if (p.initialIndex == indexToBomb)
                     {
+                        found = true;
                         Bomb(p);
                     }
+                }
+                if (found == false)
+                {
+                    toBombEnemy = false;
+                    skillsButtons[2].GetComponent<OnClickBomb>().activated = false;
                 }
             }
         }
@@ -86,6 +96,7 @@ public class BombPlayer : MonoBehaviour
         if (toBombEnemy == true)
         {
             toBombEnemy = false;
+            found = false;
         }
     }
 }

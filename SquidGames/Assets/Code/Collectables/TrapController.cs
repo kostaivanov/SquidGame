@@ -29,19 +29,20 @@ public class TrapController : MonoBehaviour, ICollectable
             if (!colliders.Contains(otherObject) && currentMovePlayer.currentIndex == int.Parse(this.gameObject.transform.parent.name))
             {
                 colliders.Add(otherObject);
+                movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
             }
-            if (colliders.Count > 0)
-            {
-                foreach (Collider2D coll in colliders)
-                {
-                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
-                }
-                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
-                //{
-                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                //    //movePlayer.trap = true;
-                //}
-            }
+            //if (colliders.Count > 0)
+            //{
+            //    foreach (Collider2D coll in colliders)
+            //    {
+            //        movePlayerList.Add(coll.GetComponent<MovePlayer>());
+            //    }
+            //    //if (colliders[0].gameObject.name == otherObject.gameObject.name)
+            //    //{
+            //    //    movePlayer = colliders[0].GetComponent<MovePlayer>();
+            //    //    //movePlayer.trap = true;
+            //    //}
+            //}
         }
     }
 
@@ -77,6 +78,7 @@ public class TrapController : MonoBehaviour, ICollectable
             //movePlayer.trap = false;
             movePlayerList.Clear();
             //movePlayerList = null;
+            colliders.Clear();
         }        
     }
 
@@ -93,17 +95,17 @@ public class TrapController : MonoBehaviour, ICollectable
 
     private IEnumerator CallMovementFunciton(string trapTag, MovePlayer _movePlayer, int moveNumber)
     {
+        InstantiateItems.SpawnRandomObject(this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
         //_movePlayer.trap = false;
-        InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
 
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
-        if (movePlayerList != null)
-        {
-            movePlayerList.Clear();
-            colliders.Clear();
-            Debug.Log("exiting?");
-        }
+        //if (movePlayerList != null)
+        //{
+        //    movePlayerList.Clear();
+        //    colliders.Clear();
+        //    //Debug.Log("exiting?");
+        //}
         Destroy(this.gameObject);
     }
 

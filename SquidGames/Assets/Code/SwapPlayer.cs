@@ -17,12 +17,15 @@ public class SwapPlayer : MonoBehaviour
     internal bool toSwitchEnemy;
     private OnClickSwitch onClickSwitchRef;
 
+    private bool found;
+
     // Start is called before the first frame update
     void Start()
     {
         movePlayer = GetComponent<MovePlayer>();
         //playerClicker = GetComponent<PlayerClicker>();
         toSwitchEnemy = false;
+        found = false;
     }
 
     private void OnEnable()
@@ -55,8 +58,14 @@ public class SwapPlayer : MonoBehaviour
                 {
                     if (p.currentIndex == indexToSwitchWith)
                     {
+                        found = true;
                         Swap(p);
                     }
+                }
+                if (found == false)
+                {
+                    toSwitchEnemy = false;
+                    skillsButtons[1].GetComponent<OnClickSwitch>().activated = false;
                 }
             }
         }
@@ -92,6 +101,7 @@ public class SwapPlayer : MonoBehaviour
         if (toSwitchEnemy == true)
         {
             toSwitchEnemy = false;
+            found = false;
             onClickSwitchRef.activated = false;
         }
     }

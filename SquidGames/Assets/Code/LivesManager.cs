@@ -118,7 +118,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         }
         if (movePlayer != null)
         {
-            movePlayer.currentIndex = -1;
+            movePlayer.currentIndex = 0;
             movePlayer.initialIndex = movePlayer.currentIndex;
         }
         
