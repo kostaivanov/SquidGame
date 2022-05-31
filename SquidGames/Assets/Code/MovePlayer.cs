@@ -50,11 +50,11 @@ public class MovePlayer : MonoBehaviour
         //    boxes.Add(box.transform);
         //}
         boxes = InstantiateItems.moveBoxes.Select(obj => obj.transform).ToList();
-        if (boxes != null)
-        {
-            Debug.Log(boxes.Count);
+        //if (boxes != null)
+        //{
+        //    Debug.Log(boxes.Count);
 
-        }
+        //}
         players = new List<GameObject>();
         players = GameObject.FindGameObjectsWithTag("Player").ToList();
         playersMove = new List<MovePlayer>();
@@ -244,7 +244,7 @@ public class MovePlayer : MonoBehaviour
         }
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
-        Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
+        //Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
 
         if (move == true && currentIndex < boxes.Count && initialIndex < boxes.Count - 1 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
         {

@@ -67,7 +67,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
         }
     }
 
-    public void Restart(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition)
+    public void Restart(bool killedByTrap, GameObject bombOrSkillObject, GameObject playerObject, Vector3 playerStartPosition)
     {
         playerObject.transform.position = playerStartPosition;
         PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
@@ -131,16 +131,16 @@ public class LivesManager : MonoBehaviour, IDestroyable
         playerObject.transform.localScale = new Vector2(-0.5f, 0.5f);
         movePlayer.rotationChanged = false;
         playerHealth.dead = true;
-        if (!bombObject.name.Any(char.IsDigit))
+        if (!bombOrSkillObject.name.Any(char.IsDigit))
         {
-            bombObject.GetComponent<OnClickBomb>().activated = false;
+            bombOrSkillObject.GetComponent<OnClickBomb>().activated = false;
         }
 
         if (killedByTrap == false)
         {
-            if (bombObject.name.EndsWith("C"))
+            if (bombOrSkillObject.name.EndsWith("C"))
             {
-                Button button = bombObject.GetComponent<Button>();
+                Button button = bombOrSkillObject.GetComponent<Button>();
                 button.interactable = true;
             }
         }      
