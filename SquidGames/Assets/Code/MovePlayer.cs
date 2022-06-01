@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
     public static event TimeTicking OnClickTimer;
 
     private List<Transform> boxes;
-
+    private int lastIndex;
     internal List<GameObject> players;
 
     private PushPlayer pusPlayerRef;
@@ -21,7 +21,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] private float speed = 1f;
     internal bool move;
-    internal int currentIndex, initialIndex;
+    internal int currentIndex, initialIndex, balanceIndex;
     [SerializeField] private LayerMask collectablesLayer, trapsLayer;
     private int boxIndex;
     internal bool collectableFound;
@@ -72,9 +72,10 @@ public class MovePlayer : MonoBehaviour
 
         currentIndex = 0;
         initialIndex = 0;
+        balanceIndex = 0;
         indexToPush = 0;
         initialIndex = currentIndex;
-
+        lastIndex = boxes.Count - 1;
         collectableFound = false;
         holdsCollectable = false;
 
@@ -100,18 +101,22 @@ public class MovePlayer : MonoBehaviour
         if (this.gameObject.name == obj.name)
         {
             //trap = true;
+            if (initialIndex != 11)
+            {
+                rotationChanged = false;
+            }
             move = true;
             if (direction == "GoForward")
             {
-                if (currentIndex == 19)
+                if (currentIndex == 21)
                 {
-                    currentIndex += 1;
-                }
-               
+                    currentIndex = 1;
+                }              
                 else
                 {
                     currentIndex += numberOfMoves;
                 }
+
                 if (coroutine != null)
                 {
                     StopCoroutine(coroutine);
@@ -147,12 +152,15 @@ public class MovePlayer : MonoBehaviour
 
         if (this.gameObject.name.Substring(0, 1) == buttonColor && CheckIfAnySkillActivated(skillsButtons) == false)
         {
-
             Button button = obj.GetComponent<Button>();
             // StartCoroutine(DeactivateButtons(button, moveButtons, skillsButtons));
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             this.moveButtonsStateController = moveButtonsStateController;
+            if (initialIndex != 11)
+            {
+                rotationChanged = false;
+            }
             if (pusPlayerRef.toPushEnemy == true)
             {
                 indexToPush = currentIndex + boxIndex;
@@ -203,22 +211,20 @@ public class MovePlayer : MonoBehaviour
                 this.minusOn = false;
                 move = true;
 
-                if (currentIndex == 20)
+
+                int sum = currentIndex + this.boxIndex;
+                Debug.Log("current index = " + currentIndex);
+                if (sum > 20)
                 {
-                    currentIndex += 1;
-                }
-                else if (currentIndex == 19 && this.boxIndex > 2)
-                {
-                    currentIndex += 2;
-                }
-                else if (currentIndex == 18 && this.boxIndex > 3)
-                {
-                    currentIndex += 3;
-                }
+                    balanceIndex = this.boxIndex - (lastIndex - currentIndex);
+                    //currentIndex = (sum % 10) - 1;
+                    currentIndex = 21;
+                }    
                 else
                 {
                     currentIndex += this.boxIndex;
                 }
+
                 //button.interactable = false;
                 //moveButtons.ToList().ForEach(x => Debug.Log(x.gameObject.name));
                 //moveButtons.ToList().ForEach(x => x.interactable = false);
@@ -241,6 +247,14 @@ public class MovePlayer : MonoBehaviour
         {
             RotatePlayer();
             rotationChanged = true;
+            Debug.Log("how many times rotating?");
+        }
+        if (initialIndex == 21)
+        {
+            initialIndex = 1;
+            currentIndex = balanceIndex;
+            balanceIndex = 0;
+            Debug.Log("currentindex = balance " + currentIndex);
         }
         //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
@@ -255,6 +269,7 @@ public class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) < 0.1)
             {
                 initialIndex++;
+              
                 //if (initialIndex == 11 && rotationChanged == false)
                 //{
                 //    RotatePlayer();
@@ -291,7 +306,7 @@ public class MovePlayer : MonoBehaviour
                 RotatePlayer();
             }
             move = false;
-            rotationChanged = false;
+
             if (StayOnTopOfCollectable(trapsLayer) == true && trap == false)
             {
                 trap = true;
