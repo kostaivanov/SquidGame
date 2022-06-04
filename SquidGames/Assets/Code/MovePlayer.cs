@@ -157,7 +157,7 @@ public class MovePlayer : MonoBehaviour
             this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
             this.moveButtonsStateController = moveButtonsStateController;
-            if (initialIndex != 11)
+            if (initialIndex != 11 && initialIndex != 21)
             {
                 rotationChanged = false;
             }
@@ -214,7 +214,12 @@ public class MovePlayer : MonoBehaviour
 
                 int sum = currentIndex + this.boxIndex;
                 Debug.Log("current index = " + currentIndex);
-                if (sum > 20)
+                if (currentIndex == 21)
+                {
+                    currentIndex = this.boxIndex;
+                    initialIndex = 0;
+                }
+                else if (sum > 20)
                 {
                     balanceIndex = this.boxIndex - (lastIndex - currentIndex);
                     //currentIndex = (sum % 10) - 1;
@@ -247,21 +252,30 @@ public class MovePlayer : MonoBehaviour
         {
             RotatePlayer();
             rotationChanged = true;
+        }
+        if (initialIndex == 21 && rotationChanged == false)
+        {
+            RotatePlayer();
+            rotationChanged = true;
             Debug.Log("how many times rotating?");
         }
-        if (initialIndex == 21)
-        {
-            initialIndex = 1;
-            currentIndex = balanceIndex;
-            balanceIndex = 0;
-            Debug.Log("currentindex = balance " + currentIndex);
-        }
-        //Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
+        //if (initialIndex == 21 && balanceIndex > 0)
+        //{
+        //    currentIndex = balanceIndex;
+        //    initialIndex = 1;
+        //    balanceIndex = 0;
+        //    Debug.Log("currentindex = balance " + currentIndex);
+        //    if (move == false)
+        //    {
+        //        move = true;
+        //    }
+        //}
+        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
         //Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
-
-        if (move == true && currentIndex < boxes.Count && initialIndex < boxes.Count - 1 && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 && initialIndex < currentIndex)
-        {
+        //currentIndex < boxes.Count && initialIndex < boxes.Count - 1 &&
+        if (move == true && initialIndex < currentIndex && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 )
+        {           
             Vector3 direction = (boxes[initialIndex + 1].transform.position - this.transform.position);
 
             Move(direction, boxes[initialIndex + 1]);
@@ -269,7 +283,14 @@ public class MovePlayer : MonoBehaviour
             if (Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) < 0.1)
             {
                 initialIndex++;
-              
+                if (initialIndex == 21 && balanceIndex > 0)
+                {
+                    initialIndex = 0;
+                    currentIndex = balanceIndex;
+                    balanceIndex = 0;                  
+                }
+
+
                 //if (initialIndex == 11 && rotationChanged == false)
                 //{
                 //    RotatePlayer();
@@ -298,7 +319,7 @@ public class MovePlayer : MonoBehaviour
                 //}
             }
         }
-        else if (move == true)
+        else if (move == true && balanceIndex == 0)
         {
             if (goingBackwards == true)
             {
