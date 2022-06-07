@@ -44,9 +44,7 @@ public class BombPlayer : MonoBehaviour
     {
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
-            //this.moveButtons = moveButtons;
             this.skillsButtons = skillsButtons;
-            //this.moveButtonsStateController = moveButtonsStateController;
             obj.GetComponent<Button>().interactable = false;
             if (toBombEnemy == true)
             {
@@ -74,25 +72,12 @@ public class BombPlayer : MonoBehaviour
         {
             toBombEnemy = true;
             this.livesManager = livesManager;
-
-            //PlayerClicker chosenClickedPlayer = GetMovePlayerVariable(players);
-            //if (chosenClickedPlayer != null)
-            //{
-            //Log(chosenClickedPlayer.gameObject.name);
-            //livesManager.Restart(null, chosenClickedPlayer.gameObject, chosenClickedPlayer.gameObject.GetComponent<MovePlayer>().startPosition);
-            //chosenClickedPlayer.playerWasChosen = false;
-            //Button button = buttonObject.GetComponent<Button>();
-            // button.interactable = false;
-            //chosenClickedPlayer.gameObject.GetComponentInChildren<SpriteRenderer>().color = initialColor;
-            //spriteRenderer.color = initialColor;
-            //}
             buttonObject.GetComponent<Button>().interactable = false;
         }
     }
 
     private void Bomb(MovePlayer target)
     {
-        //livesManager.Restart(true, skillsButtons[2].gameObject, target.gameObject, target.startPosition);
         livesManager.Restart(true, this.gameObject, target.gameObject, target.startPosition);
         if (toBombEnemy == true)
         {

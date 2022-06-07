@@ -23,32 +23,18 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
-            //Debug.Log("moving trap = " + movePlayer.gameObject.name);
-
             MovePlayer currentMovePlayer = otherObject.gameObject.GetComponent<MovePlayer>();
             if (!colliders.Contains(otherObject) && currentMovePlayer.currentIndex == int.Parse(this.gameObject.transform.parent.name))
             {
                 colliders.Add(otherObject);
                 movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
             }
-            //if (colliders.Count > 0)
-            //{
-            //    foreach (Collider2D coll in colliders)
-            //    {
-            //        movePlayerList.Add(coll.GetComponent<MovePlayer>());
-            //    }
-            //    //if (colliders[0].gameObject.name == otherObject.gameObject.name)
-            //    //{
-            //    //    movePlayer = colliders[0].GetComponent<MovePlayer>();
-            //    //    //movePlayer.trap = true;
-            //    //}
-            //}
+
         }
     }
 
     private void OnTriggerStay2D(Collider2D otherObject)
     {
-        //&& movePlayer.collectableFound == true
         if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
             foreach (MovePlayer p in movePlayerList)
@@ -58,10 +44,8 @@ public class TrapController : MonoBehaviour, ICollectable
                     Debug.Log("trapy move forward or backward = " + otherObject.gameObject.name);
                     p.trap = false;
 
-                    //if (movePlayer.move == false)
-                    //{
                     Activate();
-                    //}
+                    
 
                     StartCoroutine(CallMovementFunciton(this.gameObject.tag, p, numberOfMoves));
                 }
@@ -75,9 +59,7 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         if (movePlayerList != null && !movePlayerList.Any())
         {
-            //movePlayer.trap = false;
             movePlayerList.Clear();
-            //movePlayerList = null;
             colliders.Clear();
         }        
     }
@@ -97,15 +79,9 @@ public class TrapController : MonoBehaviour, ICollectable
     {
         InstantiateItems.SpawnRandomObject(this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
-        //_movePlayer.trap = false;
 
         _movePlayer.MoveByTrapDirection(trapTag, moveNumber, _movePlayer.gameObject);
-        //if (movePlayerList != null)
-        //{
-        //    movePlayerList.Clear();
-        //    colliders.Clear();
-        //    //Debug.Log("exiting?");
-        //}
+
         Destroy(this.gameObject);
     }
 

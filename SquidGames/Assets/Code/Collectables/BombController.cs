@@ -27,18 +27,12 @@ internal class BombController : MonoBehaviour, ICollectable
             {
                 colliders.Add(otherObject);
             }
-            //if (colliders.Count > 0)
-            //{
-                foreach (Collider2D coll in colliders)
-                {
-                    movePlayerList.Add(coll.GetComponent<MovePlayer>());
-                }
-                //if (colliders[0].gameObject.name == otherObject.gameObject.name)
-                //{
-                //    movePlayer = colliders[0].GetComponent<MovePlayer>();
-                //}
-            //}
-            //playerHealth = otherObject.GetComponent<PlayerHealth>();
+
+            foreach (Collider2D coll in colliders)
+            {
+                movePlayerList.Add(coll.GetComponent<MovePlayer>());
+            }
+
         }
     }
 

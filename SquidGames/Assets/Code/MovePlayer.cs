@@ -213,11 +213,11 @@ public class MovePlayer : MonoBehaviour
 
 
                 int sum = currentIndex + this.boxIndex;
-                Debug.Log("current index = " + currentIndex);
                 if (currentIndex == 21)
                 {
                     currentIndex = this.boxIndex;
                     initialIndex = 0;
+                    Debug.Log("one time click current index = " + currentIndex + " - and  initial = " + initialIndex);
                 }
                 else if (sum > 20)
                 {
@@ -257,20 +257,8 @@ public class MovePlayer : MonoBehaviour
         {
             RotatePlayer();
             rotationChanged = true;
-            Debug.Log("how many times rotating?");
+            Debug.Log("Rotated!");
         }
-        //if (initialIndex == 21 && balanceIndex > 0)
-        //{
-        //    currentIndex = balanceIndex;
-        //    initialIndex = 1;
-        //    balanceIndex = 0;
-        //    Debug.Log("currentindex = balance " + currentIndex);
-        //    if (move == false)
-        //    {
-        //        move = true;
-        //    }
-        //}
-        Debug.Log("current index = " + currentIndex + " - and  initial = " + initialIndex);
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
         //Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
         //currentIndex < boxes.Count && initialIndex < boxes.Count - 1 &&
@@ -285,9 +273,15 @@ public class MovePlayer : MonoBehaviour
                 initialIndex++;
                 if (initialIndex == 21 && balanceIndex > 0)
                 {
+                    if (rotationChanged == false)
+                    {
+                        RotatePlayer();
+                        rotationChanged = true;
+                    }
                     initialIndex = 0;
                     currentIndex = balanceIndex;
-                    balanceIndex = 0;                  
+                    balanceIndex = 0;
+                    Debug.Log("Rotated!");
                 }
 
 

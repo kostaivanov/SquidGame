@@ -36,25 +36,8 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             {
                 colliders.Add(otherObject);
                 movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
-                //Debug.Log(otherObject.gameObject.name + " is abt to take = " + this.gameObject.name);
             }
-            //if (colliders.Count > 0)
-            //{
-            //    foreach (MovePlayer player in movePlayerList)
-            //    {
-            //        if (player.holdsCollectable == false && player.gameObject.name == otherObject.gameObject.name)
-            //        {
-            //            player.holdsCollectable = true;
-            //            entered = true;
-            //            Debug.Log("Ontrigger Enter Players = " + player.gameObject.name + " - " + Time.realtimeSinceStartup);
-            //            break;
-            //        }
-            //    }
-            //}
-            //movePlayer = otherObject.GetComponent<MovePlayer>();
-            //Debug.Log("trap = " + otherObject.gameObject.name);
         }
-        //Debug.Log("opaa");
     }
 
     private void OnTriggerStay2D(Collider2D otherObject)
@@ -112,17 +95,9 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
 
     public IEnumerator Deactivate()
     {
-        //InstantiateItems.SpawnRandomObject(this.collectables, this.gameObject);
-        Debug.Log("instantiating new obj");
-
         InstantiateItems.SpawnRandomObject(this.gameObject);
         yield return new WaitForSecondsRealtime(1f);
 
-        //this.GetComponent<SpriteRenderer>().enabled = false;
-        //this.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-        //GameObject[] _boxes = GameObject.FindGameObjectsWithTag("Platform");
-
-        //InstantiateItems.Shuffle(_boxes, this.gameObject);
         Destroy(this.gameObject);
     }
 

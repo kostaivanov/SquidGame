@@ -105,17 +105,7 @@ public class LivesManager : MonoBehaviour, IDestroyable
             }
 
         }
-        //foreach (Button button in pushButtons)
-        //{
-        //    if (playerObject.name.StartsWith("B") && button.gameObject.name.StartsWith("R"))
-        //    {
-        //        button.interactable = true;
-        //    }
-        //    else if (playerObject.name.StartsWith("R") && button.gameObject.name.StartsWith("B"))
-        //    {
-        //        button.interactable = true;
-        //    }
-        //}
+
         if (movePlayer != null)
         {
             movePlayer.currentIndex = 0;
