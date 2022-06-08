@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICommand
+interface ICommand
 {
     void Execute(MovePlayer player);
 }

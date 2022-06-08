@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-public class MovePlayer : MonoBehaviour
+internal class MovePlayer : PlayerComponents
 {
     public delegate void TimeTicking(float nambuttonNamee);
     public static event TimeTicking OnClickTimer;

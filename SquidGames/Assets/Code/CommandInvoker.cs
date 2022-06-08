@@ -11,7 +11,7 @@ public class CommandInvoker : MonoBehaviour
         commandBuffer = new Queue<ICommand>();
     }
 
-    public static void AddCommand(ICommand command)
+    internal static void AddCommand(ICommand command)
     {
         commandBuffer.Enqueue(command);
     }

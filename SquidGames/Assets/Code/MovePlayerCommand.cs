@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovePlayerCommand : ICommand
+internal class MovePlayerCommand : ICommand
 {
     int boxIndex;
     string buttonColor;
@@ -15,4 +15,5 @@ public class MovePlayerCommand : ICommand
     {
         //player.MovePlayerForward(boxIndex, buttonColor, gameObject, moveButtons, skillsButtons);
     }
+
 }
