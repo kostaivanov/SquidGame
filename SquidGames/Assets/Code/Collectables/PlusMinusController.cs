@@ -86,11 +86,11 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
         player.minusOn = false;
         if (firstLetter == "+")
         {
+            Debug.Log(player.gameObject.name + " took the MINUS");
             player.plusOn = true;
         }
         else if (firstLetter == "-")
         {
-            Debug.Log(player.gameObject.name + " took the MINUS");
             player.minusOn = true;
         }
         collider2D.enabled = false;

@@ -45,9 +45,10 @@ public class BombPlayer : MonoBehaviour
         if (this.gameObject.name.Substring(0, 1) == buttonColor)
         {
             this.skillsButtons = skillsButtons;
-            obj.GetComponent<Button>().interactable = false;
+
             if (toBombEnemy == true)
             {
+                obj.GetComponent<Button>().interactable = false;
                 indexToBomb = movePlayer.currentIndex + boxIndex;
 
                 foreach (MovePlayer p in movePlayer.playersMove)
