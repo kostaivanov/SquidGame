@@ -182,7 +182,7 @@ internal class MovePlayer : PlayerComponents
 
                 //Removingbutton when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Remove(this.moveButtonsStateController.usedButtons.SingleOrDefault(x => x.gameObject.name == obj.name));
-                //Debug.Log("Used button was removed from List = +");
+                Debug.Log("Used button was removed from List = +");
             }
             else if (button.interactable == true && this.minusOn == true)
             {
@@ -191,7 +191,7 @@ internal class MovePlayer : PlayerComponents
 
                 //Adding button when used/clicked to the used buttons list.
                 this.moveButtonsStateController.usedButtons.Add(obj);
-                //Debug.Log("Used button was added from List = - by = " + this.gameObject.name);
+                Debug.Log("Used button was added from List = - by = " + this.gameObject.name);
 
                 //Turn all buttons ON if all are not interactable and used.
                 if (moveButtonsStateController.usedButtons.Count > 3)
@@ -260,7 +260,7 @@ internal class MovePlayer : PlayerComponents
             Debug.Log("Rotated!");
         }
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
-        //Debug.Log(this.gameObject.name + " = rotation  = " + rotationChanged);
+        Debug.Log(this.gameObject.name + " = plus  = " + plusOn);
         //currentIndex < boxes.Count && initialIndex < boxes.Count - 1 &&
         if (move == true && initialIndex < currentIndex && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 )
         {           

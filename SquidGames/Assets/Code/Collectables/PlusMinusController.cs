@@ -36,6 +36,7 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
             {
                 colliders.Add(otherObject);
                 movePlayerList.Add(otherObject.gameObject.GetComponent<MovePlayer>());
+                Debug.Log("how many times during ON TRIGGER?");
             }
         }
     }
@@ -57,6 +58,8 @@ internal class PlusMinusController : MonoBehaviour, ICollectable
                     player.holdsCollectable = false;
                     entered = false;
                     //Debug.Log("Ontrigger Stay Players = " + player.gameObject.name);
+                    Debug.Log("how many times during ON STAY?");
+
                     break;
                 }
             }            
