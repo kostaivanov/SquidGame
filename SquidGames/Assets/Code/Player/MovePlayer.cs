@@ -260,7 +260,7 @@ internal class MovePlayer : PlayerComponents
             Debug.Log("Rotated!");
         }
         //Debug.Log(this.gameObject.name + " = plus = " + plusOn + "; = minus = " + minusOn); ;
-        Debug.Log(this.gameObject.name + " = plus  = " + plusOn);
+        Debug.Log(this.gameObject.name + " = move  = " + move);
         //currentIndex < boxes.Count && initialIndex < boxes.Count - 1 &&
         if (move == true && initialIndex < currentIndex && Vector3.Distance(this.transform.position, boxes[initialIndex + 1].transform.position) > 0.1 )
         {           

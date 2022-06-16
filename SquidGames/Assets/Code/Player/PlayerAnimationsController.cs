@@ -18,7 +18,7 @@ internal class PlayerAnimationsController : PlayerComponents
     {
         this.AnimationStateSwitch();
         base.animator.SetInteger("state", (int)state);
-
+        //Debug.Log(this.gameObject.name + " move = " + movePlayerScript.move);
     }
 
     protected void AnimationStateSwitch()
