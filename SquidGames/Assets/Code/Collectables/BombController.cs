@@ -23,9 +23,12 @@ internal class BombController : MonoBehaviour, ICollectable
     {
         if (otherObject.gameObject.tag == "Player")
         {
+            Debug.Log("bomb = " + otherObject.gameObject.name);
+
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
+
             }
 
             foreach (Collider2D coll in colliders)
@@ -41,6 +44,7 @@ internal class BombController : MonoBehaviour, ICollectable
         //&& movePlayer.collectableFound == true
         if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
+
             foreach (MovePlayer p in movePlayerList)
             {
                 if (p.move == false && p.trap == true)
@@ -50,7 +54,6 @@ internal class BombController : MonoBehaviour, ICollectable
                     StartCoroutine(Explode(this.gameObject, p.gameObject, p.startPosition, p));
                 }
             }          
-            //Debug.Log("bomb = " + otherObject.gameObject.name);
         }
     }
 
