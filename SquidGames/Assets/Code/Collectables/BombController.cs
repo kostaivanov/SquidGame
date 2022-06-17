@@ -8,15 +8,25 @@ internal class BombController : MonoBehaviour, ICollectable
 {
     private List<MovePlayer> movePlayerList;
     //private PlayerHealth playerHealth;
+    private Animator animator;
+    private PointEffector2D pointEffector;
 
     public delegate void BombEventHandler(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 position);
     public static event BombEventHandler OnBombExplodeHandler;
     private List<Collider2D> colliders;
+    private List<Rigidbody2D> playerRigidBodies;
+
+    private MovePlayer player;
 
     private void Start()
     {
         colliders = new List<Collider2D>();
         movePlayerList = new List<MovePlayer>();
+        animator = GetComponent<Animator>();
+        pointEffector = GetComponent<PointEffector2D>();
+        animator.enabled = false;
+        pointEffector.enabled = false;
+        playerRigidBodies = new List<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -28,7 +38,11 @@ internal class BombController : MonoBehaviour, ICollectable
             if (!colliders.Contains(otherObject))
             {
                 colliders.Add(otherObject);
-
+                playerRigidBodies.Add(otherObject.gameObject.GetComponent<Rigidbody2D>());
+                foreach (Transform rb in otherObject.gameObject.transform)
+                {
+                    playerRigidBodies.Add(rb.gameObject.GetComponent<Rigidbody2D>());
+                }
             }
 
             foreach (Collider2D coll in colliders)
@@ -44,14 +58,13 @@ internal class BombController : MonoBehaviour, ICollectable
         //&& movePlayer.collectableFound == true
         if (otherObject.gameObject.tag == "Player" && movePlayerList != null)
         {
-
             foreach (MovePlayer p in movePlayerList)
             {
                 if (p.move == false && p.trap == true)
                 {
                     p.trap = false;
                     Activate();
-                    StartCoroutine(Explode(this.gameObject, p.gameObject, p.startPosition, p));
+                    player = p;
                 }
             }          
         }
@@ -72,7 +85,7 @@ internal class BombController : MonoBehaviour, ICollectable
 
     private IEnumerator Explode(GameObject bombObject, GameObject playerObject, Vector3 playerStartPosition, MovePlayer movePlayer)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(2f);
         //movePlayer.trap = false;
         //Deactivate(obj);
         //Restart(obj, position);
@@ -81,6 +94,8 @@ internal class BombController : MonoBehaviour, ICollectable
 
     public void Activate()
     {
+        animator.enabled = true;
+        pointEffector.enabled = true;
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -89,6 +104,20 @@ internal class BombController : MonoBehaviour, ICollectable
         throw new NotImplementedException();
     }
 
+    public void Restart()
+    {
+        StartCoroutine(Explode(this.gameObject, player.gameObject, player.startPosition, player));
+
+    }
+
+    public void SetAllRigidBodiesToDynamic()
+    {
+        foreach (Rigidbody2D rb in playerRigidBodies)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            Debug.Log(rb.gameObject.name);
+        }
+    }
     //protected virtual void OnBombExploded()
     //{
     //    if (OnBombExplodeHandler != null)

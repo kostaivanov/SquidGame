@@ -314,7 +314,6 @@ GameObject:
   - component: {fileID: 10069571}
   - component: {fileID: 10069570}
   - component: {fileID: 10069569}
-  - component: {fileID: 10069572}
   m_Layer: 6
   m_Name: WhiteRocky
   m_TagString: Player
@@ -417,18 +416,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &10069572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10069566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3850113781b7eb041a817fd9c287e55d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &19400701
 GameObject:
   m_ObjectHideFlags: 0
@@ -11594,7 +11581,6 @@ GameObject:
   - component: {fileID: 319689755}
   - component: {fileID: 319689754}
   - component: {fileID: 319689753}
-  - component: {fileID: 319689759}
   m_Layer: 6
   m_Name: GreenCarrot
   m_TagString: Player
@@ -11719,18 +11705,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319689759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319689752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3850113781b7eb041a817fd9c287e55d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &328689386
 GameObject:
   m_ObjectHideFlags: 0
@@ -18081,7 +18055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502580533}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.93, y: 1.9, z: 0}
+  m_LocalPosition: {x: 0.9300003, y: 1.9000001, z: 0}
   m_LocalScale: {x: -2, y: 2, z: 2}
   m_Children:
   - {fileID: 738487107}
