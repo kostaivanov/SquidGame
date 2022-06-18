@@ -112,6 +112,7 @@ internal class BombController : MonoBehaviour, ICollectable
 
     public void SetAllRigidBodiesToDynamic()
     {
+        player.GetComponent<Animator>().enabled = false;
         foreach (Rigidbody2D rb in playerRigidBodies)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;

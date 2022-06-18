@@ -7,7 +7,7 @@ internal abstract class PlayerComponents : MonoBehaviour
     #region Unity Components
     protected Rigidbody2D rigidBody;
     protected Collider2D collider2D;
-    protected Animator animator;
+    internal Animator animator;
     //protected PlayerMovement playerMovement;
     //protected PlayerHealth playerHealth;
     protected SpriteRenderer playerSprite;
@@ -21,7 +21,7 @@ internal abstract class PlayerComponents : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         //groundLayer = LayerMask.GetMask("GroundLayer");
         playerSprite = GetComponent<SpriteRenderer>();
     }
