@@ -5,12 +5,13 @@ using UnityEngine;
 internal class PlayerAnimationsController : PlayerComponents
 {
     private MovePlayer movePlayerScript;
-
+    [SerializeField] private GameObject walkingEffect;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         movePlayerScript = GetComponent<MovePlayer>();
+        walkingEffect.SetActive(false);
     }
 
 
@@ -27,10 +28,12 @@ internal class PlayerAnimationsController : PlayerComponents
         if (movePlayerScript.move == true)
         {
             state = PlayerState.moving;
+            walkingEffect.SetActive(true);
         }
         else
         {
             state = PlayerState.idle;
+            walkingEffect.SetActive(false);
         }
     }
 }

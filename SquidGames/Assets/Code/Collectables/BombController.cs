@@ -10,12 +10,12 @@ internal class BombController : MonoBehaviour, ICollectable
     //private PlayerHealth playerHealth;
     private Animator animator;
     private PointEffector2D pointEffector;
-
+    private float initialRadius;
     public delegate void BombEventHandler(bool killedByTrap, GameObject bombObject, GameObject playerObject, Vector3 position);
     public static event BombEventHandler OnBombExplodeHandler;
     private List<Collider2D> colliders;
     private List<Rigidbody2D> playerRigidBodies;
-
+    private CircleCollider2D circleCollider;
     private MovePlayer player;
 
     private void Start()
@@ -27,6 +27,8 @@ internal class BombController : MonoBehaviour, ICollectable
         animator.enabled = false;
         pointEffector.enabled = false;
         playerRigidBodies = new List<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        initialRadius = circleCollider.radius;
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -94,6 +96,7 @@ internal class BombController : MonoBehaviour, ICollectable
 
     public void Activate()
     {
+        circleCollider.radius = 1.25f;
         animator.enabled = true;
         pointEffector.enabled = true;
         this.GetComponent<SpriteRenderer>().enabled = true;
